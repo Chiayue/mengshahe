@@ -1,0 +1,3374 @@
+// Dota2 Editor
+// Get latest version: https://github.com/zombieJ/nw-dota2editor
+
+"DOTAUnits"
+{
+	"Version"		"1"
+
+	// 木乃伊
+	"creep_zombie"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/munaiyi/munaiyi.vmdl"
+		"ModelScale"	"3.5"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"200"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"60"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"StatusHealth"	"1"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"300"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"0"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+	}
+
+	// 骷髅
+	"creep_skeleton"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/items/wraith_king/arcana/wk_arcana_skeleton.vmdl"
+		"ModelScale"	"1.5"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"200"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"60"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusStartingMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusMana"	"0"
+		"StatusHealthRegen"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"0"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"AttackAnimationPoint"	"0.25"
+	}
+
+	// 骷髅弓箭手
+	"creep_troll"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/munaiyi_gjs/munaiyi_gjs.vmdl"
+		"ModelScale"	"1.2"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"600"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"60"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"ProjectileModel"	"particles/units/heroes/hero_hoodwink/hoodwink_base_attack.vpcf"
+		"ProjectileSpeed"	"2500"
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"StatusHealth"	"1"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"0"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	}
+
+	// 巫师
+	"creep_witcher"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/fashi/fashi.vmdl"
+		"ModelScale"	"8"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackRate"	"1.8"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"700"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"60"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"300"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"ProjectileModel"	"particles/neutral_fx/ghost_frost_attack.vpcf"
+		"ProjectileSpeed"	"2500"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"StatusHealth"	"1"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableResistance"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"vscripts"	"ai/creep_witch"
+	}
+
+	// 肉山
+	"boss_roshan"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/creeps/roshan/roshan.vmdl"
+		"ModelScale"	"2"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"250"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"200"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"0"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+	}
+
+	// 蝎子王
+	"boss_sand_king"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/heroes/sand_king/sand_king.vmdl"
+		"ModelScale"	"2"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"250"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"150"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	"initiative_scorpion_king_one_lua"
+		"Ability2"	"initiative_scorpion_king_two_lua"
+		"Ability3"	"initiative_scorpion_king_three_lua"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"40"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"199"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"200"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"201"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"180"
+				}
+			}
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"vscripts"	"ai/ai_scorpion_king"
+	}
+
+	// 木乃伊
+	"boss_undying"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/heroes/undying/undying_flesh_golem.vmdl"
+		"ModelScale"	"2"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"250"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"150"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	"initiative_munaiyi_one_lua"
+		"Ability2"	"initiative_munaiyi_two_lua"
+		"Ability3"	"initiative_munaiyi_three_lua"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"40"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+			"AttachWearables"	{}
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"vscripts"	"ai/ai_munaiyi"
+	}
+
+	// 巫妖王
+	"boss_lich"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/heroes/lich/lich.vmdl"
+		"ModelScale"	"2"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1.3"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"800"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"150"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	"initiative_shadow_one_lua"
+		"Ability2"	"initiative_shadow_two_lua"
+		"Ability3"	"initiative_shadow_three_lua"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"40"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"331"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"332"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"333"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"334"
+				}
+			}
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"ProjectileModel"	"particles/units/heroes/hero_lich/lich_base_attack.vpcf"
+		"vscripts"	"ai/ai_wuyaowang"
+	}
+
+	// 美杜莎
+	"boss_medusa"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/heroes/medusa/medusa.vmdl"
+		"ModelScale"	"2"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1.3"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"650"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"150"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	"initiative_meidusha_one_lua"
+		"Ability2"	"initiative_meidusha_two_lua"
+		"Ability3"	"initiative_meidusha_three_lua"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"40"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"381"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"382"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"383"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"384"
+				}
+				"Wearable5"
+				{
+					"ItemDef"	"385"
+				}
+			}
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"ProjectileModel"	"particles/units/heroes/hero_medusa/medusa_base_attack.vpcf"
+		"vscripts"	"ai/ai_meidusha"
+	}
+
+	// 石头巨人
+	"boss_tiny"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/items/tiny/glacial/glacial_tiny04.vmdl"
+		"ModelScale"	"2"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"250"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"150"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	"initiative_shitouren_one_lua"
+		"Ability2"	"initiative_shitouren_two_lua"
+		"Ability3"	"initiative_shitouren_three_lua"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"40"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"vscripts"	"ai/ai_shitouren"
+	}
+
+	// 骷髅王
+	"boss_wraith_king"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/heroes/wraith_king/wraith_frost.vmdl"
+		"ModelScale"	"2"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"250"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"150"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	"initiative_skeleton_king_one_lua"
+		"Ability2"	"initiative_skeleton_king_two_lua"
+		"Ability3"	"initiative_skeleton_king_three_lua"
+		"Ability4"	"initiative_skeleton_king_four_lua"
+		"Ability5"	"initiative_skeleton_king_five_lua"
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"40"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+			"AttachWearables"	{}
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"vscripts"	"ai/ai_skeleton_king"
+	}
+
+	// 铁匠
+	"task_smith"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/items/warlock/golem/warlock_the_infernal_master_golem/warlock_the_infernal_master_golem.vmdl"
+		"ModelScale"	"1.8"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"250"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"150"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealth"	"1"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusMana"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"0"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+	}
+
+	// 金币
+	"task_coin"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/treasure_chest_monster/treasure_chest_monster_brown.vmdl"
+		"ModelScale"	"2"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"250"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"70"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealth"	"1"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"0"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	}
+
+	// 炎魔
+	"task_golem"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/items/warlock/golem/ti_8_warlock_darkness_apostate_golem/ti_8_warlock_darkness_apostate_golem.vmdl"
+		"ModelScale"	"2"
+		"vscripts"	"ai/ai_yanmo.lua"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"100"
+		"AttackDamageMax"	"100"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"250"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"150"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementSpeed"	"325"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1000"
+		"Ability1"	"call_yanmo_fenshen"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"0"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+	}
+
+	// 宝箱
+	"task_box"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/items/courier/scribbinsthescarab/scribbinsthescarab_flying.vmdl"
+		"ModelScale"	"3"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"DOTA_HULL_SIZE_SMALL"
+		"RingRadius"	"100"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"	"280"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealth"	"1"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"0"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	}
+
+	// 信使
+	"courier_doom"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/items/courier/courier_fall20/courier_fall20_flying.vmdl"
+		"ModelScale"	"1"
+		"HasInventory"	"1"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+		"MovementSpeed"	"300"
+		"ConsideredHero"	"1"
+		"Ability1"	"currier_blink"
+		"Ability2"	"currier_pickup_item"
+		"Ability3"	"currier_send_item"
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"CanBeDominated"	"0"
+		"AutoAttacksByDefault"	"0"
+		"Creature"
+		{
+			"DisableClumpingBehavior"	"0"
+			"CanRespawn"	"1"
+		}
+	}
+
+	"test_unit"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/lone_druid/viciouskraitpanda/viciouskrait_panda.vmdl"
+		"ModelScale"	"0.5"
+		"RingRadius"	"200"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"100"
+		"AttackDamageMax"	"100"
+		"AttackRate"	"1"
+		"AttackRange"	"300"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"MovementSpeed"	"0"
+		"StatusHealth"	"10000"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+	}
+
+	// 玩家的光环塔
+	"friend_tower"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/obelisk/obelisk_complete.vmdl"
+		"ModelScale"	"1"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"	"0"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"100"
+		"RingRadius"	"50"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"0"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"50"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+	}
+
+	// 公司大楼1
+	"company_build_1"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/house/house3.vmdl"
+		"ModelScale"	"1"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"10"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"	"0"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"100"
+		"RingRadius"	"50"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"50"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+	}
+
+	// 公司大楼2
+	"company_build_2"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/house/house2.vmdl"
+		"ModelScale"	"1"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"10"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"	"0"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"100"
+		"RingRadius"	"50"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"50"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+	}
+
+	// 公司大楼3
+	"company_build_3"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/house/house1.vmdl"
+		"ModelScale"	"1"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"10"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"	"0"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"100"
+		"RingRadius"	"50"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"1"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"50"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+	}
+
+	// 玩家的光环塔
+	"friend_tower_1"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/props_structures/obelisk001b.vmdl"
+		"ModelScale"	"1"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"	"0"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"100"
+		"RingRadius"	"50"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"0"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"50"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+	}
+
+	// 玩家的光环塔
+	"friend_tower_2"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/props_structures/obelisk001.vmdl"
+		"ModelScale"	"1"
+		"Level"	"1"
+		"AutoAttacksByDefault"	"1"
+		// 护甲和魔抗
+		// ----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"1"
+		"AttackAcquisitionRange"	"0"
+		"AttackRange"	"0"
+		// 击杀奖励
+		// ----------------------------------------------------------------
+		"BountyXP"	"0"
+		"BountyGoldMin"	"0"
+		"BountyGoldMax"	"0"
+		// 边界设置
+		// ----------------------------------------------------------------
+		"BoundsHullName"	"100"
+		"RingRadius"	"50"
+		"HealthBarOffset"	"300"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"0"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"Creature"
+		{
+			"DisableResistance"	"50"
+			"HPGain"	"0"
+			"DamageGain"	"0"
+			"ArmorGain"	"0"
+			"MagicResistGain"	"0"
+			"MoveSpeedGain"	"0"
+			"BountyGain"	"0"
+			"XPGain"	"0"
+			"DisableClumpingBehavior"	"1"
+		}
+		"CanBeDominated"	"0"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationShipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_BUILDING"
+	}
+
+	"shebang"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/shadowshaman/serpent_ward/dotapit_s3_wild_tempest_wards/dotapit_s3_wild_tempest_wards.vmdl"
+		"ModelScale"	"1.5"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackRange"	"700"
+		"AttackAnimationPoint"	"0.1"
+		// "ProjectileModel"	"particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_prj.vpcf"
+		"ProjectileModel"	"particles/units/heroes/hero_arc_warden/arc_warden_wraith_prj.vpcf"
+		"ProjectileSpeed"	"1200"
+		"RingRadius"	"50"
+	}
+
+	"diyuhuo"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/warlock/golem/doom_of_ithogoaki/doom_of_ithogoaki.vmdl"
+		"ModelScale"	"1.5"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackRange"	"250"
+		// "ProjectileModel"	"particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_prj.vpcf"
+		"ProjectileModel"	"particles/units/heroes/hero_arc_warden/arc_warden_wraith_prj.vpcf"
+		"ProjectileSpeed"	"1200"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"1"
+		"ConsideredHero"	"0"
+		"RingRadius"	"100"
+		"AttackRate"	"1.5"
+	}
+
+	"huojiandan"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/npc_minions/draft_siege_good.vmdl"
+		"ModelScale"	"3"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackRange"	"5000"
+		// "ProjectileModel"	"particles/econ/items/arc_warden/arc_warden_ti9_immortal/arc_warden_ti9_wraith_prj.vpcf"
+		"ProjectileModel"	"particles/econ/items/clockwerk/clockwerk_paraflare/clockwerk_para_rocket_flare.vpcf"
+		"ProjectileSpeed"	"800"
+		"MovementSpeed"	"150"
+		"ConsideredHero"	"0"
+		"RingRadius"	"150"
+		"AttackRate"	"3"
+		"AttackAnimationPoint"	"attach_hitloc"
+		"StatusMana"	"300"
+		"StatusManaRegen"	"1"
+		"StatusStartingMana"	"300"
+	}
+
+	"xiaobing_j"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
+		"ModelScale"	"0.9"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackRange"	"250"
+		"ProjectileSpeed"	"800"
+		"MovementSpeed"	"270"
+		"ConsideredHero"	"0"
+		"RingRadius"	"50"
+		"AttackAcquisitionRange"	"9999"
+	}
+
+	"xiaobing_y"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/creeps/lane_creeps/ti9_chameleon_radiant/ti9_chameleon_radiant_melee.vmdl"
+		"ModelScale"	"0.9"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"AttackRange"	"600"
+		"ProjectileModel"	"particles/econ/items/queen_of_pain/qop_arcana/qop_attack_blur_melee_v2.vpcf"
+		"ProjectileSpeed"	"1200"
+		"MovementSpeed"	"270"
+		"ConsideredHero"	"0"
+		"RingRadius"	"50"
+		"AttackAcquisitionRange"	"9999"
+	}
+
+	"daniu"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/heroes/elder_titan/ancestral_spirit.vmdl"
+		"ModelScale"	"2"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"ConsideredHero"	"1"
+		"RingRadius"	"50"
+		"HealthBarOffset"	"500"
+	}
+
+	"tianshi"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"vscripts"	"ai/ai_tianshi.lua"
+		"Model"	"models/items/courier/dc_angel/dc_angel_flying.vmdl"
+		"ModelScale"	"1"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"ConsideredHero"	"0"
+		"RingRadius"	"50"
+		// "HealthBarOffset"	"500"
+		"MovementSpeed"	"450"
+		"StatusHealth"	"300"
+		"StatusHealthRegen"	"1"
+		"StatusMana"	"300"
+		"StatusManaRegen"	"1"
+		"StatusStartingMana"	"300"
+	}
+
+	"shangren"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/heroes/shopkeeper_dire/shopkeeper_dire.vmdl"
+		"ModelScale"	"1.5"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"ConsideredHero"	"0"
+		"RingRadius"	"50"
+		"StatusHealth"	"300"
+		"StatusHealthRegen"	"1"
+		"StatusMana"	"300"
+		"StatusManaRegen"	"1"
+		"StatusStartingMana"	"300"
+	}
+
+	"xiaozhuzai"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/props_gameplay/pig.vmdl"
+		"ModelScale"	"0.9"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"ConsideredHero"	"0"
+		"RingRadius"	"50"
+		"StatusHealth"	"300"
+		"StatusHealthRegen"	"1"
+		"StatusMana"	"300"
+		"StatusManaRegen"	"1"
+		"StatusStartingMana"	"300"
+		"MovementSpeed"	"300"
+	}
+
+	"xiaoyanmo"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/warlock/golem/ti_8_warlock_darkness_apostate_golem/ti_8_warlock_darkness_apostate_golem.vmdl"
+		"ModelScale"	"1"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"ConsideredHero"	"0"
+		"RingRadius"	"50"
+		"StatusHealth"	"300"
+		"StatusHealthRegen"	"1"
+		"StatusMana"	"300"
+		"StatusManaRegen"	"1"
+		"StatusStartingMana"	"300"
+		"MovementSpeed"	"300"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"150"
+	}
+
+	"unit_shujing"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/items/furion/treant/fungal_lord_shroomthing/fungal_lord_shroomthing.vmdl"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"ModelScale"	"1"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AttackRange"	"120"
+		"AttackAcquisitionRange"	"99999"
+		"MovementSpeed"	"250"
+	}
+
+	"boss_god_earth"
+	{
+		// Script
+		"vscripts"	"ai/boss_god_earth"
+		// General
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/creeps/ice_biome/storegga/storegga.vmdl"
+		"ModelScale"	"3"
+		"ConsideredHero"	"0"
+		"IsAncient"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"ProjectileSpeed"	"0"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// Status
+		// ----------------------------------------------------------------
+		"StatusHealth"	"10000"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		// Creature Data
+		// ----------------------------------------------------------------
+		"Creature"
+		{
+			"ItemDrops"	{}
+			"AttachWearables"	{}
+		}
+		"Ability1"	"boss_god_earth_slam"
+		"Ability2"	"boss_god_earth_avalanche"
+		"Ability3"	"boss_god_earth_call"
+		"Ability4"	"boss_god_earth_grab"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"500"
+		"AttackDamageMin"	"100"
+		"AttackDamageMax"	"100"
+	}
+
+	"boss_god_fire"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"jiguang"
+		"Ability2"	"penhuo_line"
+		"Ability3"	"sanweizhenhuo"
+		"Ability4"	"huo_dun"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/heroes/brewmaster/brewmaster_firespirit.vmdl"
+		"vscripts"	"ai/ai_huoyuansu.lua"
+		"ModelScale"	"3"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"ConsideredHero"	"0"
+		"RingRadius"	"50"
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"1"
+		"StatusMana"	"300"
+		"StatusManaRegen"	"1"
+		"StatusStartingMana"	"300"
+		"MovementSpeed"	"300"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"150"
+	}
+
+	"boss_god_wood"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"fengkuangshengzhang"
+		"Ability2"	"jishengzhongzi"
+		"Ability3"	"shujingtuji"
+		"Ability4"	"shenwaihuashen"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/npc/mu/mu.vmdl"
+		"vscripts"	"ai/ai_wood.lua"
+		"ModelScale"	"3"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"ConsideredHero"	"0"
+		"RingRadius"	"50"
+		"StatusHealth"	"3000"
+		"StatusHealthRegen"	"1"
+		"StatusMana"	"300"
+		"StatusManaRegen"	"1"
+		"StatusStartingMana"	"300"
+		"MovementSpeed"	"300"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"150"
+		"Creature"
+		{
+			"AttachWearables"	{}
+		}
+		"AttackAnimationPoint"	"1"
+	}
+
+	"boss_god_metal"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"boss_god_metal_spear"
+		"Ability2"	"boss_god_metal_chop"
+		"Ability3"	"boss_god_metal_fervor"
+		"Ability4"	"boss_god_metal_drain"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/npc/baphomet/baphomet.vmdl"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"StatusHealth"	"100000"
+		"ModelScale"	"3"
+		"vscripts"	"ai/boss_god_metal"
+		"AttackAcquisitionRange"	"99999"
+		"AttackAnimationPoint"	"1.5"
+		"AttackDamageMin"	"1000"
+		"AttackDamageMax"	"1000"
+	}
+
+	"boss_god_water"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/shui/shui.vmdl"
+		"ModelScale"	"3"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackDamageMin"	"100"
+		"AttackDamageMax"	"100"
+		"AttackAcquisitionRange"	"99999"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"100000"
+		"Ability1"	"boss_god_water_pao"
+		"Ability2"	"boss_god_water_defense"
+		"Ability3"	"boss_god_water_wave"
+		"Ability4"	"boss_god_water_copy"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"Creature"
+		{
+			"DisableClumpingBehavior"	"0"
+		}
+		"ProjectileModel"	"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf"
+		"vscripts"	"ai/boss_god_water"
+	}
+
+	"goodguys_melee"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/creeps/lane_creeps/creep_radiant_melee/radiant_melee.vmdl"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"ModelScale"	"1"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AttackRange"	"120"
+		"AttackAcquisitionRange"	"99999"
+		"MovementSpeed"	"250"
+	}
+
+	"goodguys_ranged"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/creeps/lane_creeps/creep_radiant_ranged/radiant_ranged.vmdl"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"ModelScale"	"1"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AttackRange"	"500"
+		"AttackAcquisitionRange"	"99999"
+		"MovementSpeed"	"250"
+	}
+
+	"boss_finally"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"boss_finally_ability_1"
+		"Ability2"	"boss_finally_ability_2"
+		"Ability3"	"boss_finally_ability_3"
+		"Ability4"	"boss_finally_ability_4"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/npc/boss2/boss2.vmdl"
+		"StatusHealth"	"100"
+		"AttackDamageMin"	"100"
+		"AttackDamageMax"	"100"
+		"AttackAcquisitionRange"	"99999"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"ModelScale"	"3"
+		"vscripts"	"ai/boss_finally"
+		"ArmorPhysical"	"40"
+		"MagicalResistance"	"30"
+		"MovementSpeed"	"400"
+		"AttackRate"	"0.3"
+		"Creature"
+		{
+			"DisableResistance"	"80"
+		}
+		"HasInventory"	"0"
+		"ConsideredHero"	"1"
+	}
+
+	"bear_xss"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/lone_druid/bear/frostivus2018_lone_druid_inuit_bear/frostivus2018_lone_druid_inuit_bear.vmdl"
+		"AttackAcquisitionRange"	"99999"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"ModelScale"	"1"
+		"MovementSpeed"	"300"
+		"AttackRange"	"120"
+	}
+
+	"shouren_didong"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"out_didong"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/props_structures/tower_upgrade/tower_upgrade.vmdl"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_RANGED_ATTACK"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"ModelScale"	"1"
+		"AttackRange"	"700"
+		"ProjectileModel"	"particles/econ/items/drow/drow_ti9_immortal/drow_ti9_base_attack.vpcf"
+		"ProjectileSpeed"	"1200"
+		"AttackRate"	"1"
+		"AttackAnimationPoint"	"0.2"
+	}
+
+	"little_spider"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/broodmother/spiderling/ti9_cache_brood_carnivorous_mimicry_spiderling/ti9_cache_brood_carnivorous_mimicry_spiderling.vmdl"
+		"AttackAcquisitionRange"	"99999"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"ModelScale"	"0.5"
+		"MovementSpeed"	"300"
+		"AttackRange"	"120"
+	}
+
+	"task_works"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/creeps/neutral_creeps/n_creep_eimermole/n_creep_eimermole.vmdl"
+		"ModelScale"	"1"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"-10"
+		"MovementSpeed"	"350"
+		"AttackDamageMin"	"0"
+		"AttackDamageMax"	"0"
+		"AttackRate"	"0"
+		"AttackRange"	"0"
+		"StatusHealth"	"1"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+	}
+
+	// 启示录幻影刺客
+	"apocalypse_pa"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/heroes/phantom_assassin/phantom_assassin.vmdl"
+		"ConsideredHero"	"0"
+		"HasInventory"	"0"
+		"BoundsHullName"	"0"
+		"RingRadius"	"0"
+		"MinimapIconSize"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"StatusHealth"	"1"
+		"Creature"
+		{
+			"AttachWearables"
+			{
+				"Wearable1"
+				{
+					"ItemDef"	"137"
+				}
+				"Wearable2"
+				{
+					"ItemDef"	"138"
+				}
+				"Wearable3"
+				{
+					"ItemDef"	"139"
+				}
+				"Wearable4"
+				{
+					"ItemDef"	"140"
+				}
+				"Wearable5"
+				{
+					"ItemDef"	"141"
+				}
+			}
+		}
+	}
+
+	"wugui"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"Model"	"models/creeps/roshan/roshan.vmdl"
+		"ModelScale"	"1。5"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"StatusHealthRegen"	"0"
+		"StatusHealth"	"99999"
+		"Creature"
+		{
+			"CanRespawn"	"0"
+		}
+		"HealthBarOffset"	"300"
+		"RingRadius"	"200"
+		"BoundsHullName"	"DOTA_HULL_SIZE_BUILDING"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+	}
+
+	// 鹰
+	"hawk"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/beastmaster/hawk/fotw_eagle/fotw_eagle.vmdl"
+		"RingRadius"	"0"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_FLY"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"Creature"
+		{
+			"DisableResistance"	"100"
+			"CanRespawn"	"0"
+		}
+		"BoundsHullName"	"0"
+		"StatusHealth"	"100"
+		"MovementSpeed"	"350"
+	}
+
+	"yunshi_monster"
+	{
+		// 基础设置
+		// ----------------------------------------------------------------
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/shui/shui.vmdl"
+		"ModelScale"	"0.0001"
+		// 攻击
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttackDamageMin"	"100"
+		"AttackDamageMax"	"100"
+		"AttackAcquisitionRange"	"99999"
+		// 移动
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// 状态
+		// ----------------------------------------------------------------
+		"StatusHealth"	"100000"
+		"Ability1"	"initiative_aerolite_lua"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"Creature"
+		{
+			"DisableClumpingBehavior"	"0"
+		}
+		"ProjectileModel"	"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf"
+		"StatusHealthRegen"	"0"
+		"StatusMana"	"100"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"100"
+	}
+
+	"mines"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/items/techies/bigshot/fx_bigshot_mine.vmdl"
+		"RingRadius"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"Creature"
+		{
+			"DisableResistance"	"100"
+			"CanRespawn"	"0"
+		}
+		"BoundsHullName"	"0"
+		"StatusHealth"	"1"
+		"ModelScale"	"1"
+	}
+
+	// 英雄模型
+	"m_alchemist"
+	{
+		"Model"	"models/heroes/invoker/invoker.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_tiny"
+	{
+		"Model"	"models/heroes/silencer/silencer.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_templar_assassin"
+	{
+		"Model"	"models/heroes/juggernaut/juggernaut.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_earthshaker"
+	{
+		"Model"	"models/heroes/tinker/tinker.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_silencer"
+	{
+		"Model"	"models/heroes/dark_seer/dark_seer.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_phantom_lancer"
+	{
+		"Model"	"models/heroes/mars/mars.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_furion"
+	{
+		"Model"	"models/heroes/rubick/rubick.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_obsidian_destroyer"
+	{
+		"Model"	"models/heroes/wraith_king/wraith_king.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_arc_warden"
+	{
+		"Model"	"models/heroes/arc_warden/arc_warden.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_mars"
+	{
+		"Model"	"models/heroes/nerubian_assassin/nerubian_assassin.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_dark_seer"
+	{
+		"Model"	"models/heroes/invoker/invoker.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_undying"
+	{
+		"Model"	"models/heroes/axe/axe.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"m_viper"
+	{
+		"Model"	"models/heroes/kunkka/kunkka.vmdl"
+		"Ability1"	""
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	// =================================================================================================================
+	// 激光炮台模型
+	// =================================================================================================================
+	"npc_dota_laser"
+	{
+		// General
+		// ----------------------------------------------------------------
+		// Model.
+		"Model"	"models/items/rattletrap/cog_tesla/cog_tesla.vmdl"
+		"BaseClass"	"npc_dota_rattletrap_cog"
+		// Name of sound set.
+		"SoundSet"	"0"
+		"Level"	"0"
+		"ModelScale"	"1.7"
+		"wearable"	"8636"
+		"IgnoreAddSummonedToSelection"	"1"
+		// Abilities
+		// ----------------------------------------------------------------
+		// Ability 1
+		"Ability1"	""
+		// Ability 2
+		"Ability2"	""
+		// Ability 3
+		"Ability3"	""
+		// Ability 4
+		"Ability4"	""
+		// Armor
+		// ----------------------------------------------------------------
+		// Physical protection.
+		"ArmorPhysical"	"0"
+		// Attack
+		// ----------------------------------------------------------------
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		// Damage range min.
+		"AttackDamageMin"	"0"
+		// Damage range max.
+		"AttackDamageMax"	"0"
+		// Speed of attack.
+		"AttackRate"	"1.0"
+		// Normalized time in animation cycle to attack.
+		"AttackAnimationPoint"	"0.0"
+		// Range within a target can be acquired.
+		"AttackAcquisitionRange"	"0"
+		// Range within a target can be attacked.
+		"AttackRange"	"0"
+		// Speed of projectile.
+		"ProjectileSpeed"	"0"
+		// Bounds
+		// ----------------------------------------------------------------
+		// Hull type used for navigation/locomotion.
+		"BoundsHullName"	"DOTA_HULL_SIZE_HUGE"
+		"HealthBarOffset"	"120"
+		// Bounty
+		// ----------------------------------------------------------------
+		// Experience earn.
+		"BountyXP"	"0"
+		// Gold earned min.
+		"BountyGoldMin"	"16"
+		// Gold earned max.
+		"BountyGoldMax"	"20"
+		// Movement
+		// ----------------------------------------------------------------
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_NONE"
+		// Speed.
+		"MovementSpeed"	"0"
+		// Status
+		// ----------------------------------------------------------------
+		// Base health.
+		"StatusHealth"	"100"
+		// Health regeneration rate.
+		"StatusHealthRegen"	"0.5"
+		// Vision
+		// ----------------------------------------------------------------
+		// Range of vision during day light.
+		"VisionDaytimeRange"	"1600"
+		// Range of vision at night time.
+		"VisionNighttimeRange"	"600"
+		// Team
+		// ----------------------------------------------------------------
+		// Team name.
+		"TeamName"	"DOTA_TEAM_NEUTRALS"
+		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
+		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"UnitRelationshipClass"	"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+	}
+
+	"boss_call_1"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/d44/d44.vmdl"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackAcquisitionRange"	"99999"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"Ability1"	"initiative_boss_call_1_one_lua"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"vscripts"	"ai/ai_boss_call_1"
+		"RingRadius"	"150"
+		"ModelScale"	"1.6"
+		"HealthBarOffset"	"250"
+		"AttackRange"	"200"
+	}
+
+	"boss_call_2"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/d43/d43.vmdl"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackAcquisitionRange"	"99999"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"Ability1"	"initiative_boss_call_2_one_lua"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"RingRadius"	"150"
+		"ModelScale"	"0.8"
+		"HealthBarOffset"	"450"
+		"vscripts"	"ai/ai_boss_call_2"
+		"AttackRange"	"200"
+	}
+
+	"boss_call_3"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/d42/d42.vmdl"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackAcquisitionRange"	"99999"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"Ability1"	"initiative_boss_call_3_one_lua"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"RingRadius"	"150"
+		"HealthBarOffset"	"500"
+		"AttackRange"	"600"
+		"vscripts"	"ai/ai_boss_call_3"
+	}
+
+	"boss_call_4"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/d41/d41.vmdl"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackAcquisitionRange"	"99999"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"Ability1"	"initiative_boss_call_4_one_lua"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"AttackRange"	"200"
+		"RingRadius"	"150"
+		"HealthBarOffset"	"450"
+		"vscripts"	"ai/ai_boss_call_4"
+	}
+
+	"boss_call_5"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/d35/d35.vmdl"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackAcquisitionRange"	"99999"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"Ability1"	"initiative_boss_call_5_one_lua"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"RingRadius"	"150"
+		"HealthBarOffset"	"450"
+		"vscripts"	"ai/ai_boss_call_5"
+		"AttackRange"	"200"
+	}
+
+	"boss_call_6"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Model"	"models/npc/d34/d34.vmdl"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"AttackAcquisitionRange"	"99999"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"HasInventory"	"0"
+		"ConsideredHero"	"0"
+		"Ability1"	"initiative_boss_call_6_one_lua"
+		"Ability2"	""
+		"Ability3"	""
+		"Ability4"	""
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"RingRadius"	"150"
+		"HealthBarOffset"	"450"
+		"vscripts"	"ai/ai_boss_call_6"
+		"AttackRange"	"600"
+	}
+
+	"task_talent"
+	{
+		"BaseClass"	"npc_dota_creature"
+		"Ability1"	"jiguang"
+		"Ability2"	"penhuo_line"
+		"Ability3"	"sanweizhenhuo"
+		"Ability4"	"huo_dun"
+		"Ability5"	""
+		"Ability6"	""
+		"Ability7"	""
+		"Ability8"	""
+		"Ability9"	""
+		"Ability10"	""
+		"Ability11"	""
+		"Ability12"	""
+		"Ability13"	""
+		"Ability14"	""
+		"Ability15"	""
+		"Ability16"	""
+		"Model"	"models/heroes/brewmaster/brewmaster_firespirit.vmdl"
+		"vscripts"	"ai/ai_huoyuansu.lua"
+		"ModelScale"	"3"
+		"HasInventory"	"0"
+		"MovementCapabilities"	"DOTA_UNIT_CAP_MOVE_GROUND"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_MELEE_ATTACK"
+		"ConsideredHero"	"0"
+		"RingRadius"	"150"
+		"StatusHealth"	"1000"
+		"StatusHealthRegen"	"1"
+		"StatusMana"	"300"
+		"StatusManaRegen"	"1"
+		"StatusStartingMana"	"300"
+		"MovementSpeed"	"300"
+		"AttackAcquisitionRange"	"99999"
+		"AttackRange"	"150"
+		"HealthBarOffset"	"500"
+	}
+}

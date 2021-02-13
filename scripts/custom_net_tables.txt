@@ -1,0 +1,18 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+    custom_net_tables = 
+    [
+        "player_data_table",
+        "wood_table",
+        "erro_message_table",
+        "gold_table",
+        "boss_cool_down",
+        "boss_cost_wood",
+        "courier_table",
+        "random_hero",
+        "service",
+        "unit_count_table",
+        "dynamic_properties",
+        "random_properties",
+    ]
+}

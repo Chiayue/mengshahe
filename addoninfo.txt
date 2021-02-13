@@ -1,0 +1,39 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	HeroGuidesSupported = 0
+	Default_Keys = 
+	[
+		{
+			Key = "F2"
+			Command = "+selectCourier"
+			Name = "selectCourier"
+		},
+		{
+			Key = "F3"
+			Command = "+sendItem"
+			Name = "sendItem"
+		},
+		{
+			Key = "F4"
+			Command = "+openShop"
+			Name = "openShop"
+		},
+		{
+			Key = "F7"
+			Command = "+openAchievement"
+			Name = "openAchievement"
+		},
+		{
+			Key = "F8"
+			Command = "+openStore"
+			Name = "openStore"
+		},
+			{
+			Key = "F10"
+			Command = "+openHeroMap"
+			Name = "openHeroMap"
+		},
+	]
+	MinPlayers = 1
+	MaxPlayers = 4
+}

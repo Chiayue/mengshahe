@@ -1,0 +1,8 @@
+mirage_of_the_fall2
+{
+	material materials/overviews/mirage_of_the_fall2.vmat
+	pos_x -8896
+	pos_y 6656
+	scale 15.000
+}
+
