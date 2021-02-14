@@ -2572,7 +2572,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"percent"	"1"
+				"percent"	"10"
 			}
 		}
 	}
@@ -5734,7 +5734,7 @@
 		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"30"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100"
@@ -5861,7 +5861,7 @@
 		"AbilityCastPoint"	"0.1"
 		// Time
 		// -------------------------------------------------------------------------------------------------------------
-		"AbilityCooldown"	"60"
+		"AbilityCooldown"	"80"
 		// Cost
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityManaCost"	"100"
@@ -5944,7 +5944,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_NONE"
 		"AbilityUnitTargetFlags"	"DOTA_UNIT_TARGET_FLAG_MAGIC_IMMUNE_ENEMIES"
 		"MaxLevel"	"1"
-		"AbilityCooldown"	"30"
+		"AbilityCooldown"	"20"
 		"AbilityManaCost"	"100"
 	}
 
@@ -20003,7 +20003,12 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"grow_time"	"2"
+				"grow_time"	"1"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"properties"	"10"
 			}
 		}
 	}
@@ -21107,6 +21112,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT"	"150"
+					"MODIFIER_PROPERTY_INCOMING_DAMAGE_PERCENTAGE"	"-30"
 				}
 			}
 		}
@@ -21815,7 +21821,7 @@
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_CREEP"
 		"MaxLevel"	"1"
-		"AbilityCooldown"	"40"
+		"AbilityCooldown"	"70"
 		"AbilityChannelTime"	"40"
 		"OnSpellStart"
 		{
@@ -22875,7 +22881,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"magic_resistance"	"35"
+				"magic_resistance"	"40"
 			}
 		}
 	}

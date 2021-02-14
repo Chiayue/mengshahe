@@ -16,7 +16,11 @@ local book_purchase_record = {}
 function Filter:ExecuteOrderFilter(params)
     -- print(">>>>>>>>>>>>>>>>>>>>>>>>>> ExecuteOrderFilter: ")
     -- DeepPrintTable(params)
+    if GameRules:IsGamePaused() then
+        return
+    end
     local player_id = params.issuer_player_id_const
+    
     -- local hero = PlayerResource:GetPlayer(player_id):GetAssignedHero()
     local order_type = params.order_type
     if order_type == DOTA_UNIT_ORDER_PURCHASE_ITEM  then
@@ -45,11 +49,16 @@ function Filter:ExecuteOrderFilter(params)
             return true
         end
         --奥术
+        local ent_name = entity:GetName()
         local hero = PlayerResource:GetPlayer(player_id):GetAssignedHero()
+        
+        if not hero:IsAlive() and string.find(ent_name, "item_") then
+            return
+        end
         if hero:HasModifier("modifier_item_rune_magice") then
             hero:GiveMana(entity:GetManaCost(-1) * 0.2)
         end
-        local ent_name = entity:GetName()
+        
         if ent_name == "item_more_and_more" or
             ent_name == "item_blue_bottle_small" or
             ent_name == "item_blue_bottle_large" or

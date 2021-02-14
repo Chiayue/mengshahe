@@ -746,7 +746,7 @@ function examsystem:OnExamSystemThink()
         global_var_func.isexaming = 0
         return
     end
-    if RollPercentage(20) then
+    if RollPercentage(25) then
         global_var_func.isexaming = 1
         EmitGlobalSound("game.kaoshi")
         local randomindex = RandomInt(1, #question_bank)
@@ -772,6 +772,12 @@ function examsystem:CallExamAnswer(data)
             SetBaseStrength(hero, 30)
             SetBaseAgility(hero, 30)
             SetBaseIntellect(hero, 30)
+
+            if PlayerResource:GetSelectedHeroName(player_id) ~= "npc_dota_hero_grimstroke" then
+                SetBaseStrength(hero, 15)
+                SetBaseAgility(hero, 15)
+                SetBaseIntellect(hero, 15)
+            end
         end
         for i = 0, global_var_func.all_player_amount - 1 do
             if player_id ~= i then

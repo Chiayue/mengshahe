@@ -51,6 +51,15 @@ function modifier_tancai_lua:OnIntervalThink()
     game_playerinfo:set_dynamic_properties(steam_id, "extra_attack_scale", self.damagepercent)
 end
 
+function modifier_tancai_lua:OnDestroy()
+    if not IsServer( ) then
+        return
+    end
+    local steam_id = PlayerResource:GetSteamAccountID(self:GetCaster():GetPlayerID())
+    if self.damagepercent ~= 0 then
+        game_playerinfo:set_dynamic_properties(steam_id, "extra_attack_scale", -self.damagepercent)
+    end
+end
 -------------------------------------------------
 
 LinkLuaModifier( "modifier_sublime_tancai_lua", "ability/abilities_lua/innateskill_tancai_lua.lua",LUA_MODIFIER_MOTION_NONE )

@@ -164,9 +164,10 @@ end
 function Archive:SavePlayerTotem(nPlayerID)
 	local nSteamID = PlayerResource:GetSteamAccountID(nPlayerID)
 	local rows = self:GetData(nPlayerID)
-	-- print(" >>>>>>>>>>> SavePlayerTotem: ")
+	-- print(" >>>>>>>>>>> SavePlayerTotem: "..nSteamID)
 	-- DeepPrintTable(rows)
 	Service:HTTPRequest("POST", ACTION_ARCHIVE_TOTEM, { steamId = nSteamID, rows = rows }, function(iStatusCode, sBody)
+		-- print(" >>>>>>>>>>>>>>>>>>>>> TotemiStatusCode")
 		if iStatusCode == 0 then
 			-- Archive:SavePlayerTotem(nPlayerID)
 		end 

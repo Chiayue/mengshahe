@@ -184,11 +184,10 @@ function item_exchange(caster,item_name,new_item_name,item_quality)
                 local hero_kill_key = item_name_pre..player_id
          
                 --判断是否召唤升级怪
-                if item_handle.advance_boss == nil or item_handle.advance_boss:IsAlive() ==false then 
+                if item_handle.advance_boss == nil or item_handle.advance_boss:IsNull() or item_handle.advance_boss:IsAlive() ==false then 
                     --召唤升级怪
                     game_playerinfo:set_player_gold(player_id,-gold_cost)
                     local callunit = rule_unit_spawn: CreateTaskUnit ( player_id, item_name, item_quality)
-                    print(callunit)
                     item_handle.advance_boss = callunit
                 end
                 -- casterHero:AddItemByName(new_item_name)

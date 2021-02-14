@@ -417,6 +417,33 @@ function common_item_ability:add_property_item(evt)
             game_playerinfo:change_player_wood(player:GetAssignedHero(), 10)
         end
     end
+    --金币怪
+    if killed_unit:GetUnitName() == "task_coin" then
+        local player = PlayerResource:GetPlayer(killed_unit.player_id)
+        local nhero = player:GetAssignedHero()
+        --金币怪悬赏令
+        if nhero:HasModifier("modifier_treasure_goldmon_attribute_one") then
+            local random = math.random(1,3)
+            if random == 1 then
+                game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(killed_unit.player_id), "add_strength", 1)
+            elseif random == 2 then
+                game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(killed_unit.player_id), "add_agility", 1)
+            elseif random == 3 then
+                game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(killed_unit.player_id), "add_intellect", 1)
+            end
+        end
+        --金币怪杀手
+        if nhero:HasModifier("modifier_treasure_goldmon_attribute_two") then
+            local random = math.random(1,3)
+            if random == 1 then
+                game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(killed_unit.player_id), "add_strength", 2)
+            elseif random == 2 then
+                game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(killed_unit.player_id), "add_agility", 2)
+            elseif random == 3 then
+                game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(killed_unit.player_id), "add_intellect", 2)
+            end
+        end
+    end
     -- if ContainUnitTypeFlag(killed_unit, DOTA_UNIT_TYPE_FLAG_CREEP + DOTA_UNIT_TYPE_FLAG_GENERAL) then
     --     -- 普通小怪也有几率掉落宝物书
     --     local player_id = killed_unit.player_id

@@ -227,7 +227,6 @@ function Store:UsedGoods(args)
 			-- 使用道具后要存档
 			game_playerinfo:save_archiveby_playerid(args.PlayerID)
 		else
-			-- Store:UsedGoods(nargs)
 			-- 使用失败,道具回滚
 			game_playerinfo:RollBackBagItem(nPlayerID,args.prize_list)
 			if hBody then

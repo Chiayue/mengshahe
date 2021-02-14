@@ -330,7 +330,7 @@ function game_playerinfo:sendplayerData2client(playerID)
     send_table["getMonthCard"] =  (player_info[steam_id]["getMonthCard"] or 0)-- 当日月卡领奖资格
 
     send_table["mapRewardsCount"] =  (player_info[steam_id]["mapRewardsCount"] or 0)-- 地图奖励领取计数
-    send_table["levelRewardsLists"] =  (player_info[steam_id]["levelRewardsLists"] or {0,0,0,0,0,0,0,7,})-- 难度首通奖励领取计数
+    send_table["levelRewardsLists"] =  (player_info[steam_id]["levelRewardsLists"] or {0,0,0,0,0,0,0,0,0,0,10})-- 难度首通奖励领取计数
 
     CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"response_player_data",send_table)
 end
@@ -635,6 +635,8 @@ function game_playerinfo:SaveArchiveTable(playerID, ArchiveTable)
                 end
             end
         elseif value == "player_totem_data" then
+            -- print(" >>>>>>>>>>>>>>>>>> nSteamID: ")
+            -- DeepPrintTable(player_totem_data)
             if player_totem_data[nSteamID]["totem"] then
                 for key, value in pairs(player_totem_data[nSteamID]["totem"]) do
                     Archive:EditPlayerProfile(playerID,key,value)
@@ -686,6 +688,13 @@ function game_playerinfo:load_levelRewardsList(steam_id, levelRewardsLists)
     player_info[steam_id]["levelRewardsLists"] = {}
     for i = 1, #levelRewardsLists do
         table.insert(player_info[steam_id]["levelRewardsLists"], levelRewardsLists[i]["isGet"])
+    end
+    if #levelRewardsLists < 10 then
+        table.remove(player_info[steam_id]["levelRewardsLists"], #player_info[steam_id]["levelRewardsLists"])
+        for i = 1, (10-#player_info[steam_id]["levelRewardsLists"]) do
+            table.insert(player_info[steam_id]["levelRewardsLists"], 0)
+        end
+        table.insert(player_info[steam_id]["levelRewardsLists"], 10)
     end
 end
 
@@ -1369,7 +1378,14 @@ function game_playerinfo:http_load_playerinfo_by_server(nPlayerID, key, info_val
         if not player_totem_data[steam_id] then
             player_totem_data[steam_id] = {}
         end
-        player_totem_data[steam_id][key] = info_value
+        local totemDate = {}
+        for key, value in pairs(info_value) do
+            if string.find(key, "totem") then
+                totemDate[key] = value
+            end
+        end
+        player_totem_data[steam_id][key] = totemDate
+        -- DeepPrintTable(totemDate)
     elseif key == "universalExp" then
         if player_info[steam_id][key] == 0 then
             player_info[steam_id][key] = player_info[steam_id][key] + info_value
@@ -1380,7 +1396,7 @@ function game_playerinfo:http_load_playerinfo_by_server(nPlayerID, key, info_val
         end
     elseif key == "levelRewardsLists" then
         if info_value == "''" then
-            player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,7,}
+            player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,0,0,0,10}
             -- print("11111111111111111")
         else
             -- print(info_value)
@@ -1584,7 +1600,7 @@ function game_playerinfo:create_playerinfo(nPlayerID, isSave)
         -- 领取地图奖励计数
         player_info[steam_id]["mapRewardsCount"] = 0
         -- 领取首通奖励
-        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,7,}
+        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,0,0,0,10}
         -- 图腾数据初始化
         player_totem_data[steam_id] = {}
         player_totem_data[steam_id]["totem"] = {}
@@ -2400,20 +2416,6 @@ function game_playerinfo:get_compensation(player_id)
                 elseif key=="score" then
                     -- 补偿钻石
                     game_playerinfo:update_score(player_id, value)
-                -- elseif key=="newyear_bag" then
-                --     -- 赠送10个新春礼包
-                --     local iargs = {}
-                --     iargs.PlayerID = player_id
-                --     iargs.GoodsName = "finishBoss"
-                --     iargs.UseNumber = 0
-                --     iargs.AddItemKey = {}
-                --     -- DeepPrintTable(iargs)
-                    
-                --     local itemtable = {}
-                --     itemtable["itemKey"] = "newyear_bag"
-                --     itemtable["number"] = value
-                --     table.insert(iargs.AddItemKey, itemtable)
-                --     Store:UsedGoods(iargs)
                 end
             end
         end
@@ -2959,7 +2961,11 @@ function game_playerinfo:OnUsedShopGoods(data)
 		return
 	end
 	global_var_func.useGoodsLock[args.PlayerID + 1] = true
-    
+    local steam_id = PlayerResource:GetSteamAccountID(args.PlayerID)
+    if not game_playerinfo:FindGoodsByID(steam_id, args.GoodsName, args.UseNumber) then
+        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID),"response_errortext",{errortext = "error_noenoughnumber"})
+        return
+    end
     args.AddItemKey, args.prize_list = game_playerinfo:UseGoodsByID(data.PlayerID,data.GoodsName,data.UseNumber)
     -- DeepPrintTable(args)
     Store:UsedGoods(args)
@@ -2988,11 +2994,6 @@ function game_playerinfo:OnOpenBox(data)
     end
     args.AddItemKey = useSandseapursuit(args.PlayerID, args.prize_list, single)
     
-    -- if #args.AddItemKey > 0 then
-    --     Store:UsedGoods(args)
-    -- else
-    --     CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(args.PlayerID),"response_open_box",{onceNumber = (player_info["onceBoxNumber"] or 0), prize_list = args.prize_list})
-    -- end
     Store:UsedGoods(args)
     game_playerinfo:save_rewardsby_playerid(args.PlayerID)
     game_playerinfo:save_totem(args.PlayerID)
@@ -3006,9 +3007,9 @@ function game_playerinfo:OnCollectRewards(data)
     args.GoodsName = "0"
     args.UseNumber = 0
     args.AddItemKey, args.prize_list = game_playerinfo:ReceivePassLevelRewards(args.PlayerID, args.difficulty)
-    if (not args.AddItemKey) or (not args.prize_list) then
-        return
-    end
+    -- if (not args.AddItemKey) or (not args.prize_list) then
+    --     return
+    -- end
     local nSteamID = PlayerResource:GetSteamAccountID(args.PlayerID)
     -- DeepPrintTable(args)
     if #args.AddItemKey > 0 then
@@ -3098,11 +3099,8 @@ function game_playerinfo:OnMaplevelRewards(data)
         return
     end
     local nSteamID = PlayerResource:GetSteamAccountID(PlayerID)
-    -- DeepPrintTable(args)
-    -- if #AddItemKey > 0 then
-    --     Store:UsedGoods(args)
-    -- else
-        CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(PlayerID),"UseItemCallback",{mapRewardsList = game_playerinfo:GetmapRewardsCount(nSteamID), prize_list = prize_list})
+    
+    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(PlayerID),"UseItemCallback",{mapRewardsList = game_playerinfo:GetmapRewardsCount(nSteamID), prize_list = prize_list})
     
     game_playerinfo:save_storecoinby_playerid(PlayerID, prize_list)
 
@@ -3218,19 +3216,19 @@ end
 function game_playerinfo:ReceivePassLevelRewards(nPlayerID, level)
     local steam_id = PlayerResource:GetSteamAccountID(nPlayerID)
     if not player_info[steam_id]["levelRewardsLists"] then
-        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,7,}
+        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,0,0,0,10}
     end
-    if not player_info[steam_id]["levelRewardsLists"][8] then
-        player_info[steam_id]["levelRewardsLists"][8] = 7
+    if not player_info[steam_id]["levelRewardsLists"][11] then
+        player_info[steam_id]["levelRewardsLists"][11] = 10
     end
 
-    if level <= 7 then
+    if level <= 10 then
         -- body
         if player_info[steam_id]["levelRewardsLists"][level] == 1 then
             return
         end
     else
-        if player_info[steam_id]["levelRewardsLists"][8] >= level then
+        if player_info[steam_id]["levelRewardsLists"][11] >= level then
             return
         end
     end
@@ -3970,6 +3968,19 @@ function game_playerinfo:rewardstotem(steam_id, number, prize_list)
     table.insert(prize_list, sendtable)
 end
 
+-- 首通奖励图腾碎片
+function game_playerinfo:rewardfirststotem(steam_id, number, prize_list)
+
+    local totemName = self:RandomTotem()
+
+    game_playerinfo:update_totem_data(steam_id, totemName, number)
+
+    local sendtable = {}
+    table.insert(sendtable, totemName)
+    table.insert(sendtable, number)
+
+    table.insert(prize_list, sendtable)
+end
 
 -- 获得图腾包的奖励
 function game_playerinfo:randomrewardstotempackage(steam_id, prize_list)
@@ -4228,16 +4239,16 @@ end
 -- 设置领取首通奖励标记
 function game_playerinfo:SetLevelRewardsSign(steam_id, passlevel)
     if not player_info[steam_id]["levelRewardsLists"] then
-        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,7,}
+        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,0,0,0,10}
     end
     
-    if passlevel > 7 then
+    if passlevel > 10 then
         -- body
-        if not player_info[steam_id]["levelRewardsLists"][8] then
+        if not player_info[steam_id]["levelRewardsLists"][11] then
             -- body
-            player_info[steam_id]["levelRewardsLists"][8] = 8
+            player_info[steam_id]["levelRewardsLists"][11] = 11
         else
-            player_info[steam_id]["levelRewardsLists"][8] = passlevel
+            player_info[steam_id]["levelRewardsLists"][11] = passlevel
         end
     else
         player_info[steam_id]["levelRewardsLists"][passlevel] = 1
@@ -4247,10 +4258,10 @@ end
 
 function game_playerinfo:GetLevelRewardsSign(steam_id)
     if not player_info[steam_id]["levelRewardsLists"] then
-        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,7,}
+        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,0,0,0,10}
     end
-    if not player_info[steam_id]["levelRewardsLists"][8] then
-        player_info[steam_id]["levelRewardsLists"][8] = 7
+    if not player_info[steam_id]["levelRewardsLists"][11] then
+        player_info[steam_id]["levelRewardsLists"][11] = 10
     end
     return player_info[steam_id]["levelRewardsLists"]
 end
@@ -4271,10 +4282,10 @@ end
 
 function game_playerinfo:sendLevelRewardsSignToSave(steam_id)
     if not player_info[steam_id]["levelRewardsLists"] then
-        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,7,}
+        player_info[steam_id]["levelRewardsLists"] = {0,0,0,0,0,0,0,0,0,0,10}
     end
-    if not player_info[steam_id]["levelRewardsLists"][8] then
-        player_info[steam_id]["levelRewardsLists"][8] = 7
+    if not player_info[steam_id]["levelRewardsLists"][11] then
+        player_info[steam_id]["levelRewardsLists"][11] = 10
     end
     local send_table = {}
     -- DeepPrintTable(player_info[steam_id]["levelRewardsLists"])
@@ -4313,7 +4324,7 @@ function onceTheGiftOfThePharaoh(playerID, passlevel, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 20, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 30, prize_list)
         -- 奖励图腾碎片
-        game_playerinfo:rewardstotem(steam_id, 1, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 1, prize_list)
         -- 奖励宝物卡
         game_playerinfo:rewardstreasures(playerID, prize_list, 1)
     elseif passlevel==2 then
@@ -4327,7 +4338,7 @@ function onceTheGiftOfThePharaoh(playerID, passlevel, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 30, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 40, prize_list)
         -- 奖励图腾碎片
-        game_playerinfo:rewardstotem(steam_id, 3, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 3, prize_list)
         -- 奖励宝物卡
         game_playerinfo:rewardstreasures(playerID, prize_list, 2)
     elseif passlevel==3 then
@@ -4341,7 +4352,7 @@ function onceTheGiftOfThePharaoh(playerID, passlevel, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 40, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 50, prize_list)
         -- 奖励图腾碎片
-        game_playerinfo:rewardstotem(steam_id, 5, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 5, prize_list)
         -- 奖励宝物卡
         game_playerinfo:rewardstreasures(playerID, prize_list, 3)
         game_playerinfo:rewardstreasures(playerID, prize_list, 3)
@@ -4356,7 +4367,7 @@ function onceTheGiftOfThePharaoh(playerID, passlevel, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 50, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 60, prize_list)
         -- 奖励图腾碎片
-        game_playerinfo:rewardstotem(steam_id, 7, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 7, prize_list)
         -- 奖励宝物卡
         game_playerinfo:rewardstreasures(playerID, prize_list, 4)
         game_playerinfo:rewardstreasures(playerID, prize_list, 4)
@@ -4371,7 +4382,7 @@ function onceTheGiftOfThePharaoh(playerID, passlevel, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 60, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 70, prize_list)
         -- 奖励图腾碎片
-        game_playerinfo:rewardstotem(steam_id, 9, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 9, prize_list)
         -- 奖励宝物卡
         game_playerinfo:rewardstreasures(playerID, prize_list, 5)
         game_playerinfo:rewardstreasures(playerID, prize_list, 5)
@@ -4388,8 +4399,8 @@ function onceTheGiftOfThePharaoh(playerID, passlevel, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 70, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 80, prize_list)
         -- 奖励图腾碎片
-        game_playerinfo:rewardstotem(steam_id, 11, prize_list)
-        game_playerinfo:rewardstotem(steam_id, 3, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 11, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 3, prize_list)
         -- 奖励宝物卡
         game_playerinfo:rewardstreasures(playerID, prize_list, 6)
         game_playerinfo:rewardstreasures(playerID, prize_list, 6)
@@ -4408,9 +4419,9 @@ function onceTheGiftOfThePharaoh(playerID, passlevel, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 80, prize_list)
         game_playerinfo:rewardsrelicsExp(steam_id, 90, prize_list)
         -- 奖励图腾碎片
-        game_playerinfo:rewardstotem(steam_id, 13, prize_list)
-        game_playerinfo:rewardstotem(steam_id, 6, prize_list)
-        game_playerinfo:rewardstotem(steam_id, 3, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 13, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 6, prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, 3, prize_list)
         -- 奖励宝物卡
         game_playerinfo:rewardstreasures(playerID, prize_list, 7)
         game_playerinfo:rewardstreasures(playerID, prize_list, 7)
@@ -4420,54 +4431,54 @@ function onceTheGiftOfThePharaoh(playerID, passlevel, prize_list)
         game_playerinfo:rewardssandseapursuit(steam_id, 3, prize_list,store_item)
         game_playerinfo:rewardssandseapursuit(steam_id, 1, prize_list,store_item)
     else
-        local sacle = (passlevel - 7)*0.2
-        game_playerinfo:rewardsDiamond(steam_id, math.floor(14000*sacle), prize_list)
-        game_playerinfo:rewardsDiamond(steam_id, math.floor(24000*sacle), prize_list)
-        game_playerinfo:rewardsDiamond(steam_id, math.floor(18000*sacle), prize_list)
+        local sacle = (passlevel - 7)*(0.05)
+        game_playerinfo:rewardsDiamond(steam_id, math.floor(14000*(1+sacle)), prize_list)
+        game_playerinfo:rewardsDiamond(steam_id, math.floor(24000*(1+sacle)), prize_list)
+        game_playerinfo:rewardsDiamond(steam_id, math.floor(18000*(1+sacle)), prize_list)
         -- 奖励神之遗物经验
-        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(80*sacle), prize_list)
-        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(100*sacle), prize_list)
-        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(110*sacle), prize_list)
-        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(80*sacle), prize_list)
-        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(90*sacle), prize_list)
+        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(80*(1+sacle)), prize_list)
+        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(100*(1+sacle)), prize_list)
+        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(110*(1+sacle)), prize_list)
+        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(80*(1+sacle)), prize_list)
+        game_playerinfo:rewardsrelicsExp(steam_id, math.floor(90*(1+sacle)), prize_list)
         -- 奖励图腾碎片
-        game_playerinfo:rewardstotem(steam_id, math.floor(13*sacle), prize_list)
-        game_playerinfo:rewardstotem(steam_id, math.floor(6*sacle), prize_list)
-        game_playerinfo:rewardstotem(steam_id, math.floor(3*sacle), prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, math.floor(13*(1+sacle)), prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, math.floor(6*(1+sacle)), prize_list)
+        game_playerinfo:rewardfirststotem(steam_id, math.floor(3*(1+sacle)), prize_list)
         -- 奖励宝物卡
-        if passlevel~=8 then
+        -- if passlevel~=8 then
             game_playerinfo:rewardstreasures(playerID, prize_list, passlevel)
             game_playerinfo:rewardstreasures(playerID, prize_list, passlevel)
             game_playerinfo:rewardstreasures(playerID, prize_list, passlevel)
-        else
-            -- 难8 奖励
-            local sendtable = {}
-            table.insert(sendtable, "modifier_treasure_back_off_a")
-            table.insert(sendtable, 1)
+        -- else
+            -- -- 难8 奖励
+            -- local sendtable = {}
+            -- table.insert(sendtable, "modifier_treasure_back_off_a")
+            -- table.insert(sendtable, 1)
 
-            table.insert(prize_list, sendtable)
-            local addTreasureIndex = treasuresystem:get_treasure_id("modifier_treasure_back_off_a")
-            treasuresystem:update_treasureinarchive_byID(playerID, addTreasureIndex, 1)
+            -- table.insert(prize_list, sendtable)
+            -- local addTreasureIndex = treasuresystem:get_treasure_id("modifier_treasure_back_off_a")
+            -- treasuresystem:update_treasureinarchive_byID(playerID, addTreasureIndex, 1)
 
-            table.insert(sendtable, "modifier_treasure_back_off_b")
-            table.insert(sendtable, 1)
+            -- table.insert(sendtable, "modifier_treasure_back_off_b")
+            -- table.insert(sendtable, 1)
 
-            table.insert(prize_list, sendtable)
-            local addTreasureIndex = treasuresystem:get_treasure_id("modifier_treasure_back_off_b")
-            treasuresystem:update_treasureinarchive_byID(playerID, addTreasureIndex, 1)
+            -- table.insert(prize_list, sendtable)
+            -- local addTreasureIndex = treasuresystem:get_treasure_id("modifier_treasure_back_off_b")
+            -- treasuresystem:update_treasureinarchive_byID(playerID, addTreasureIndex, 1)
 
-            table.insert(sendtable, "modifier_treasure_back_off_c")
-            table.insert(sendtable, 1)
+            -- table.insert(sendtable, "modifier_treasure_back_off_c")
+            -- table.insert(sendtable, 1)
 
-            table.insert(prize_list, sendtable)
-            local addTreasureIndex = treasuresystem:get_treasure_id("modifier_treasure_back_off_c")
-            treasuresystem:update_treasureinarchive_byID(playerID, addTreasureIndex, 1)
-        end
+            -- table.insert(prize_list, sendtable)
+            -- local addTreasureIndex = treasuresystem:get_treasure_id("modifier_treasure_back_off_c")
+            -- treasuresystem:update_treasureinarchive_byID(playerID, addTreasureIndex, 1)
+        -- end
         
         -- 奖励沙海寻踪
-        game_playerinfo:rewardssandseapursuit(steam_id, math.floor(5*sacle), prize_list,store_item)
-        game_playerinfo:rewardssandseapursuit(steam_id, math.floor(3*sacle), prize_list,store_item)
-        game_playerinfo:rewardssandseapursuit(steam_id, math.floor(1*sacle), prize_list,store_item)
+        game_playerinfo:rewardssandseapursuit(steam_id, math.floor(5*(1+sacle)), prize_list,store_item)
+        game_playerinfo:rewardssandseapursuit(steam_id, math.floor(3*(1+sacle)), prize_list,store_item)
+        game_playerinfo:rewardssandseapursuit(steam_id, math.floor(1*(1+sacle)), prize_list,store_item)
     end
     game_playerinfo:SetLevelRewardsSign(steam_id, passlevel)
     return store_item

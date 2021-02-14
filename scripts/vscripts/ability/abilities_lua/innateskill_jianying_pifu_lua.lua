@@ -70,7 +70,7 @@ function modifier_pifu_buff_lua:OnCreated(params)
 end
 
 function modifier_pifu_buff_lua:GetModifierPhysicalArmorBonus()
-    return 50
+    return 200
 end
 
 function modifier_pifu_buff_lua:GetModifierMagicalResistanceBonus()
@@ -128,11 +128,11 @@ function modifier_sublime_jianying_pifu_lua:OnIntervalThink()
         end
     end
     if self.damagepercent ~= 0 then
-        game_playerinfo:set_dynamic_properties(steam_id, "physics_attack_scale", -self.damagepercent)
+        game_playerinfo:set_dynamic_properties(steam_id, "extra_attack_scale", -self.damagepercent)
     end
     local key = "player_"..playerID.."_current_count"
     self.damagepercent = #global_var_func[key]*self:GetAbility():GetSpecialValueFor("percent")
-    game_playerinfo:set_dynamic_properties(steam_id, "physics_attack_scale", self.damagepercent)
+    game_playerinfo:set_dynamic_properties(steam_id, "extra_attack_scale", self.damagepercent)
 end
 
 
@@ -160,9 +160,9 @@ function modifier_sublime_pifu_buff_lua:OnCreated(params)
 end
 
 function modifier_sublime_pifu_buff_lua:GetModifierPhysicalArmorBonus()
-    return 20
+    return 200
 end
 
 function modifier_sublime_pifu_buff_lua:GetModifierMagicalResistanceBonus()
-    return 30
+    return 50
 end

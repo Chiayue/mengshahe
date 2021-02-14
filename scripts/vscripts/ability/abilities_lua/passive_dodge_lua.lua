@@ -40,5 +40,5 @@ function modifier_passive_dodge_lua:OnCreated(params)
 end
 
 function modifier_passive_dodge_lua:GetModifierEvasion_Constant(params)
-    return self:GetAbility():GetSpecialValueFor("magic_resistance") + GameRules:GetCustomGameDifficulty()*5
+    return self:GetAbility():GetSpecialValueFor("magic_resistance")
 end

@@ -895,7 +895,7 @@ function do_success_didong(params)
     end
     local unit = CreateUnitByName("shouren_didong", hero.unit_position, true, hero, hero, hero:GetTeamNumber())
     local health = hero:GetMaxHealth() * 10
-    local damage = hero:GetBaseDamageMax() * 10
+    local damage = hero:GetBaseDamageMax() * 6
     unit:SetBaseMaxHealth(health)
     unit:SetMaxHealth(health)
     unit:SetHealth(health)

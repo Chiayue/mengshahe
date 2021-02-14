@@ -37,7 +37,7 @@ function modifier_passive_resistance_lua:OnCreated(params)
     if not IsServer( ) then
         return
     end
-    local resistance = 36 + GameRules:GetCustomGameDifficulty()*5
+    local resistance = 40
     self:GetCaster():SetBaseMagicalResistanceValue(resistance)
 end
 

@@ -57,6 +57,9 @@ end
 function modifier_treasure_legion_drum:IsPurgeException()
 	return false
 end
+function modifier_treasure_legion_drum:RemoveOnDeath()
+    return false -- 死亡不移除
+end
 function modifier_treasure_legion_drum:OnCreated(kv)
     if not IsServer() then
         return

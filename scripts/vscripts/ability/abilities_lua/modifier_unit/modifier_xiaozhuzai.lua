@@ -41,6 +41,11 @@ function modifier_xiaozhuzai:OnIntervalThink()
         ParticleManager:SetParticleControlEnt( pindex, 0, nil, PATTACH_OVERHEAD_FOLLOW, "",unit:GetOrigin(), true );
         ParticleManager:SetParticleControlEnt( pindex, 1, nil, PATTACH_OVERHEAD_FOLLOW, "", hero:GetOrigin(), true );
         ParticleManager:ReleaseParticleIndex(pindex)
+
+        local steam_id = PlayerResource:GetSteamAccountID(hero:GetPlayerID())
+        game_playerinfo:set_dynamic_properties(steam_id, "add_strength", 10)
+        game_playerinfo:set_dynamic_properties(steam_id, "add_agility", 10)
+        game_playerinfo:set_dynamic_properties(steam_id, "add_intellect", 10)
     elseif self.time_acount >= self.remove_time then
         UTIL_Remove(unit)
     end

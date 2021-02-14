@@ -8,21 +8,23 @@ function zibao_lua:OnSpellStart()
 		if #enemies > 0 then
 			for _,enemy in pairs(enemies) do
 				if enemy ~= nil and ( not enemy:IsMagicImmune() ) and ( not enemy:IsInvulnerable() ) then
-					local att_value = enemy:GetHealth()*(self:GetSpecialValueFor("damagepercent")/100);
                     local percent = 1
 					if ContainUnitTypeFlag(enemy, DOTA_UNIT_TYPE_FLAG_BOSS) or ContainUnitTypeFlag(enemy, DOTA_UNIT_TYPE_FLAG_OPERATION) then
                         percent = 0.5
                     end
-					local damage = {
-						victim = enemy,
-						attacker = self:GetCaster(),
-						damage = att_value * percent,
-						damage_type = self:GetAbilityDamageType(),
-						ability = self
-					}
-					-- print(">>>>>>>>>>>>> damage: "..damage.damage);
-					-- enemy:AddNewModifier( self.Caster, self:GetAbility(), "modifier_active_point_magical_lua", { duration = self.duration } )
-					ApplyDamage( damage )
+					local att_value = enemy:GetHealth()*(1-(self:GetSpecialValueFor("damagepercent")/100)*percent);
+					-- local damage = {
+					-- 	victim = enemy,
+					-- 	attacker = self:GetCaster(),
+					-- 	damage = att_value * percent,
+					-- 	damage_type = self:GetAbilityDamageType(),
+					-- 	ability = self
+					-- }
+					-- -- print(">>>>>>>>>>>>> damage: "..damage.damage);
+					-- -- enemy:AddNewModifier( self.Caster, self:GetAbility(), "modifier_active_point_magical_lua", { duration = self.duration } )
+					-- ApplyDamage( damage )
+
+					enemy:SetHealth(att_value)
 				end
 			end
         end

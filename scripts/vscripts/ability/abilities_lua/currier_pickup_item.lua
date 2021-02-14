@@ -219,5 +219,27 @@ function OnPickupCast(caster, item_name, currier)
         end
     elseif item_name == "item_rune_magice" then
         caster:AddNewModifier(caster,nil,"modifier_item_rune_magice",{duration = 20})
+    elseif item_name == "item_consum_money_bag" then
+        local time = GameRules:GetDOTATime(false, false)
+        if not caster.chanceTable then
+            caster.chanceTable = {5,10}
+        end
+        if 600 < time and time <= 1200 then
+            caster.chanceTable[1] = 10
+            caster.chanceTable[2] = 30
+        elseif 1200 < time then
+            caster.chanceTable[1] = 15
+            caster.chanceTable[2] = 40
+        end
+        caster.award_gold = 0
+        local chance = RandomInt(0, 100)
+        if chance < caster.chanceTable[1] then
+            caster.award_gold = 10000 
+        elseif caster.chanceTable[1] <= chance  and chance < caster.chanceTable[2] then
+            caster.award_gold = 1000
+        else
+            caster.award_gold = 100
+        end
+        game_playerinfo:set_player_gold(caster:GetPlayerID(),caster.award_gold)
     end
 end

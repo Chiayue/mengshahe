@@ -57,6 +57,9 @@ end
 function modifier_treasure_legion_arcanum:IsPurgeException()
 	return false
 end
+function modifier_treasure_legion_arcanum:RemoveOnDeath()
+    return false -- 死亡不移除
+end
 function modifier_treasure_legion_arcanum:OnCreated(kv)
     if not IsServer() then
         return

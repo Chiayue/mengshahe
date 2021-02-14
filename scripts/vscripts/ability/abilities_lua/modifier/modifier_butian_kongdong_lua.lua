@@ -82,15 +82,15 @@ end
 
 function modifier_butian_kongdong_lua:GetModifierBonusStats_Agility(params)
     -- 修改敏捷
-    return self:GetStackCount() * 20
+    return self:GetStackCount() * 30
 end
 
 function modifier_butian_kongdong_lua:GetModifierBonusStats_Intellect(params)
     -- 修改智力
-    return self:GetStackCount() * 20
+    return self:GetStackCount() * 30
 end
 
 function modifier_butian_kongdong_lua:GetModifierBonusStats_Strength(params)
     -- 修改力量
-    return self:GetStackCount() * 20
+    return self:GetStackCount() * 30
 end

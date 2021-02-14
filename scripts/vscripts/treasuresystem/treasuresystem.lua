@@ -470,6 +470,7 @@ end
 
 -- 设置玩家宝物池
 function treasuresystem:set_player_treasures(playerID, treasures_archive)
+    -- DeepPrintTable(treasures_archive)
     player_treasures_archive[playerID+1] = {}
     for key, value in pairs(treasures_archive) do
         if value["treasureId"] and value["treasureNumber"] then

@@ -48,9 +48,9 @@ end
 function modifier_i_am_carray:OnIntervalThink()
 	if IsServer() then
 		local hero = self:GetParent()
-		SetBaseAgility(hero, 1)
-		SetBaseStrength(hero, 1)
-		SetBaseIntellect(hero, 1)
+		SetBaseAgility(hero, 2)
+		SetBaseStrength(hero, 2)
+		SetBaseIntellect(hero, 2)
 	end
 end
 

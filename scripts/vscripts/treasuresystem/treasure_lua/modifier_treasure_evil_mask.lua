@@ -57,6 +57,9 @@ end
 function modifier_treasure_evil_mask:IsPurgeException()
 	return false
 end
+function modifier_treasure_evil_mask:RemoveOnDeath()
+    return false
+end
 function modifier_treasure_evil_mask:OnCreated(kv)
     if not IsServer() then
         return

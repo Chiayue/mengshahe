@@ -57,6 +57,9 @@ end
 function modifier_treasure_wizardry_mask:IsPurgeException()
 	return false
 end
+function modifier_treasure_wizardry_mask:RemoveOnDeath()
+    return false
+end
 function modifier_treasure_wizardry_mask:OnCreated(kv)
     if not IsServer() then
         return

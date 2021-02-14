@@ -173,3 +173,8 @@ LinkLuaModifier( "modifier_treasure_sublime_phantom_assassin","treasuresystem/tr
 LinkLuaModifier( "modifier_treasure_sublime_shredder","treasuresystem/treasure_lua/modifier_treasure_sublime_shredder", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_treasure_sublime_omniknight","treasuresystem/treasure_lua/modifier_treasure_sublime_omniknight", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_treasure_sublime_skeleton_king","treasuresystem/treasure_lua/modifier_treasure_sublime_skeleton_king", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treasure_goldmon_attribute_one","treasuresystem/treasure_lua/modifier_treasure_goldmon_attribute_one", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treasure_goldmon_attribute_two","treasuresystem/treasure_lua/modifier_treasure_goldmon_attribute_two", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treasure_midas_collection","treasuresystem/treasure_lua/modifier_treasure_midas_collection", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treasure_more","treasuresystem/treasure_lua/modifier_treasure_more", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treasure_more_more","treasuresystem/treasure_lua/modifier_treasure_more_more", LUA_MODIFIER_MOTION_NONE )

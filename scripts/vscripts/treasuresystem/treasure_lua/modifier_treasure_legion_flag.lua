@@ -57,6 +57,9 @@ end
 function modifier_treasure_legion_flag:IsPurgeException()
 	return false
 end
+function modifier_treasure_legion_flag:RemoveOnDeath()
+    return false -- 死亡不移除
+end
 function modifier_treasure_legion_flag:OnCreated(kv)
     if not IsServer() then
         return

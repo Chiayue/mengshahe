@@ -23,6 +23,8 @@ function modifier_treasure_sublime_alchemist:OnCreated(kv)
         local parent = self:GetParent()
         if parent:GetUnitName() == "npc_dota_hero_alchemist" then
             herosublimesys:Treasureherosublime(parent:GetPlayerID(), parent)
+            local wood = game_playerinfo:get_player_wood(parent:GetPlayerID())
+            game_playerinfo:change_player_wood(parent, (99999999 - wood))
         end
     end
 end

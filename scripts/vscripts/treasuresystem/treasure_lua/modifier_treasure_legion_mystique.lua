@@ -57,6 +57,9 @@ end
 function modifier_treasure_legion_mystique:IsPurgeException()
 	return false
 end
+function modifier_treasure_legion_mystique:RemoveOnDeath()
+    return false -- 死亡不移除
+end
 function modifier_treasure_legion_mystique:OnCreated(kv)
     if not IsServer() then
         return

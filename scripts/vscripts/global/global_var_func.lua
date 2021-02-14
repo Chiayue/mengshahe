@@ -27,7 +27,7 @@ game_enum.MAP_EXP_INCRE = 1                   -- 地图经验增量
 game_enum.BASE_MANA_REGEN = 2                   -- 基础回蓝
 game_enum.RANDOM_EVENT_SPACE_TIME = 10                -- 随机事件间隔时间
 game_enum.MAX_HERO_LEVEL = 20                -- 当前最高英雄等级
-game_enum.COMPENSATION = 6                -- 服务器当前补偿等级
+game_enum.COMPENSATION = 8                -- 服务器当前补偿等级
 game_enum.ECONOMIC = 50                -- 投资消耗变量
 
 -- <==============================全局变量================================>
@@ -143,6 +143,8 @@ global_var_func.damage_gold_base = 1
 global_var_func.repick_hero_count = {}
 -- 重选英雄上限
 global_var_func.repick_hero_limit = 1
+--玩家选择英雄数据
+global_var_func.is_select_hero={}
 -- 玩家是否新玩家
 global_var_func.createPlayer = {}
 global_var_func.buy_back_need = {
@@ -381,9 +383,12 @@ global_var_func.compensation = {
     { 
         ["score"] = 100000,
     },
-    -- { 
-    --     ["newyear_bag"] = 10,
-    -- },
+    { 
+        ["score"] = 0,
+    },
+    { 
+        ["score"] = 288888,
+    },
 }
 
 --金砖商店物品
@@ -551,8 +556,8 @@ function global_var_func:get_rand_hero_list()
     table.insert(hero_list, temp_hero[rand_inde])
 
     -- table.insert(hero_list, "npc_dota_hero_phoenix")
-    -- table.insert(hero_list, "npc_dota_hero_alchemist")
-    -- table.insert(hero_list, "npc_dota_hero_keeper_of_the_light")
+    -- table.insert(hero_list, "npc_dota_hero_venomancer")
+    -- table.insert(hero_list, "npc_dota_hero_mirana")
 
     return hero_list
 end

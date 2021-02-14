@@ -574,8 +574,18 @@ function rule_unit_spawn: CreateTaskUnit(playerId, itemName, itemLevel)
     if itemName == "item_custom_gold_call" then -- 金币
         global_var_func.task_call_count_log[tostring(playerId)]["task_coin"] = global_var_func.task_call_count_log[tostring(playerId)]["task_coin"] + 1
         local coin_table = {}
+        local num = 20
+        if PlayerResource:GetPlayer(playerId):GetAssignedHero():HasModifier("modifier_treasure_midas_collection") then
+            num = num + 4
+        end
+        if PlayerResource:GetPlayer(playerId):GetAssignedHero():HasModifier("modifier_treasure_more") then
+            num = num + 7
+        end
+        if PlayerResource:GetPlayer(playerId):GetAssignedHero():HasModifier("modifier_treasure_more_more") then
+            num = num + 10
+        end
         Timers(function ()
-            if #coin_table < 20 then
+            if #coin_table < num then
                 local start_position =  Entities:FindByName(nil, global_var_func.corner[playerId + 1].start_corner):GetAbsOrigin() + RandomVector(RandomFloat(0, 800))
                 local end_position = Entities:FindByName(nil, global_var_func.corner[playerId + 1].end_corner):GetAbsOrigin()
                 local unit = CreateUnitByName("task_coin", start_position, true, nil, nil, DOTA_TEAM_BADGUYS)
@@ -694,7 +704,8 @@ function rule_unit_spawn: CreateTaskUnit(playerId, itemName, itemLevel)
                 local temp = math.abs(c_x - e_x) * math.abs(c_x - e_x) + math.abs(c_y - e_y) * math.abs(c_y - e_y)
                 if math.sqrt(temp) < 300 then
                     if not unit:IsNull() then
-                        unit:AddNewModifier(nil, nil, "modifier_common_tp", nil)
+                        local nIndex = ParticleManager:CreateParticle("particles/diy_particles/run.vpcf", PATTACH_OVERHEAD_FOLLOW, unit)
+                        unit:AddNewModifier(nil, nil, "modifier_common_tp", nil):AddParticle(nIndex, false, false, 15, false, false)
                         self: RemoveUnitTable(unit.index) 
                         del_player_current_count(playerId)
                     end

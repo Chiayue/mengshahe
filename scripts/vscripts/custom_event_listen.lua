@@ -83,7 +83,7 @@ function CustomListen:init()
 	CustomGameEventManager:RegisterListener("request_fusion_totem", Dynamic_Wrap(game_playerinfo,'OnFusionTotem'))  -- 图腾融合
 end
 
-local is_select_hero = {}
+-- local is_select_hero = {}
 -- local random_data = {player_0 = {"npc_dota_hero_luna", "npc_dota_hero_bristleback", "npc_dota_hero_kunkka"}}
 local random_data = {}
 -- 游戏状态切换的逻辑判断
@@ -97,7 +97,7 @@ function CustomListen:game_state_change(evt)
 		global_var_func.current_game_step = DOTA_GAME_STEP_GENERAL
 		for i = 0, playercount-1 do
 			--没有选择英雄则指定一个英雄
-			if not is_select_hero["player_"..i] then 
+			if not global_var_func.is_select_hero["player_"..i] then 
 				if not global_var_func.select_heroname[i] then
 					global_var_func.select_heroname[i] = random_data["player_"..i][2]
 					game_playerinfo:init_treasure_select_tab(i)
@@ -234,7 +234,7 @@ function CustomListen:game_state_change(evt)
 		end
 		--初始化
 		if playercount == 1 then
-			-- print("nadu >>>>>"..GameRules:GetCustomGameDifficulty())
+			print("nadu >>>>>"..GameRules:GetCustomGameDifficulty())
 			if GameRules:GetCustomGameDifficulty() > 7 then
 
 			end
@@ -384,6 +384,14 @@ function CustomListen:game_state_change(evt)
 								record = global_var_func.overload_record[mod_back:GetParent():GetPlayerID() + 1],
 							})
 						end
+						--金币怪悬赏令
+						if treasuresystem:check_treasures_name(i, "modifier_treasure_goldmon_attribute_one") then
+							nhero:AddNewModifier(nhero,nil,"modifier_treasure_goldmon_attribute_one",{})
+						end
+						--迈达斯的珍藏
+						if treasuresystem:check_treasures_name(i, "modifier_treasure_midas_collection") then
+							nhero:AddNewModifier(nhero,nil,"modifier_treasure_midas_collection",{})
+						end
 					end
 					-- game_playerinfo:save_archive()
 				end
@@ -482,13 +490,17 @@ function CustomListen:random_hero(evt)
 	local player_id = evt.PlayerID
 	local steam_id = PlayerResource:GetSteamAccountID(player_id)
 	local key = "player_"..player_id
-	if is_select_hero[key] and is_select_hero[key] ~="npc_dota_hero_crystal_maiden" then
-		if evt.repick ~= 1 or game_playerinfo:get_dynamic_properties_by_key(steam_id, "re_pick") ~= 1 then
+	print(global_var_func.is_select_hero[key])
+	if global_var_func.is_select_hero[key] and global_var_func.is_select_hero[key] ~="npc_dota_hero_crystal_maiden" then
+		if evt.repick ~= 1 then -- or game_playerinfo:get_dynamic_properties_by_key(steam_id, "re_pick") ~= 1
 			CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer( player_id ),"close_select_hero_panel",{reConnect=1})
 			return
 		end
 	end
 	if evt.repick == 1 then
+		if game_playerinfo:get_totem_level(steam_id, "totemYx") < 0 then
+			return
+		end
 		if global_var_func.repick_hero_count["player"..player_id] == nil then
 			global_var_func.repick_hero_count["player"..player_id] = 0
 		end
@@ -496,6 +508,9 @@ function CustomListen:random_hero(evt)
 			return
 		end
 		global_var_func.repick_hero_count["player"..player_id] = global_var_func.repick_hero_count["player"..player_id] + 1
+	-- elseif random_data[key] ~= nil  then
+	-- 	CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer( player_id ),"close_select_hero_panel",{reConnect=1})
+	-- 	return
 	end
 	-- local hero_data = CustomNetTables:GetTableValue( "random_hero", "random_hero" )
 	random_data[key] = global_var_func:get_rand_hero_list()
@@ -554,17 +569,17 @@ function CustomListen:selected_hero(evt)
 	local player_id = evt.PlayerID
 	local hero_name = evt.hero_name
 	local key = "player_"..player_id
-	if is_select_hero[key] ~= nil then
+	if global_var_func.is_select_hero[key] ~= nil then
 		return
 	end
 	for _,v in pairs(random_data[key]) do
 		if hero_name == v then
-			is_select_hero[key]= v
+			global_var_func.is_select_hero[key]= v
 			break
 		end
 	end
-	if is_select_hero[key] == nil then
-		is_select_hero[key] = random_data[key][2]
+	if global_var_func.is_select_hero[key] == nil then
+		global_var_func.is_select_hero[key] = random_data[key][2]
 		hero_name = random_data[key][2]
 	end
 	if not global_var_func.select_heroname[player_id] then
@@ -1153,7 +1168,7 @@ function CustomListen:lock_difficulty_select(data)
 		else
 			weight = 1
 		end
-		if tonumber(l) >= 8 then
+		if tonumber(l) > 10  then
 			l =  game_playerinfo:get_pass_level(steam_id) + 1
 		end
 		difficulty[l] = difficulty[l] or 0 + weight
@@ -1321,32 +1336,32 @@ function CustomListen:on_player_chated(event)
 	-- end
 
 	-- if event.text == "-add1" then
-	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_back_off_a", nil)
+	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_more", nil)
 	-- 	return
 	-- end
 
 	-- if event.text == "-remove1" then
-	-- 	hero:RemoveModifierByName("modifier_treasure_back_off_a")
+	-- 	hero:RemoveModifierByName("modifier_treasure_more")
 	-- 	return
 	-- end
 
 	-- if event.text == "-add2" then
-	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_back_off_b", nil)
+	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_more_more", nil)
 	-- 	return
 	-- end
 
 	-- if event.text == "-remove2" then
-	-- 	hero:RemoveModifierByName("modifier_treasure_back_off_b")
+	-- 	hero:RemoveModifierByName("modifier_treasure_more_more")
 	-- 	return
 	-- end
 
 	-- if event.text == "-add3" then
-	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_back_off_c", nil)
+	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_goldmon_attribute_two", nil)
 	-- 	return
 	-- end
 
 	-- if event.text == "-remove3" then
-	-- 	hero:RemoveModifierByName("modifier_treasure_back_off_c")
+	-- 	hero:RemoveModifierByName("modifier_treasure_goldmon_attribute_two")
 	-- 	return
 	-- end
 
