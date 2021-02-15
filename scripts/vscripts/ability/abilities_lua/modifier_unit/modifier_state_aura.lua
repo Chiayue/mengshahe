@@ -36,7 +36,7 @@ function modifier_state_aura_damage_up_do:DeclareFunctions()
 end
 
 function modifier_state_aura_damage_up_do:GetModifierDamageOutgoing_Percentage()
-    return 30
+    return 100
 end
 
 if modifier_state_aura_attackspeed == nil then
@@ -67,7 +67,7 @@ function modifier_state_aura_attackspeed_do:DeclareFunctions()
 end
 
 function modifier_state_aura_attackspeed_do:GetModifierAttackSpeedBonus_Constant()
-    return 50
+    return 70
 end
 
 
@@ -99,7 +99,7 @@ function modifier_state_aura_armor_do:DeclareFunctions()
 end
 
 function modifier_state_aura_armor_do:GetModifierPhysicalArmorBonus()
-    return 10
+    return 50
 end
 
 

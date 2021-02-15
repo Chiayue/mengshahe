@@ -231,25 +231,26 @@ function item_innateskill_book_use(params)
                         -- DeepPrintTable(innateskill_drop_config)
                         local randomInt = RandomInt(1, 100)
                         local newName = ""
-                        if 1 <= randomInt and randomInt <= 33 then
-                            local rdindex = RandomInt(1, #(innateskill_drop_config[3]))
-                            newName = innateskill_drop_config[3][rdindex]
-                            -- print(">>>>>>>>>>>> rdindex: "..rdindex)
-                            -- print(">>>>>>>>>>>> newName: "..newName)
-                        elseif 33 < randomInt and randomInt <= 66 then
-                            local rdindex = RandomInt(1, #(innateskill_drop_config[2]))
-                            newName = innateskill_drop_config[2][rdindex]
-                            -- print(">>>>>>>>>>>> rdindex: "..rdindex)
-                            -- print(">>>>>>>>>>>> newName: "..newName)
-                        else 
+                        if 1 <= randomInt and randomInt <= 5 then
                             local rdindex = RandomInt(1, #(innateskill_drop_config[1]))
                             newName = innateskill_drop_config[1][rdindex]
-                            -- print(">>>>>>>>>>>> rdindex: "..rdindex)
-                            -- print(">>>>>>>>>>>> newName: "..newName)
+                        elseif 5 < randomInt and randomInt <= 30 then
+                            local rdindex = RandomInt(1, #(innateskill_drop_config[2]))
+                            newName = innateskill_drop_config[2][rdindex]
+                        else 
+                            local rdindex = RandomInt(1, #(innateskill_drop_config[3]))
+                            newName = innateskill_drop_config[3][rdindex]
                         end
                         if newName then
-                            -- print(">>>>>>>>>>>> oldName: "..nowinnateskill)
                             if newName ~= nowinnateskill then
+                                --移除原有技能buff
+                                local allBuff = casterHero:FindAllModifiers()
+                                for _,v in pairs(allBuff) do
+                                    local buffAbility = v:GetAbility(  )
+                                    if buffAbility and nowinnateskill == buffAbility:GetAbilityName() then
+                                        v:Destroy()
+                                    end
+                                end
                                 local new_ability = casterHero:AddAbility(newName)
                                 new_ability:SetLevel(1)
                                 casterHero:SwapAbilities(newName, nowinnateskill, true, false)

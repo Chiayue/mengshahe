@@ -895,7 +895,7 @@ function do_success_didong(params)
     end
     local unit = CreateUnitByName("shouren_didong", hero.unit_position, true, hero, hero, hero:GetTeamNumber())
     local health = hero:GetMaxHealth() * 10
-    local damage = hero:GetBaseDamageMax() * 6
+    local damage = hero:GetBaseDamageMax() * 12
     unit:SetBaseMaxHealth(health)
     unit:SetMaxHealth(health)
     unit:SetHealth(health)
@@ -997,6 +997,9 @@ end
 
 function tiejiafanshang(params)
     local caster = params.caster 
+    if "npc_dota_hero_centaur" ~= caster:GetUnitName() then
+        return
+    end
     local item = nil
     local index = nil
 
@@ -1042,61 +1045,60 @@ end
 
 function shansuo(params)
     local caster = params.caster 
-    local item = nil
-    local index = nil
-
-    item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-        model = "models/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_head.vmdl"
-    })
-    item:FollowEntity(caster, true)
-    ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_head_ambient.vpcf", PATTACH_POINT_FOLLOW, item)
-
-    item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-        model = "models/items/phantom_assassin/toll_of_the_fearful_aria_back/toll_of_the_fearful_aria_back.vmdl"
-    })
-    item:FollowEntity(caster, true)
-
-    item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-        model = "models/items/phantom_assassin/toll_of_the_fearful_aria_belt/toll_of_the_fearful_aria_belt.vmdl"
-    })
-    item:FollowEntity(caster, true)
-
-
-    item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-        model = "models/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_immortal_shoulders.vmdl"
-    })
-    item:FollowEntity(caster, true)
-    ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_immortal_shoulder_ambient.vpcf", PATTACH_POINT_FOLLOW, item)
+    if caster:GetUnitName() == "npc_dota_hero_phantom_assassin" then
+        local item = nil
+        local index = nil
     
-    item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-        model = "models/heroes/phantom_assassin/pa_arcana_weapons.vmdl"
-    })
-    item:FollowEntity(caster, true)
-
-    index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_a.vpcf", 
-    PATTACH_CUSTOMORIGIN, caster)
-    ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetOrigin(), true)
-    ParticleManager:SetParticleControl(index, 26, Vector(100, 0, 0))
-
-    index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_b.vpcf", 
-    PATTACH_CUSTOMORIGIN, caster)
-    ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack2", caster:GetOrigin(), true)
-    ParticleManager:SetParticleControl(index, 26, Vector(100, 0, 0))
-
-    index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_ambient.vpcf", PATTACH_POINT_FOLLOW, caster)
-    ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_leg_r", caster:GetOrigin(), true)
-    ParticleManager:SetParticleControlEnt(index, 1, caster, PATTACH_POINT_FOLLOW, "attach_leg_l", caster:GetOrigin(), true)
-    ParticleManager:SetParticleControlEnt(index, 2, caster, PATTACH_POINT_FOLLOW, "attach_hand_r", caster:GetOrigin(), true)
-    ParticleManager:SetParticleControlEnt(index, 3, caster, PATTACH_POINT_FOLLOW, "attach_hand_l", caster:GetOrigin(), true)
-
-    index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_eyes_l.vpcf", PATTACH_POINT_FOLLOW, caster)
-    ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_eye_l", caster:GetOrigin(), true)
-
-    index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_eyes_r.vpcf", PATTACH_POINT_FOLLOW, caster)
-    ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_eye_r", caster:GetOrigin(), true)
-
-    caster:AddActivityModifier("arcana")
-
+        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+            model = "models/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_head.vmdl"
+        })
+        item:FollowEntity(caster, true)
+        ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/pa_ti8_immortal_head/pa_ti8_immortal_head_ambient.vpcf", PATTACH_POINT_FOLLOW, item)
+    
+        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+            model = "models/items/phantom_assassin/toll_of_the_fearful_aria_back/toll_of_the_fearful_aria_back.vmdl"
+        })
+        item:FollowEntity(caster, true)
+    
+        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+            model = "models/items/phantom_assassin/toll_of_the_fearful_aria_belt/toll_of_the_fearful_aria_belt.vmdl"
+        })
+        item:FollowEntity(caster, true)
+    
+    
+        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+            model = "models/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_immortal_shoulders.vmdl"
+        })
+        item:FollowEntity(caster, true)
+        ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/pa_fall20_immortal_shoulders/pa_fall20_immortal_shoulder_ambient.vpcf", PATTACH_POINT_FOLLOW, item)
+        
+        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+            model = "models/heroes/phantom_assassin/pa_arcana_weapons.vmdl"
+        })
+        item:FollowEntity(caster, true)
+    
+        index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_a.vpcf", PATTACH_CUSTOMORIGIN, caster)
+        ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack1", caster:GetOrigin(), true)
+        ParticleManager:SetParticleControl(index, 26, Vector(100, 0, 0))
+    
+        index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_blade_ambient_b.vpcf", PATTACH_CUSTOMORIGIN, caster)
+        ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_attack2", caster:GetOrigin(), true)
+        ParticleManager:SetParticleControl(index, 26, Vector(100, 0, 0))
+    
+        index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_ambient.vpcf", PATTACH_POINT_FOLLOW, caster)
+        ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_leg_r", caster:GetOrigin(), true)
+        ParticleManager:SetParticleControlEnt(index, 1, caster, PATTACH_POINT_FOLLOW, "attach_leg_l", caster:GetOrigin(), true)
+        ParticleManager:SetParticleControlEnt(index, 2, caster, PATTACH_POINT_FOLLOW, "attach_hand_r", caster:GetOrigin(), true)
+        ParticleManager:SetParticleControlEnt(index, 3, caster, PATTACH_POINT_FOLLOW, "attach_hand_l", caster:GetOrigin(), true)
+    
+        index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_eyes_l.vpcf", PATTACH_POINT_FOLLOW, caster)
+        ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_eye_l", caster:GetOrigin(), true)
+    
+        index = ParticleManager:CreateParticle("particles/econ/items/phantom_assassin/phantom_assassin_arcana_elder_smith/pa_arcana_elder_eyes_r.vpcf", PATTACH_POINT_FOLLOW, caster)
+        ParticleManager:SetParticleControlEnt(index, 0, caster, PATTACH_POINT_FOLLOW, "attach_eye_r", caster:GetOrigin(), true)
+    
+        caster:AddActivityModifier("arcana")
+    end
 end
 
 function quanshui(params)

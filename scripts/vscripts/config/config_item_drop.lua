@@ -178,23 +178,28 @@ end
 --神职天赋随机掉落的天赋技能
 local innateskill_drop_item = {
     {
-        "yinyueyongshi",   --萨特爸爸
+        "siwan_zhili_lua",     -- 死亡之力
+        "yanbao_lua",     -- 尸爆
         -- "bukezhansheng_lua",     --我们老干爹是不可战胜的
     },
     {
         "passive_purification",     --圣光照射
         "lilian_lua",     --历练
-        "tancai_lua",     --贪财不可耻
+        "jiangdi_fangyu_lua",     --NMYSL
+        "yu_zhan_yu_yong",     --愈战愈勇
+        "return_datadriven",     --铁甲反伤
+        "touzhi_hongzha_lua",     --投掷轰炸
     },
     {
         "wofang_fuzhu_lua",     --都闪开，我去下路保敌法
-        "touzhi_hongzha_lua",     --投掷轰炸
         "blueflash_blink_datadriven",     --闪烁
         -- "ambulance_lua",     --救护车
         -- "kaishi_kaoshi",     --开始考试
         -- "ragged_moneybag",     --破洞的钱袋
         "i_am_carray",     --队友由我罩
         "sex_assassin",     --疾
+        "tancai_lua",     --贪财不可耻
+        "yinyueyongshi",   --萨特爸爸
     },
 }
 

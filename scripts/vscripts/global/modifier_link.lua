@@ -143,3 +143,4 @@ LinkLuaModifier( "modifier_common_physical_armor","ability/abilities_lua/modifie
 LinkLuaModifier( "modifier_base_get_gold","ability/abilities_lua/modifier/modifier_base_get_gold", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_test","ability/abilities_lua/modifier/modifier_test", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_killing_heart","ability/abilities_lua/modifier/modifier_killing_heart", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_common_no_health_bar","ability/abilities_lua/modifier/modifier_common_no_health_bar", LUA_MODIFIER_MOTION_NONE )

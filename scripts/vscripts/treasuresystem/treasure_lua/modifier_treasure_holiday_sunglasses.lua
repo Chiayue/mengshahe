@@ -16,7 +16,7 @@ function modifier_treasure_holiday_sunglasses:DeclareFunctions()
 end
 
 function modifier_treasure_holiday_sunglasses:OnAttackFail(event)
-    if RollPercentage(35) then
+    if event.attacker == self:GetParent() and event.target:GetTeamNumber() ~= self:GetParent():GetTeamNumber() and RollPercentage(35) then
         self:GetParent():PerformAttack(event.target, false, true, true, false, true, false, true) 
     end
 end

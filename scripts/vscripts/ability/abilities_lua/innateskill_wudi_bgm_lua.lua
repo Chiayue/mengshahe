@@ -41,13 +41,13 @@ function modifier_wudi_bgm_lua:OnCreated(params)
         self.steam_id = PlayerResource:GetSteamAccountID(self:GetAbility():GetCaster():GetPlayerID())
         local randint = RandomInt(1,3)
         if randint == 1 then
-            -- self:GetAbility():GetCaster():EmitSound("hero.wudi_bgm")
+            self:GetAbility():GetCaster():EmitSound("hero.wudi_bgm")
             self.bgmname = "hero.wudi_bgm"
         elseif randint == 2 then
-            -- self:GetAbility():GetCaster():EmitSound("hero.wudi_bgm_2")
+            self:GetAbility():GetCaster():EmitSound("hero.wudi_bgm_2")
             self.bgmname = "hero.wudi_bgm_2"
         else
-            -- self:GetAbility():GetCaster():EmitSound("hero.wudi_bgm_3")
+            self:GetAbility():GetCaster():EmitSound("hero.wudi_bgm_3")
             self.bgmname = "hero.wudi_bgm_3"
         end
     end

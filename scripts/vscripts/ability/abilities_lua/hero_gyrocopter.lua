@@ -128,7 +128,7 @@ function modifier_imba_gyrocopter_rocket_barrage_caster:OnIntervalThink()
 	end
 end
 
-function modifier_imba_gyrocopter_rocket_barrage_caster:OnDestory()
+function modifier_imba_gyrocopter_rocket_barrage_caster:OnDestroy()
 	if IsServer() then
 		self.radius = nil
 		self.rockets_per_second = nil

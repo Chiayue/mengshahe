@@ -691,6 +691,8 @@ function set_item(player_id,hero_name)
 	hero:AddNewModifier(hero, nil, "modifier_show_properties_lua", {})
 	-- 杀戮之心
 	hero:AddNewModifier(hero, nil, "modifier_killing_heart", nil)
+	-- 自定义血条
+	hero:AddNewModifier(unit, nil, "modifier_common_no_health_bar", nil)
 	-- 初始化图腾套装属性
 	game_playerinfo:InitMaxLevelTotemAttribute(player_id)
 
@@ -737,6 +739,7 @@ function set_item(player_id,hero_name)
 	-- hero:AddItemByName("item_noItem_baoWu_book")
 	-- hero:GetItemInSlot(0):SetCurrentCharges(99)
 	-- hero:AddItemByName("item_book_innateskill")
+	-- hero:AddItemByName("item_book_initiative_d")
 	-- hero:GetItemInSlot(0):SetCurrentCharges(99)
 	-- hero:AddItemByName("item_book_chaos_d")
 	-- hero:GetItemInSlot(1):SetCurrentCharges(99)
@@ -1306,6 +1309,11 @@ function CustomListen:on_player_chated(event)
 	-- 	return
 	-- end
 
+	-- if event.text == "-rd" then
+	-- 	RandomINT(1, 1000)
+	-- 	return
+	-- end
+
 	-- if event.text == "-sh" then
 	-- 	-- 进行升华操作
 	-- 	herosublimesys:Onherosublime(event.playerid, PlayerResource:GetPlayer(event.playerid):GetAssignedHero():GetUnitName())
@@ -1326,12 +1334,12 @@ function CustomListen:on_player_chated(event)
 	-- end
 
 	-- if event.text == "-add" then
-	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_sublime_skeleton_king", nil)
+	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_sublime_phoenix", nil)
 	-- 	return
 	-- end
 
 	-- if event.text == "-remove" then
-	-- 	hero:RemoveModifierByName("modifier_treasure_sublime_treant")
+	-- 	hero:RemoveModifierByName("modifier_treasure_sublime_phoenix")
 	-- 	return
 	-- end
 

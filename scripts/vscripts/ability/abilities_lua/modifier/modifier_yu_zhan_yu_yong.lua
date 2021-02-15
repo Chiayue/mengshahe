@@ -13,11 +13,13 @@ end
 function modifier_yu_zhan_yu_yong:OnCreated( table )
 	if IsServer() then 
 		local hero = self:GetParent()
-        local weartable = {
-            "models/items/beastmaster/ti9_cache_beast_master_dinosaurs_telepathy_weapon/ti9_cache_beast_master_dinosaurs_telepathy_weapon.vmdl",
-        }
-		WearForHero(weartable,self:GetParent())
-		
+		if "npc_dota_hero_pugna" == hero:GetUnitName() then
+			local weartable = {
+				"models/items/beastmaster/ti9_cache_beast_master_dinosaurs_telepathy_weapon/ti9_cache_beast_master_dinosaurs_telepathy_weapon.vmdl",
+			}
+			WearForHero(weartable,self:GetParent())
+		end
+        
 		self:GetParent():RemoveModifierByName("modifier_yu_zhan_yu_yong_base")
 		self.critical_cf = self:GetAbility():GetSpecialValueFor("critical_cf")
 		self.critical = 0

@@ -106,7 +106,9 @@ function item_exchange(caster,item_name,new_item_name,item_quality)
             if level < 5 then
                 game_playerinfo:set_player_gold(player_id,-gold_cost)
                 local is_up = false
-                
+                if item_handle.level_count and item_handle.level_count>=4 then
+                    chance = 100
+                end
                 if RollPercentage(chance) then 
                     -- send_tips_message(player_id,"升级成功")
                     is_up = true
@@ -120,6 +122,9 @@ function item_exchange(caster,item_name,new_item_name,item_quality)
                     
                     levelup_chance[player_id] = 0
                 else 
+                    if string.find(item_name,"_wangzhe_") then
+                        item_handle.level_count = (item_handle.level_count or 0) + 1
+                    end
                     -- send_tips_message(player_id,"升级失败")
                     local player_count = global_var_func.all_player_amount
                     local haslaohaoren = false

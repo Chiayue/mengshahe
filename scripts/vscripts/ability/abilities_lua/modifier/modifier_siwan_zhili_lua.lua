@@ -24,45 +24,46 @@ function modifier_siwan_zhili_lua:OnCreated( kv )
         ListenToGameEvent("entity_killed",Dynamic_Wrap(modifier_siwan_zhili_lua,'killed_monster'),self)
 
         self.parent = self:GetParent()
-        local item = nil
-        local index = nil
-        
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/drow/secret_witch_arms/secret_witch_arms.vmdl",
-        })
-        item:FollowEntity(self.parent, true)
-        
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/drow/secret_witch_back/secret_witch_back.vmdl",
-        })
-        item:FollowEntity(self.parent, true)
-        
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/drow/secret_witch_head/secret_witch_head.vmdl",
-        })
-        item:FollowEntity(self.parent, true)
-        
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/drow/secret_witch_legs/secret_witch_legs.vmdl",
-        })
-        item:FollowEntity(self.parent, true)
-        
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/drow/secret_witch_misc/secret_witch_misc.vmdl",
-        })
-        item:FollowEntity(self.parent, true)
-        
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/drow/secret_witch_shoulder/secret_witch_shoulder.vmdl",
-        })
-        item:FollowEntity(self.parent, true)
-        
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/drow/secret_witch_weapon/secret_witch_weapon.vmdl",
-        })
-        item:FollowEntity(self.parent, true)
-        ParticleManager:CreateParticle("particles/units/heroes/hero_drow/drow_bowstring.vpcf", PATTACH_POINT_FOLLOW, item)
+        if self.parent:GetUnitName() == "npc_dota_hero_drow_ranger" then
+            local item = nil
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/drow/secret_witch_arms/secret_witch_arms.vmdl",
+            })
+            item:FollowEntity(self.parent, true)
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/drow/secret_witch_back/secret_witch_back.vmdl",
+            })
+            item:FollowEntity(self.parent, true)
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/drow/secret_witch_head/secret_witch_head.vmdl",
+            })
+            item:FollowEntity(self.parent, true)
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/drow/secret_witch_legs/secret_witch_legs.vmdl",
+            })
+            item:FollowEntity(self.parent, true)
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/drow/secret_witch_misc/secret_witch_misc.vmdl",
+            })
+            item:FollowEntity(self.parent, true)
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/drow/secret_witch_shoulder/secret_witch_shoulder.vmdl",
+            })
+            item:FollowEntity(self.parent, true)
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/drow/secret_witch_weapon/secret_witch_weapon.vmdl",
+            })
+            item:FollowEntity(self.parent, true)
+            ParticleManager:CreateParticle("particles/units/heroes/hero_drow/drow_bowstring.vpcf", PATTACH_POINT_FOLLOW, item)
 
+        end
     end
 end
 
@@ -73,6 +74,9 @@ function modifier_siwan_zhili_lua:killed_monster(evt)
     -- 怪的击杀者
     local hero = EntIndexToHScript(evt.entindex_attacker)
     -- 技能所有者
+    if self:IsNull() then
+        return
+    end
     if not self:GetAbility() then
 		return
 	end

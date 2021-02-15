@@ -26,8 +26,11 @@ function modifier_ambulance_lua:OnCreated( kv )
 	-- 	self:AddParticle( self.nFXIndex, false, false, -1, false, false )
     -- end
     if IsServer( ) then
-        ListenToGameEvent("entity_killed",Dynamic_Wrap(modifier_ambulance_lua,'killed_monster'),self)
+        self.listenindex = ListenToGameEvent("entity_killed",Dynamic_Wrap(modifier_ambulance_lua,'killed_monster'),self)
         self.parent = self:GetParent()
+        if "npc_dota_hero_chen" ~= self.parent:GetUnitName() then
+            return
+        end
         local item = nil
         local index = nil
         
@@ -62,6 +65,11 @@ function modifier_ambulance_lua:OnCreated( kv )
     end
 end
 
+function modifier_ambulance_lua:OnDestroy()
+    if IsServer( ) then
+        StopListeningToGameEvent(self.listenindex)
+    end
+end
 
 function modifier_ambulance_lua:killed_monster(evt)
     -- DeepPrintTable(evt)

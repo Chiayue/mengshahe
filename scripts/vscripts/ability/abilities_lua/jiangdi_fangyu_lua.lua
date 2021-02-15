@@ -68,34 +68,34 @@ function modifier_jiangdi_fangyu_lua:OnCreated( kv )
     if IsServer() then
 
 		self.parent = self:GetParent()
-        local item = nil
-        local index = nil
+        if "npc_dota_hero_witch_doctor" == self.parent:GetUnitName() then
+            local item = nil
     
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/witchdoctor/vermilion_juju_of_the_south_back/vermilion_juju_of_the_south_back.vmdl"
-        })
-        item:FollowEntity(self.parent, true)
-    
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/witchdoctor/vermilion_juju_of_the_south_belt/vermilion_juju_of_the_south_belt.vmdl"
-        })
-        item:FollowEntity(self.parent, true)
-    
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/witchdoctor/vermilion_juju_of_the_south_head/vermilion_juju_of_the_south_head.vmdl"
-        })
-        item:FollowEntity(self.parent, true)
-		
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/witchdoctor/vermilion_juju_of_the_south_shoulder/vermilion_juju_of_the_south_shoulder.vmdl"
-        })
-        item:FollowEntity(self.parent, true)
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/witchdoctor/vermilion_juju_of_the_south_back/vermilion_juju_of_the_south_back.vmdl"
+            })
+            item:FollowEntity(self.parent, true)
         
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/witchdoctor/vermilion_juju_of_the_south_weapon/vermilion_juju_of_the_south_weapon.vmdl"
-        })
-		item:FollowEntity(self.parent, true)
-		
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/witchdoctor/vermilion_juju_of_the_south_belt/vermilion_juju_of_the_south_belt.vmdl"
+            })
+            item:FollowEntity(self.parent, true)
+        
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/witchdoctor/vermilion_juju_of_the_south_head/vermilion_juju_of_the_south_head.vmdl"
+            })
+            item:FollowEntity(self.parent, true)
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/witchdoctor/vermilion_juju_of_the_south_shoulder/vermilion_juju_of_the_south_shoulder.vmdl"
+            })
+            item:FollowEntity(self.parent, true)
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/witchdoctor/vermilion_juju_of_the_south_weapon/vermilion_juju_of_the_south_weapon.vmdl"
+            })
+            item:FollowEntity(self.parent, true)
+        end
     end
 end
 

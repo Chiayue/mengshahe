@@ -1245,7 +1245,7 @@ function game_playerinfo:update_herolv_properties(steam_id, hero_name, hero)
     end
 end
 
---随机属性表
+--随机属性表 金色
 local random_properties_1 = {
     {"add_strength",1000},--力量(暴击！)
     {"add_intellect",1000},--智力(暴击！)
@@ -1257,12 +1257,12 @@ local random_properties_1 = {
     {"attack_heal_percent",10}, --攻击吸血(暴击！)
     {"attack_heal",500},--吸血(暴击！)
     {"attack_critical",35},--暴击几率(暴击！)
-    {"attack_critical_damage",3.0},--暴击伤害(暴击！)
+    {"attack_critical_damage",4.0},--暴击伤害(暴击！)
     {"magic_critical", 20},--魔法暴击几率(暴击！)
     {"magic_critical_damage", 2.0},--魔法暴击伤害(暴击！)
     {"reduce_attack_scale",50},--伤害减免(暴击！)
     {"reduce_attack_point",500},--抵消伤害(暴击！)
-    {"extra_attack_scale",60},--最终伤害(暴击！)
+    {"extra_attack_scale",100},--最终伤害(暴击！)
     {"magic_attack_scale",150},--技能伤害(暴击！)
     -- {"add_resistance", 50},--魔抗(暴击！)
     -- {"move_speed",300},--移动速度(暴击！)
@@ -1278,6 +1278,7 @@ local random_properties_1 = {
     {"ability_cd_percent",60},--技能冷却降低
 }
 
+-- 紫色
 local random_properties_2 = {
     {"add_strength",500},--力量
     {"add_intellect",500},--智力
@@ -1293,7 +1294,7 @@ local random_properties_2 = {
     {"magic_critical_damage", 1.0},--魔法暴击伤害(暴击！)
     {"reduce_attack_scale",20},--伤害减免
     {"reduce_attack_point",200},--抵消伤害
-    {"extra_attack_scale",40},--最终伤害
+    {"extra_attack_scale",50},--最终伤害
     {"magic_attack_scale",60},--技能伤害
     -- {"add_resistance", 20},--魔抗
     -- {"move_speed",100},--移动速度
@@ -1304,6 +1305,7 @@ local random_properties_2 = {
     {"ability_cd_percent",30},--技能冷却降低
 }
 
+-- 蓝色
 local random_properties_3 = {
     {"add_strength",200},--力量
     {"add_intellect",200},--智力
@@ -1319,7 +1321,7 @@ local random_properties_3 = {
     {"magic_critical_damage", 0.5},--魔法暴击伤害(暴击！)
     {"reduce_attack_scale",10},--伤害减免
     {"reduce_attack_point",100},--抵消伤害
-    {"extra_attack_scale",20},--最终伤害
+    {"extra_attack_scale",25},--最终伤害
     {"magic_attack_scale",30},--技能伤害
     -- {"add_resistance", 10},--魔抗
     -- {"move_speed",50},--移动速度
@@ -2271,20 +2273,21 @@ function game_playerinfo:InitMaxLevelTotemAttribute(player_id)
     end
     if count_2 >= 12 then
         -- body
-        add_properties = add_properties + 30
+        add_properties = add_properties + 50
     end
     if count_3 >= 12 then
         -- body
-        add_properties = add_properties + 50
+        add_properties = add_properties + 100
     end
     if count_4 >= 12 then
         -- body
-        add_properties = add_properties + 100
+        add_properties = add_properties + 200
     end
     if count_5 >= 12 then
         -- body
-        add_properties = add_properties + 300
+        add_properties = add_properties + 500
     end
+
     hero:SetBaseStrength(hero:GetBaseStrength() + add_properties)
     hero:SetBaseAgility(hero:GetBaseAgility() + add_properties)
     hero:SetBaseIntellect(hero:GetBaseIntellect() + add_properties)
@@ -2539,7 +2542,11 @@ function game_playerinfo:set_player_gold(player_id,value)
             end
             -- 获取金钱
             hero:EmitSound("coins_big")
-            value = value * (1+game_playerinfo:get_dynamic_properties(PlayerResource:GetSteamAccountID(player_id)).gold_scale*0.01)
+            -- if not hero:HasModifier("modifier_sale_lua") then
+            --     -- 没有steam的打折天赋
+            --     print(" >>>>>>>>>>>>>>>>> no steam ")
+                value = value * (1+game_playerinfo:get_dynamic_properties(PlayerResource:GetSteamAccountID(player_id)).gold_scale*0.01)
+            -- end
         end
         if value < 0 then
             if hero:HasModifier("modifier_treasure_no_number") then
@@ -3182,6 +3189,9 @@ function game_playerinfo:UseGoodsByID(nPlayerID,GoodsName,number)
     elseif GoodsName == "bignewyear_bag" then
         -- 拜年大礼包
         useBignewyearBag(nPlayerID, prize_list, store_item)
+    elseif GoodsName == "wangzhe_bag" then
+        -- 王者大礼包
+        useWangZheBag(nPlayerID, prize_list)
     -- elseif GoodsName == "The_gift_of_the_Pharaoh_1" then
     --     -- 恩赐 1
     --     store_item = onceTheGiftOfThePharaoh(nPlayerID, 1, prize_list)
@@ -3800,6 +3810,26 @@ function useBignewyearBag(playerID, prize_list, store_item)
     local steam_id = PlayerResource:GetSteamAccountID(playerID)
     -- 奖励春节红包
     game_playerinfo:rewardsHappyNewYearBag(steam_id, 20, prize_list, store_item)
+end
+
+-- 王者大礼包
+function useWangZheBag(playerID, prize_list)
+    local steam_id = PlayerResource:GetSteamAccountID(playerID)
+    -- 王者双卡
+    
+    local card_name = treasuresystem:AddTreasureToPlayerByName(playerID, "modifier_treasure_king_glory")
+    local sendtable = {}
+    table.insert(sendtable, card_name)
+    table.insert(sendtable, 1)
+
+    table.insert(prize_list, sendtable)
+
+    local card_name1 = treasuresystem:AddTreasureToPlayerByName(playerID, "modifier_treasure_king_brilliant")
+    local sendtable = {}
+    table.insert(sendtable, card_name1)
+    table.insert(sendtable, 1)
+
+    table.insert(prize_list, sendtable)
 end
 
 -- 新手10连礼包

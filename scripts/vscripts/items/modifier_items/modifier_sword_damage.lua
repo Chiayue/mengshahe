@@ -11,11 +11,33 @@ end
 
 function modifier_sword_damage:OnCreated( params )
     if IsServer() then
-        local ability = self:GetAbility()
-        self.damage_multiple = ability:GetSpecialValueFor("damage_multiple")
+        local parent = self:GetParent()
+        if parent:IsRealHero() then
+            local ability = self:GetAbility()
+            local extra_attack_scale = ability:GetSpecialValueFor("extra_attack_scale")
+            local steam_id = PlayerResource:GetSteamAccountID(parent:GetPlayerID())
+            local dynamic_properties = game_playerinfo:get_dynamic_properties(steam_id)  or {}
+            if extra_attack_scale then 
+                game_playerinfo:set_dynamic_properties(steam_id, "extra_attack_scale", extra_attack_scale)
+            end
+        end
     end
 end
 
+function modifier_sword_damage:OnDestroy()
+    if IsServer() then
+        local parent = self:GetParent()
+        if parent:IsRealHero() then
+            local ability = self:GetAbility()
+            local extra_attack_scale = ability:GetSpecialValueFor("extra_attack_scale") * -1
+            local steam_id = PlayerResource:GetSteamAccountID(parent:GetPlayerID())
+            local dynamic_properties = game_playerinfo:get_dynamic_properties(steam_id)  or {}
+            if extra_attack_scale then 
+                game_playerinfo:set_dynamic_properties(steam_id, "extra_attack_scale", extra_attack_scale)
+            end
+        end
+    end
+end
 
 function modifier_sword_damage:OnAttackLanded(params)
     if not IsServer( ) then
@@ -32,12 +54,6 @@ function modifier_sword_damage:OnAttackLanded(params)
     if target == nil then 
         return
     end
-    -- if self.last_find_time and GameRules:GetGameTime() - self.last_find_time < global_var_func.split_cd then
-    --     return
-    -- else
-    --     self.last_find_time = GameRules:GetGameTime()
-    -- end
-
     if RollPercentage(20) then
         local hero = self:GetParent()
         hero.sputterInfo.Ability =  self:GetAbility()
@@ -49,28 +65,6 @@ function modifier_sword_damage:OnAttackLanded(params)
         ProjectileManager:CreateLinearProjectile( hero.sputterInfo )
         local pindex = ParticleManager:CreateParticle("particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_n_cowlofice.vpcf",PATTACH_POINT,target)
         ParticleManager:ReleaseParticleIndex(pindex)
-        -- local aList = FindUnitsInRadius( DOTA_TEAM_GOODGUYS,attacker:GetOrigin(),nil,250,DOTA_UNIT_TARGET_TEAM_ENEMY, 
-        -- DOTA_UNIT_TARGET_HERO + DOTA_UNIT_TARGET_CREEP, 0,  0,false)
-        -- local attacker_team =  attacker:GetTeam()
-        
-        -- --伤害表
-        -- local damageTable = {
-        --     victim = {},
-        --     damage = attacker:GetDamageMax() * self.damage_multiple, 
-        --     damage_type = DAMAGE_TYPE_PHYSICAL,
-        --     damage_flags = DOTA_DAMAGE_FLAG_NONE, --Optional.
-        --     attacker = attacker,
-        --     ability = nil, --Optional.
-        -- }
-        -- for i,v in pairs(aList) do
-        --     if v:IsAlive() then 
-        --         local unit_team = v:GetTeam()
-        --         if attacker_team ~= unit_team then
-        --             damageTable.victim = v
-        --             ApplyDamage(damageTable)
-        --         end
-        --     end
-        -- end
     end
 end
 

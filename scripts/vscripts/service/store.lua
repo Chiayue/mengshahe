@@ -150,6 +150,16 @@ function Store:PayGoods(args)
 				iargs.AddItemKey, iargs.prize_list = game_playerinfo:UseGoodsByID(iargs.PlayerID,iargs.GoodsName,iargs.UseNumber)
 				-- DeepPrintTable(iargs)
 				Store:UsedGoods(iargs)
+			elseif tParams.itemKey == "97" then
+				--自动使用王者大礼包
+				local iargs = {}
+				iargs.PlayerID = nPlayerID
+				iargs.GoodsName = "wangzhe_bag"
+				iargs.UseNumber = 1
+				
+				iargs.AddItemKey, iargs.prize_list = game_playerinfo:UseGoodsByID(iargs.PlayerID,iargs.GoodsName,iargs.UseNumber)
+				-- DeepPrintTable(iargs)
+				Store:UsedGoods(iargs)
 			end
 		else
 			local hBody = {code=0,msg="error"}

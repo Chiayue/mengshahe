@@ -7703,6 +7703,11 @@
 				"var_type"	"FIELD_INTEGER"
 				"attack_damage"	"20000"
 			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_attack_scale"	"30"
+			}
 		}
 		"equipmentsign"	"1"
 		"quality"	"5"
@@ -7800,6 +7805,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"attack_damage"	"24000"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_attack_scale"	"60"
 			}
 		}
 		"equipmentsign"	"1"
@@ -7899,6 +7909,11 @@
 				"var_type"	"FIELD_INTEGER"
 				"attack_damage"	"28000"
 			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_attack_scale"	"90"
+			}
 		}
 		"equipmentsign"	"1"
 		"quality"	"5"
@@ -7996,6 +8011,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"attack_damage"	"32000"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_attack_scale"	"120"
 			}
 		}
 		"equipmentsign"	"1"
@@ -8095,6 +8115,11 @@
 				"var_type"	"FIELD_INTEGER"
 				"attack_damage"	"36000"
 			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_attack_scale"	"150"
+			}
 		}
 		"equipmentsign"	"1"
 		"quality"	"5"
@@ -8192,6 +8217,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"attack_damage"	"40000"
+			}
+			"05"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"extra_attack_scale"	"180"
 			}
 		}
 		"equipmentsign"	"1"
@@ -8356,7 +8386,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"critical_damage"	"125"
+				"critical_damage"	"150"
 			}
 			"04"
 			{
@@ -8366,7 +8396,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"magic_critical_damage"	"125"
+				"magic_critical_damage"	"140"
 			}
 			"06"
 			{
@@ -8446,7 +8476,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"critical_damage"	"125"
+				"critical_damage"	"175"
 			}
 			"04"
 			{
@@ -8456,7 +8486,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"magic_critical_damage"	"125"
+				"magic_critical_damage"	"155"
 			}
 			"06"
 			{
@@ -8536,7 +8566,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"critical_damage"	"125"
+				"critical_damage"	"200"
 			}
 			"04"
 			{
@@ -8546,7 +8576,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"magic_critical_damage"	"125"
+				"magic_critical_damage"	"175"
 			}
 			"06"
 			{
@@ -8626,7 +8656,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"critical_damage"	"125"
+				"critical_damage"	"225"
 			}
 			"04"
 			{
@@ -8636,7 +8666,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"magic_critical_damage"	"125"
+				"magic_critical_damage"	"185"
 			}
 			"06"
 			{
@@ -8716,7 +8746,7 @@
 			"03"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"critical_damage"	"125"
+				"critical_damage"	"250"
 			}
 			"04"
 			{
@@ -8726,7 +8756,7 @@
 			"05"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"magic_critical_damage"	"125"
+				"magic_critical_damage"	"200"
 			}
 			"06"
 			{
@@ -8771,6 +8801,22 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_amount"
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
 				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_equip"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_unequip"
+					}
+				}
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
@@ -8792,6 +8838,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"health_regen"	"1500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reduce_attack_point"	"300"
 			}
 		}
 		"equipmentsign"	"2"
@@ -8831,6 +8882,22 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_amount"
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
 				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_equip"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_unequip"
+					}
+				}
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
@@ -8852,6 +8919,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"health_regen"	"1500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reduce_attack_point"	"600"
 			}
 		}
 		"equipmentsign"	"2"
@@ -8891,6 +8963,22 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_amount"
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
 				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_equip"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_unequip"
+					}
+				}
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
@@ -8912,6 +9000,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"health_regen"	"1500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reduce_attack_point"	"900"
 			}
 		}
 		"equipmentsign"	"2"
@@ -8951,6 +9044,22 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_amount"
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
 				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_equip"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_unequip"
+					}
+				}
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
@@ -8972,6 +9081,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"health_regen"	"1500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reduce_attack_point"	"1200"
 			}
 		}
 		"equipmentsign"	"2"
@@ -9011,6 +9125,22 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_amount"
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
 				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_equip"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_unequip"
+					}
+				}
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
@@ -9032,6 +9162,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"health_regen"	"1500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reduce_attack_point"	"1500"
 			}
 		}
 		"equipmentsign"	"2"
@@ -9071,6 +9206,22 @@
 					"MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS"	"%armor_amount"
 					"MODIFIER_PROPERTY_HEALTH_REGEN_CONSTANT"	"%health_regen"
 				}
+				"OnCreated"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_equip"
+					}
+				}
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"ScriptFile"	"scripts/vscripts/items/lua_items_ability/item_ability.lua"
+						"Function"	"armor_change_unequip"
+					}
+				}
 				"Passive"	"1"
 				"IsHidden"	"1"
 				"Attributes"	"MODIFIER_ATTRIBUTE_PERMANENT"
@@ -9092,6 +9243,11 @@
 			{
 				"var_type"	"FIELD_INTEGER"
 				"health_regen"	"1500"
+			}
+			"04"
+			{
+				"var_type"	"FIELD_INTEGER"
+				"reduce_attack_point"	"1800"
 			}
 		}
 		"equipmentsign"	"2"

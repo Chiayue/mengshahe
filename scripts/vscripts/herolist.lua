@@ -90,7 +90,7 @@ CustomHeroList = {
   -- "npc_dota_hero_lone_druid",
   -- "npc_dota_hero_earthshaker",
   -- "npc_dota_hero_bloodseeker",
-  -- "npc_dota_hero_sniper",
+  "npc_dota_hero_sniper",
   -- "npc_dota_hero_furion",
   -- "npc_dota_hero_magnataur",
   -- "npc_dota_hero_slark",

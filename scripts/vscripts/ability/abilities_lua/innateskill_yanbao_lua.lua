@@ -29,29 +29,29 @@ end
 function modifier_yanbao_lua:OnCreated(table)
     if IsServer( ) then
         self.parent = self:GetParent() 
-        local item = nil
-        local index = nil
+        if self.parent:GetUnitName() == "npc_dota_hero_necrolyte" then
+            local item = nil
     
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/necrolyte/necronub_head/necronub_head.vmdl"
-        })
-        item:FollowEntity(self.parent, true)
-    
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/necrolyte/necronub_scythe/necronub_scythe.vmdl"
-        })
-        item:FollowEntity(self.parent, true)
-    
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/necrolyte/necronub_top/necronub_top.vmdl"
-        })
-        item:FollowEntity(self.parent, true)
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/necrolyte/necronub_head/necronub_head.vmdl"
+            })
+            item:FollowEntity(self.parent, true)
         
-        item = SpawnEntityFromTableSynchronous("prop_dynamic", {
-            model = "models/items/necrolyte/necronub_coffin/necronub_coffin.vmdl"
-        })
-        item:FollowEntity(self.parent, true)
-    
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/necrolyte/necronub_scythe/necronub_scythe.vmdl"
+            })
+            item:FollowEntity(self.parent, true)
+        
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/necrolyte/necronub_top/necronub_top.vmdl"
+            })
+            item:FollowEntity(self.parent, true)
+            
+            item = SpawnEntityFromTableSynchronous("prop_dynamic", {
+                model = "models/items/necrolyte/necronub_coffin/necronub_coffin.vmdl"
+            })
+            item:FollowEntity(self.parent, true)
+        end
     end
 end
 

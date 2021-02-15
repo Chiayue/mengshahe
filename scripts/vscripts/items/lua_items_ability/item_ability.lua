@@ -308,6 +308,7 @@ function common_item_ability:add_property_item(evt)
                 game_playerinfo:set_player_gold(killed_unit.player_id, 10000)
             elseif killed_unit.difficulty == 3 then
                 game_playerinfo:set_player_gold(killed_unit.player_id, 15000)
+                game_playerinfo:change_player_wood(belong_hero, 2)
             end
             local attack_steam_id = PlayerResource:GetSteamAccountID(hero:GetPlayerID())
             local player_info = game_playerinfo:get_player_info()[attack_steam_id]
@@ -911,6 +912,34 @@ function ring_change_unequip(params)
         if magic_critical_damage then
             game_playerinfo:set_dynamic_properties(steam_id, "magic_critical_damage", magic_critical_damage)
             caster.dynamic_properties["magic_critical_damage"] = dynamic_properties["attack_critical_damage"]
+        end
+    end
+end
+
+function armor_change_equip(params)
+    local caster = params.caster 
+    if caster:IsRealHero() then
+        local ability = params.ability
+        local reduce_attack_point = ability:GetSpecialValueFor("reduce_attack_point")
+        local steam_id = PlayerResource:GetSteamAccountID(caster:GetPlayerID())
+        local dynamic_properties = game_playerinfo:get_dynamic_properties(steam_id) or {}
+        if reduce_attack_point then 
+            game_playerinfo:set_dynamic_properties(steam_id, "reduce_attack_point", reduce_attack_point)
+            caster.dynamic_properties["reduce_attack_point"] = dynamic_properties["reduce_attack_point"]
+        end
+    end
+end
+
+function armor_change_unequip(params)
+    local caster = params.caster 
+    if caster:IsRealHero() then
+        local ability = params.ability
+        local reduce_attack_point = ability:GetSpecialValueFor("reduce_attack_point") * -1
+        local steam_id = PlayerResource:GetSteamAccountID(caster:GetPlayerID())
+        local dynamic_properties = game_playerinfo:get_dynamic_properties(steam_id) or {}
+        if reduce_attack_point then 
+            game_playerinfo:set_dynamic_properties(steam_id, "reduce_attack_point", reduce_attack_point)
+            caster.dynamic_properties["reduce_attack_point"] = dynamic_properties["reduce_attack_point"]
         end
     end
 end

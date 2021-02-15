@@ -33,11 +33,11 @@ function Filter:ExecuteOrderFilter(params)
         if not hero:IsAlive() then
             return
         end
-        -- if hero:GetUnitName() == "npc_dota_hero_keeper_of_the_light" then
+        if hero:HasModifier("modifier_sale_lua") then
+            gain_gold = entity:GetCost() * 0.3 * 0.4 * item_amount
+        else
             gain_gold = entity:GetCost() * 0.3 * item_amount
-        -- else
-            -- gain_gold = entity:GetCost()/2 * item_amount
-        -- end
+        end
         game_playerinfo:set_player_gold(player_id, gain_gold)
     elseif order_type == DOTA_UNIT_ORDER_CAST_POSITION or
             order_type == DOTA_UNIT_ORDER_CAST_TARGET or
@@ -75,7 +75,7 @@ function Filter:ExecuteOrderFilter(params)
                         SetBaseStrength(shero, 3)
                         SetBaseAgility(shero, 3)
                         SetBaseIntellect(shero, 3)
-                    end 
+                    end
                 end
             end
         end

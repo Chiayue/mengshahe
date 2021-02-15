@@ -26,18 +26,21 @@ end
 function modifier_yinyueyongshi:OnCreated(table)
     if IsServer() then
         local hero = self:GetParent()
-        local add_amount = self:GetAbility():GetSpecialValueFor("add_amount")
-        local steam_id = PlayerResource:GetSteamAccountID(hero:GetPlayerID())
-        game_playerinfo:set_dynamic_properties(steam_id,"attack_critical",add_amount)
+        self.steam_id = PlayerResource:GetSteamAccountID(hero:GetPlayerID())
+        
+        self:StartIntervalThink(1)
     end
+end
+
+function modifier_yinyueyongshi:OnIntervalThink()
+    self.add_amount = self:GetAbility():GetSpecialValueFor("add_amount")
+    game_playerinfo:set_dynamic_properties(self.steam_id,"attack_critical",self.add_amount)
+    self:StartIntervalThink(-1)
 end
 
 function modifier_yinyueyongshi:OnDestroy()
     if IsServer() then
-        local hero = self:GetParent()
-        local add_amount = -self:GetAbility():GetSpecialValueFor("add_amount")
-        local steam_id = PlayerResource:GetSteamAccountID(hero:GetPlayerID())
-        game_playerinfo:set_dynamic_properties(steam_id,"attack_critical",add_amount)
+        game_playerinfo:set_dynamic_properties(self.steam_id,"attack_critical",-self.add_amount)
     end
 end
 

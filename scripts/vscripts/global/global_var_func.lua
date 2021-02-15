@@ -1,3 +1,4 @@
+
 require("herolist")
 require("heroabilitylist")
 require("config/config_enum")
@@ -126,7 +127,7 @@ global_var_func.call_boss_count = 1
 --已购买物品信息
 global_var_func.shop_limit = {}
 --宝物书购买上限
-global_var_func.shop_baowu_limit = 3
+global_var_func.shop_baowu_limit = 5
 --技能书限额
 global_var_func.charge_book_limit = 10
 --是否开启考试系统
@@ -556,8 +557,8 @@ function global_var_func:get_rand_hero_list()
     table.insert(hero_list, temp_hero[rand_inde])
 
     -- table.insert(hero_list, "npc_dota_hero_phoenix")
-    -- table.insert(hero_list, "npc_dota_hero_venomancer")
-    -- table.insert(hero_list, "npc_dota_hero_mirana")
+    -- table.insert(hero_list, "npc_dota_hero_phoenix")
+    -- table.insert(hero_list, "npc_dota_hero_phoenix")
 
     return hero_list
 end
@@ -1319,6 +1320,9 @@ function SetUnitBaseValue(unit)
         unit: SetBaseMaxHealth(hp)
         unit: SetMaxHealth(hp)
         unit: SetHealth(hp)
+        if hp > 1000 * 10000 then
+            unit:AddNewModifier(unit, nil, "modifier_common_no_health_bar", nil)
+        end
     end
     if armor then
         unit: SetPhysicalArmorBaseValue(armor)
@@ -1440,4 +1444,19 @@ function init_player_base_info(playerid, steam_id, heroname)
     global_var_func.player_base_info[playerid] = {}
     global_var_func.player_base_info[playerid]["steam_id"] = steam_id
     global_var_func.player_base_info[playerid]["heroname"] = heroname
+end
+
+-- -- 替换系统随机数
+function RandomINT(_begin, _end, count)
+    -- for count = 1, 100 do
+        if not count then
+            count = 0
+        end
+        local timeNum = math.floor(Time() * 100000000000) + count
+        local seedNum = tonumber(tostring(timeNum):reverse():sub(1,11))
+        math.randomseed(seedNum)
+	    local randomNum = math.random(_begin, _end)
+        -- print(" >>>>>>>>>>> randomNum: "..randomNum)
+    -- end
+	return randomNum
 end

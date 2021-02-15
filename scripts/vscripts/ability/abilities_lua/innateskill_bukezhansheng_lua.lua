@@ -31,8 +31,10 @@ function modifier_bukezhansheng_lua:OnCreated( kv )
     if not IsServer( ) then
         return
     end
-    self:StartIntervalThink(1)
-    table.insert(global_var_func.championgroup, self:GetCaster():GetPlayerID())
+    if "npc_dota_hero_spirit_breaker" == self:GetParent():GetUnitName() then
+        self:StartIntervalThink(1)
+        table.insert(global_var_func.championgroup, self:GetCaster():GetPlayerID())
+    end
 end
 
 function modifier_bukezhansheng_lua:OnIntervalThink()

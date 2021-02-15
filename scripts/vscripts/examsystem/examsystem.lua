@@ -773,7 +773,7 @@ function examsystem:CallExamAnswer(data)
             SetBaseAgility(hero, 30)
             SetBaseIntellect(hero, 30)
 
-            if PlayerResource:GetSelectedHeroName(player_id) ~= "npc_dota_hero_grimstroke" then
+            if PlayerResource:GetSelectedHeroName(player_id) == "npc_dota_hero_grimstroke" then
                 SetBaseStrength(hero, 15)
                 SetBaseAgility(hero, 15)
                 SetBaseIntellect(hero, 15)

@@ -141,7 +141,11 @@ local global_treasures = {
     {"modifier_treasure_goldmon_attribute_two", "SR"},--	金币怪杀手112
     {"modifier_treasure_midas_collection", "SR"},--  迈达斯的珍藏113
     {"modifier_treasure_more", "R"},--  莫多114
-    {"modifier_treasure_more_more", "SR"} -- 莫多莫多115
+    {"modifier_treasure_more_more", "SR"}, -- 莫多莫多115
+
+    -- 王者套装
+    {"modifier_treasure_king_brilliant", "R"},      -- 王者辉煌
+    {"modifier_treasure_king_glory", "SR"},         -- 王者荣耀
 }
 
 -- 检测宝物名称真实性

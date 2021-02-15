@@ -17,7 +17,12 @@ function modifier_test:DeclareFunctions()
 		MODIFIER_PROPERTY_AVOID_DAMAGE,
 		MODIFIER_PROPERTY_PREATTACK_BONUS_DAMAGE,
 		MODIFIER_PROPERTY_ATTACKSPEED_BONUS_CONSTANT,
+		MODIFIER_PROPERTY_EXTRA_HEALTH_BONUS,
 	}
+end
+
+function modifier_test:GetModifierExtraHealthBonus()
+    return 1000 * 10000
 end
 
 function modifier_test:GetModifierAvoidDamage()

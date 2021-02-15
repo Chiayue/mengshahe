@@ -2641,7 +2641,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"gold"	"2500"
+				"gold"	"10000"
 			}
 			"02"
 			{
@@ -4847,7 +4847,7 @@
 			"01"
 			{
 				"var_type"	"FIELD_INTEGER"
-				"damagepercent"	"50"
+				"damagepercent"	"80"
 			}
 			"02"
 			{
