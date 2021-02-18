@@ -58,10 +58,11 @@ function Archive:LoadPlayerProfile(nPlayerID)
 			-- body
 			global_var_func.createPlayer[nPlayerID] = false
 			local hBody = JSON.decode(sBody)
-			-- DeepPrintTable(hBody.code)
+			-- DeepPrintTable(hBody)
 			if hBody.code == 200 then
 				-- print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>LoadPlayerProfile: "..sBody)
-				local hBody = JSON.decode(sBody)
+				-- local hBody = JSON.decode(sBody)
+				-- DeepPrintTable(hBody.data)
 				if not hBody.data then
 					game_playerinfo:create_playerinfo(nPlayerID, 1)
 					if not treasuresystem:get_player_treasures(nPlayerID) then

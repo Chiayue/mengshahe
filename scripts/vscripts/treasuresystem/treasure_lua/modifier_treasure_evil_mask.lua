@@ -1,6 +1,7 @@
 ---------------------------------------------------------------------------
 -- 宝物：邪恶面具
 ---------------------------------------------------------------------------
+LinkLuaModifier("modifier_treasure_heart_curse","treasuresystem/treasure_lua/modifier_treasure_heart_curse", LUA_MODIFIER_MOTION_NONE)
 
 if modifier_treasure_evil_mask == nil then 
     modifier_treasure_evil_mask = class({})
@@ -64,9 +65,13 @@ function modifier_treasure_evil_mask:OnCreated(kv)
     if not IsServer() then
         return
     end
-    self:StartIntervalThink(0.1)
+    self:StartIntervalThink(1)
 end
-function modifier_treasure_evil_mask:OnIntervalThink() 
+function modifier_treasure_evil_mask:OnIntervalThink()
+    if self:GetCaster():HasModifier("modifier_treasure_wizardry_mask") then
+        self:GetCaster():AddNewModifier(self:GetCaster(),nil,"modifier_treasure_heart_curse",{})
+        return
+    end 
     local enemy = FindUnitsInRadius(
 		DOTA_TEAM_GOODGUYS,
 		self:GetCaster():GetAbsOrigin(),

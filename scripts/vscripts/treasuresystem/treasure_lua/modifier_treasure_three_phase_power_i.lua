@@ -33,15 +33,19 @@ end
 
 function modifier_treasure_three_phase_power_i:OnCreated(kv)
     if IsServer() then
-        local parent = self:GetParent()
-        if parent:HasModifier("modifier_treasure_three_phase_power_s") and parent:HasModifier("modifier_treasure_three_phase_power_a") then
-            parent:AddNewModifier(parent, nil, "modifier_treasure_three_phase_power", nil)
-        end
+        self:StartIntervalThink(1)
     end
 end
 
-function modifier_treasure_three_phase_power_i:OnDestroy()
-    if IsServer() then
-        self:GetParent():RemoveModifierByName("modifier_treasure_three_phase_power")
+function modifier_treasure_three_phase_power_i:OnIntervalThink()
+    local parent = self:GetParent()
+    if parent:HasModifier("modifier_treasure_three_phase_power_s") and parent:HasModifier("modifier_treasure_three_phase_power_a") then           
+        parent:AddNewModifier(parent, nil, "modifier_treasure_three_phase_power", nil)
     end
+    self:StartIntervalThink(-1)
 end
+-- function modifier_treasure_three_phase_power_i:OnDestroy()
+--     if IsServer() then
+--         self:GetParent():RemoveModifierByName("modifier_treasure_three_phase_power")
+--     end
+-- end

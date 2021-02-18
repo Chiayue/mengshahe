@@ -1,4 +1,4 @@
---幻兽大师+御兽大师
+-- 兽王
 if modifier_treasure_beast_extra == nil then 
     modifier_treasure_beast_extra = class({})
 end

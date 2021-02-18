@@ -7,7 +7,10 @@ if modifier_treasure_rapid_dagger == nil then
 end
 
 function modifier_treasure_rapid_dagger:GetTexture()
-    return "buff/modifier_treasure_rapid_dagger"
+    if self:GetDuration() < 0 then
+        return "buff/modifier_treasure_rapid_dagger"
+    end
+    return "buff/modifier_treasure_keep_changing"
 end
 
 function modifier_treasure_rapid_dagger:IsPurgable()
@@ -30,15 +33,20 @@ end
 
 function modifier_treasure_rapid_dagger:OnCreated(kv)
     if IsServer() then
-        local parent = self:GetParent()
-        if parent:HasModifier("modifier_treasure_rapid_bayonet") and parent:HasModifier("modifier_treasure_rapid_sword") then
-            parent:AddNewModifier(parent, nil, "modifier_treasure_rapid_tao", nil)
-        end
+        self:StartIntervalThink(1)
     end
 end
 
-function modifier_treasure_rapid_dagger:OnDestroy()
-    if IsServer() then
-        self:GetParent():RemoveModifierByName("modifier_treasure_rapid_tao")
+function modifier_treasure_rapid_dagger:OnIntervalThink() 
+    local parent = self:GetParent()
+    if parent:HasModifier("modifier_treasure_rapid_bayonet") and parent:HasModifier("modifier_treasure_rapid_sword") then
+        parent:AddNewModifier(parent, nil, "modifier_treasure_rapid_tao", nil)
     end
+    self:StartIntervalThink(-1)
 end
+
+-- function modifier_treasure_rapid_dagger:OnDestroy()
+--     if IsServer() then
+--         self:GetParent():RemoveModifierByName("modifier_treasure_rapid_tao")
+--     end
+-- end

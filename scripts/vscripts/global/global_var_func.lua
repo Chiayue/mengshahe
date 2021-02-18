@@ -556,9 +556,9 @@ function global_var_func:get_rand_hero_list()
     rand_inde = RandomInt(1, #temp_hero)
     table.insert(hero_list, temp_hero[rand_inde])
 
-    -- table.insert(hero_list, "npc_dota_hero_phoenix")
-    -- table.insert(hero_list, "npc_dota_hero_phoenix")
-    -- table.insert(hero_list, "npc_dota_hero_phoenix")
+    -- table.insert(hero_list, "npc_dota_hero_lone_druid")
+    -- table.insert(hero_list, "npc_dota_hero_lone_druid")
+    -- table.insert(hero_list, "npc_dota_hero_lone_druid")
 
     return hero_list
 end
@@ -1320,9 +1320,6 @@ function SetUnitBaseValue(unit)
         unit: SetBaseMaxHealth(hp)
         unit: SetMaxHealth(hp)
         unit: SetHealth(hp)
-        if hp > 1000 * 10000 then
-            unit:AddNewModifier(unit, nil, "modifier_common_no_health_bar", nil)
-        end
     end
     if armor then
         unit: SetPhysicalArmorBaseValue(armor)

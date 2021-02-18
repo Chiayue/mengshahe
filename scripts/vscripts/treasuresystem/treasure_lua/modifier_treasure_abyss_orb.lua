@@ -30,15 +30,14 @@ end
 
 function modifier_treasure_abyss_orb:OnCreated(kv)
     if IsServer() then
-        local parent = self:GetParent()
-        if parent:HasModifier("modifier_treasure_abyss_sceptre") and parent:HasModifier("modifier_treasure_abyss_law") then
-            parent:AddNewModifier(parent, nil, "modifier_treasure_abyss_source", nil)
-        end
+        self:StartIntervalThink(1)
     end
 end
 
-function modifier_treasure_abyss_orb:OnDestroy()
-    if IsServer() then
-        self:GetParent():RemoveModifierByName("modifier_treasure_abyss_source")
+function modifier_treasure_abyss_orb:OnIntervalThink()
+    local parent = self:GetParent()
+    if parent:HasModifier("modifier_treasure_abyss_sceptre") and parent:HasModifier("modifier_treasure_abyss_law") then
+        parent:AddNewModifier(parent, nil, "modifier_treasure_abyss_source", nil)
     end
+    self:StartIntervalThink(-1)
 end

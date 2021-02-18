@@ -7,10 +7,11 @@ if modifier_treasure_angel_gift == nil then
 end
 
 function modifier_treasure_angel_gift:GetTexture()
-    if self:GetDuration() < 0 then
-        return "buff/modifier_treasure_angel_gift"
-    end
-    return "buff/modifier_treasure_keep_changing"
+    return "buff/modifier_treasure_angel_gift"
+end
+
+function modifier_treasure_angel_gift:IsHidden()
+    return false
 end
 
 function modifier_treasure_angel_gift:IsPurgable()
@@ -23,10 +24,15 @@ end
 
 function modifier_treasure_angel_gift:OnCreated(table)
     if IsServer() then
-        self.parent = self:GetParent()
-        for i = 1, 3 do
-            local item = AddItemByName(self.parent, "item_noItem_baoWu_book")
-            item.treasure_number = 2
-        end
+        self:StartIntervalThink(1)
     end
+end
+
+function modifier_treasure_angel_gift:OnIntervalThink()
+    local parent = self:GetParent()
+    for i = 1, 3 do
+        local item = AddItemByName(parent, "item_noItem_baoWu_book")
+        item.treasure_number = 2
+    end
+    self:StartIntervalThink(-1)
 end

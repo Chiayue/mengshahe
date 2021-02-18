@@ -2532,7 +2532,7 @@
 	"shouling_kexing_lua"
 	{
 		"BaseClass"	"ability_datadriven"
-		"AbilityTextureName"	"alchemist_chemical_rage"
+		"AbilityTextureName"	"new_alchemist_chemical_rage"
 		// General
 		// -------------------------------------------------------------------------------------------------------------
 		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
@@ -20771,7 +20771,7 @@
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_1"
 		"AnimationPlaybackRate"	"3"
-		"AbilityCooldown"	"15"
+		"AbilityCooldown"	"3"
 	}
 
 	"zhiyuanxiaopao"
@@ -20907,7 +20907,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_2"
-		"AbilityCooldown"	"50"
+		"AbilityCooldown"	"10"
 	}
 
 	"boss_finally_ability_3"
@@ -20918,7 +20918,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastAnimation"	"ACT_DOTA_CAST_ABILITY_3"
-		"AbilityCooldown"	"70"
+		"AbilityCooldown"	"15"
 	}
 
 	"hero_yinyueyouxia"
@@ -20963,7 +20963,7 @@
 		"AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO | DOTA_UNIT_TARGET_BASIC"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_ENEMY"
 		"AbilityCastAnimation"	"ACT_DOTA_IDLE_RARE"
-		"AbilityCooldown"	"100"
+		"AbilityCooldown"	"20"
 	}
 
 	"yinyueyongshi"
@@ -21848,6 +21848,23 @@
 				"Target"	"CASTER"
 				"ScriptFile"	"ability/abilities_lua/initiative_i_am_carray.lua"
 				"Function"	"remove_buff"
+			}
+		}
+		"Modifiers"
+		{
+			"modifier_i_am_carray_a"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"OnDestroy"
+				{
+					"RunScript"
+					{
+						"Target"	"CASTER"
+						"ScriptFile"	"ability/abilities_lua/initiative_i_am_carray.lua"
+						"Function"	"remove_buff"
+					}
+				}
 			}
 		}
 	}

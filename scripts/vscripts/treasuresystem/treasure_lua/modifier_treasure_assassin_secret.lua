@@ -7,10 +7,7 @@ if modifier_treasure_assassin_secret == nil then
 end
 
 function modifier_treasure_assassin_secret:GetTexture()
-    if self:GetDuration() < 0 then
-        return "buff/modifier_treasure_assassin_secret"
-    end
-    return "buff/modifier_treasure_keep_changing"
+    return "buff/modifier_treasure_assassin_secret"
 end
 
 function modifier_treasure_assassin_secret:DeclareFunctions()

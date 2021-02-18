@@ -9,10 +9,11 @@ ACTION_STORE_LOAD_ACCOUNT = "store/load_account"				-- 获取玩家商品存档
 ACTION_STORE_PAY_GOODS = "store/pay_goods"						-- 支付商品
 ACTION_STORE_ADD_CURRENCY = "store/add_currency" 				-- 增加自定义货币 [每天都有一定上限，在服务端设置]
 ACTION_STORE_USED_GOODS = "store/used_goods"						-- 使用商品
+ACTION_STORE_LOAD_EXCHANGE_LIST = "store/load_day_config"			-- 获取兑换列表
 
 local goods_list = {}
 local spend_archive = {}
-
+local exchange_list = {}
 
 function Store:Init()
 	ListenToGameEvent( "game_rules_state_change" ,Dynamic_Wrap( self, 'StageChange' ), self )
@@ -51,6 +52,7 @@ function Store:LoadAllGoodsList()
 	for nPlayerID = 0,nPlayerCount - 1 do
 		self:LoadGoodsList(nPlayerID)
 	end
+	self:LoadExchangeList()
 end
 
 -- 读取商品列表
@@ -73,9 +75,39 @@ function Store:LoadGoodsList(playerID)
 
 end
 
+-- 读取兑换列表
+function Store:LoadExchangeList()
+	local tParams = {
+	}
+	Service:HTTPRequest("POST", ACTION_STORE_LOAD_EXCHANGE_LIST, tParams, function(iStatusCode, sBody)
+		print("LoadExchangeList:",iStatusCode)
+		if iStatusCode == 200 then
+			local hBody = JSON.decode(sBody)
+			local exTable = {}
+			for index, value in ipairs(hBody.data) do
+				local name = treasuresystem:get_treasure_name(value.treasureId)
+				local quality = treasuresystem:get_treasure_quality(value.treasureId)
+				local temptab = {}
+				table.insert(temptab, name)
+				table.insert(temptab, quality)
+				table.insert(exTable, temptab)
+			end
+			exchange_list = exTable
+			-- DeepPrintTable(exchange_list)
+			CustomNetTables:SetTableValue("service", "store_exchange_list", exchange_list)
+		else
+			-- Store:LoadGoodsList(playerID)
+		end
+	end, REQUEST_TIME_OUT)
+end
+
 -- 
 function Store:GetGoodsList()
 	return goods_list
+end
+
+function Store:GetExchangeList()
+	return exchange_list
 end
 
 -- 购买物品

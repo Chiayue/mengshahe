@@ -40,6 +40,7 @@ end
 function modifier_currier:CheckState()
     local states = {
         [MODIFIER_STATE_INVULNERABLE] = true,
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
     }
     return states
 end

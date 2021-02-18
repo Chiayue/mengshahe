@@ -29,7 +29,7 @@ end
 
 function modifier_wudi_bgm_lua:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+        -- MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
         MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
         MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
     }
@@ -39,6 +39,7 @@ end
 function modifier_wudi_bgm_lua:OnCreated(params)
     if IsServer() then
         self.steam_id = PlayerResource:GetSteamAccountID(self:GetAbility():GetCaster():GetPlayerID())
+        game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(self:GetCaster():GetPlayerID()), "extra_attack_scale", 100)
         local randint = RandomInt(1,3)
         if randint == 1 then
             self:GetAbility():GetCaster():EmitSound("hero.wudi_bgm")
@@ -55,13 +56,14 @@ end
 
 function modifier_wudi_bgm_lua:OnDestroy()
     if IsServer() then
-		self:GetParent():StopSound(self.bgmname)
+        self:GetParent():StopSound(self.bgmname)
+        game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(self:GetCaster():GetPlayerID()), "extra_attack_scale", -100)
 	end
 end
 
-function modifier_wudi_bgm_lua:GetModifierDamageOutgoing_Percentage()
-	return 100
-end
+-- function modifier_wudi_bgm_lua:GetModifierDamageOutgoing_Percentage()
+-- 	return 100
+-- end
 
 function modifier_wudi_bgm_lua:GetModifierPhysicalArmorBonus()
 	return 1000
@@ -160,7 +162,7 @@ end
 
 function modifier_sublime_wudi_bgm_lua:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
+        -- MODIFIER_PROPERTY_DAMAGEOUTGOING_PERCENTAGE,
         MODIFIER_PROPERTY_PHYSICAL_ARMOR_BONUS,
         MODIFIER_PROPERTY_MAGICAL_RESISTANCE_BONUS,
         -- MODIFIER_PROPERTY_COOLDOWN_PERCENTAGE,
@@ -176,6 +178,7 @@ function modifier_sublime_wudi_bgm_lua:OnCreated(params)
         -- self:AddParticle( self.nFXIndex, false, false, -1, false, false )
         
         self.steam_id = PlayerResource:GetSteamAccountID(self:GetAbility():GetCaster():GetPlayerID())
+        game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(self:GetCaster():GetPlayerID()), "extra_attack_scale", 200)
         local randint = RandomInt(1,3)
         if randint == 1 then
             self:GetAbility():GetCaster():EmitSound("hero.wudi_bgm")
@@ -192,13 +195,14 @@ end
 
 function modifier_sublime_wudi_bgm_lua:OnDestroy()
     if IsServer() then
-		self:GetParent():StopSound(self.bgmname)
+        self:GetParent():StopSound(self.bgmname)
+        game_playerinfo:set_dynamic_properties(PlayerResource:GetSteamAccountID(self:GetCaster():GetPlayerID()), "extra_attack_scale", -200)
 	end
 end
 
-function modifier_sublime_wudi_bgm_lua:GetModifierDamageOutgoing_Percentage()
-	return 200
-end
+-- function modifier_sublime_wudi_bgm_lua:GetModifierDamageOutgoing_Percentage()
+-- 	return 200
+-- end
 
 function modifier_sublime_wudi_bgm_lua:GetModifierPhysicalArmorBonus()
 	return 1000

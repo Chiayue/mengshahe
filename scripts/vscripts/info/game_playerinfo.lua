@@ -157,6 +157,7 @@ local player_info = {
         -- ["allUniversalExp"] = 0,   -- 总共获取的通用英雄经验
         -- ["useHeroExp"] = 0,   -- 用于提升英雄等级的经验值useHeroExp
         -- ["relicsExp"] = 0,   -- 用于提升神之遗物等级的经验值
+        -- ["chipNumber"] = 0,   -- 宝物分解后的碎片数量
 
         -- ["compensationLevel"] = 0,   -- 服务器补偿等级
 
@@ -316,6 +317,7 @@ function game_playerinfo:sendplayerData2client(playerID)
     send_table["mapLevel"] = player_info[steam_id]["mapLevel"]-- 地图等级
     send_table["universalExp"] = (player_info[steam_id]["universalExp"] or 0)-- 通用经验
     send_table["relicsExp"] = (player_info[steam_id]["relicsExp"] or 0)-- 遗物经验
+    send_table["chipNumber"] = (player_info[steam_id]["chipNumber"] or 0)-- 宝物碎片
     send_table["game_time"] = player_info[steam_id]["mapExp"]*60-- 游戏时长
     send_table["passLevel"] = player_info[steam_id]["passLevel"]-- 通关难度
     local mapLevel = player_info[steam_id]["mapLevel"]
@@ -371,6 +373,9 @@ function game_playerinfo:check_player_datas(nPlayerID)
     end
     if not player_info[steam_id]["relicsExp"] then
         player_info[steam_id]["relicsExp"] = 0
+    end
+    if not player_info[steam_id]["chipNumber"] then
+        player_info[steam_id]["chipNumber"] = 0
     end
     if not player_info[steam_id]["itemCallMaterialsLefthand"] then
         player_info[steam_id]["itemCallMaterialsLefthand"] = 0
@@ -525,6 +530,7 @@ function game_playerinfo:save_archiveby_playerid(playerID)
         "allUniversalExp",
         "useHeroExp",
         "relicsExp",
+        "chipNumber",
         "killYanmo",
         "killBoss",
         "onceBoxNumber",
@@ -563,6 +569,7 @@ function game_playerinfo:save_archive_for_create(playerID)
         "allUniversalExp",
         "useHeroExp",
         "relicsExp",
+        "chipNumber",
         "killYanmo",
         "killBoss",
         "onceBoxNumber",
@@ -598,10 +605,22 @@ function game_playerinfo:save_compensationLevel(playerID)
     Archive:SaveProfileByID(playerID)
 end
 
+function game_playerinfo:save_resolveby_playerid(playerID)
+    local ArchiveTable = {
+        "treasures",
+        "relicsExp",
+        "chipNumber",
+    }
+    self:SaveArchiveTable(playerID, ArchiveTable)
+
+    Archive:SaveProfileByID(playerID)
+end
+
 function game_playerinfo:save_rewardsby_playerid(playerID)
     local ArchiveTable = {
         "treasures",
         "relicsExp",
+        "chipNumber",
         "levelRewardsLists",
     }
     self:SaveArchiveTable(playerID, ArchiveTable)
@@ -799,6 +818,10 @@ end
 
 function game_playerinfo:get_relicsExp(steam_id)
     return player_info[steam_id]["relicsExp"] or 0
+end
+
+function game_playerinfo:get_chipNumber(steam_id)
+    return player_info[steam_id]["chipNumber"] or 0
 end
 
 function game_playerinfo:get_compensation_level(steam_id)
@@ -1557,6 +1580,7 @@ function game_playerinfo:create_playerinfo(nPlayerID, isSave)
         player_info[steam_id]["allUniversalExp"] = 0
         player_info[steam_id]["useHeroExp"] = 0
         player_info[steam_id]["relicsExp"] = 0
+        player_info[steam_id]["chipNumber"] = 0
         player_info[steam_id]["compensationLevel"] = 0
 
         player_info[steam_id]["itemCallMaterialsLefthand"] = 0
@@ -1866,14 +1890,14 @@ function game_playerinfo:OnFusionTotem(data)
     game_playerinfo:save_totem(player_id)
 end
 
---  初始化图腾增加的属性
+--  
 function game_playerinfo:InitTotemAttribute(player_id)
     
     local steam_id = PlayerResource:GetSteamAccountID(player_id)
     local totem_data = game_playerinfo:get_totem_data(steam_id)
     for key, value in pairs(totem_data["totem"]) do
         if key == "totemCfLevel" then
-            -- 解锁后金币获取+30% 每升1级，金币获取+2%
+            -- 
             if value >= 0 then
                 self:set_dynamic_properties(steam_id, "gold_scale", (30+value*2))
                 if value >= 10 then
@@ -2401,6 +2425,24 @@ function game_playerinfo:update_relicsExp(steam_id, exp)
     return player_info[steam_id]["relicsExp"]
 end
 
+--  宝物碎片数量更新
+function game_playerinfo:update_chipNumber(steam_id, number)
+    if not player_info[steam_id]["chipNumber"] then
+        player_info[steam_id]["chipNumber"] = 0
+    end
+    player_info[steam_id]["chipNumber"] = player_info[steam_id]["chipNumber"] + number
+    
+    return player_info[steam_id]["chipNumber"]
+end
+
+--  获取宝物碎片数量
+function game_playerinfo:get_chipNumber(steam_id)
+    if not player_info[steam_id]["chipNumber"] then
+        player_info[steam_id]["chipNumber"] = 0
+    end
+    return player_info[steam_id]["chipNumber"]
+end
+
 --  领取补偿
 function game_playerinfo:get_compensation(player_id)
     local steam_id = PlayerResource:GetSteamAccountID(player_id)
@@ -2545,7 +2587,13 @@ function game_playerinfo:set_player_gold(player_id,value)
             -- if not hero:HasModifier("modifier_sale_lua") then
             --     -- 没有steam的打折天赋
             --     print(" >>>>>>>>>>>>>>>>> no steam ")
-                value = value * (1+game_playerinfo:get_dynamic_properties(PlayerResource:GetSteamAccountID(player_id)).gold_scale*0.01)
+                local goldscale = game_playerinfo:get_dynamic_properties(PlayerResource:GetSteamAccountID(player_id)).gold_scale*0.01
+                if hero:HasModifier("modifier_sale_lua") then
+                    if goldscale > 1.3 then
+                        goldscale = 1.3
+                    end
+                end
+                value = value * (1+goldscale)
             -- end
         end
         if value < 0 then
@@ -3900,6 +3948,16 @@ function game_playerinfo:rewardsrelicsExp(steam_id, exp, prize_list)
     local sendtable = {}
     table.insert(sendtable, "relics_Amount")
     table.insert(sendtable, exp)
+
+    table.insert(prize_list, sendtable)
+end
+
+-- 奖励宝物碎片
+function game_playerinfo:rewardschipNumber(steam_id, number, prize_list)
+    game_playerinfo:update_chipNumber(steam_id, number)
+    local sendtable = {}
+    table.insert(sendtable, "chip_Amount")
+    table.insert(sendtable, number)
 
     table.insert(prize_list, sendtable)
 end

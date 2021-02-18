@@ -56,6 +56,12 @@ function modifier_yu_zhan_yu_yong:OnAttackLanded(params)
 	end
 end
 
+function modifier_yu_zhan_yu_yong:OnDestroy()
+	if IsServer() then 
+		self:GetParent().dynamic_properties.attack_critical = self:GetParent().dynamic_properties.attack_critical - self.critical
+	end
+end
+
 function modifier_yu_zhan_yu_yong:IsHidden()
 	return true
 end

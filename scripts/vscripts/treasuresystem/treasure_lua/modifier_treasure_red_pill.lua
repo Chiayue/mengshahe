@@ -20,11 +20,7 @@ function modifier_treasure_red_pill:DeclareFunctions()
 end
 
 function modifier_treasure_red_pill:GetModifierBonusStats_Strength()
-    if self:GetParent():HasModifier("modifier_treasure_red_pill_debuff") then
-        return 200
-    else
-        return 500
-    end
+    return 200
 end
 
 function modifier_treasure_red_pill:IsHidden() 
@@ -41,28 +37,31 @@ end
 
 function modifier_treasure_red_pill:OnCreated(kv) 
     if IsServer() then
-        local parent = self:GetParent()
-        parent:AddNewModifier(parent, nil, "modifier_treasure_red_pill_debuff", nil)
-        if parent:HasModifier("modifier_treasure_green_pill") and parent:HasModifier("modifier_treasure_blue_pill") then
-            parent:RemoveModifierByName("modifier_treasure_green_pill_debuff")
-            parent:RemoveModifierByName("modifier_treasure_blue_pill_debuff")
-            parent:RemoveModifierByName("modifier_treasure_red_pill_debuff")
-        end
+        self:StartIntervalThink(1)
     end
 end
 
-function modifier_treasure_red_pill:OnDestroy() 
-    if IsServer() then
-        local parent = self:GetParent()
-        parent:RemoveModifierByName("modifier_treasure_red_pill_debuff")
-        if parent:HasModifier("modifier_treasure_green_pill") then
-            parent:AddNewModifier(parent, nil, "modifier_treasure_green_pill_debuff", nil)
-        end
-        if parent:HasModifier("modifier_treasure_blue_pill") then
-            parent:AddNewModifier(parent, nil, "modifier_treasure_blue_pill_debuff", nil)
-        end
+function modifier_treasure_red_pill:OnIntervalThink()
+    local parent = self:GetParent()
+    parent:AddNewModifier(parent, nil, "modifier_treasure_red_pill_debuff", nil)
+    if parent:HasModifier("modifier_treasure_green_pill") and parent:HasModifier("modifier_treasure_blue_pill") then
+        parent:AddNewModifier(parent, nil, "modifier_treasure_resistance_max", nil)
     end
+    self:StartIntervalThink(-1)
 end
+
+-- function modifier_treasure_red_pill:OnDestroy() 
+--     if IsServer() then
+--         local parent = self:GetParent()
+--         parent:RemoveModifierByName("modifier_treasure_red_pill_debuff")
+--         if parent:HasModifier("modifier_treasure_green_pill") then
+--             parent:AddNewModifier(parent, nil, "modifier_treasure_green_pill_debuff", nil)
+--         end
+--         if parent:HasModifier("modifier_treasure_blue_pill") then
+--             parent:AddNewModifier(parent, nil, "modifier_treasure_blue_pill_debuff", nil)
+--         end
+--     end
+-- end
 
 -------------------------------------------------------------------------
 

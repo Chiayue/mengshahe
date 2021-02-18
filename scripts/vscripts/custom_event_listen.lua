@@ -56,6 +56,10 @@ function CustomListen:init()
 	CustomGameEventManager:RegisterListener("request_clearcollocation", Dynamic_Wrap(treasuresystem,'Onclearcollocation'))  -- 清空配置宝物
 	CustomGameEventManager:RegisterListener("request_resetcollocation", Dynamic_Wrap(treasuresystem,'Onresetcollocation'))  -- 重设配置宝物
 	CustomGameEventManager:RegisterListener("request_lock_select", Dynamic_Wrap(treasuresystem,'OnLockSelect'))  -- 锁定设置界面
+	CustomGameEventManager:RegisterListener("request_treasure_data_EnterGame", Dynamic_Wrap(treasuresystem,'OnTreasureDataEnterGame'))  -- 主动再次请求宝物数据
+	
+	CustomGameEventManager:RegisterListener("request_resolve_treasure", Dynamic_Wrap(treasuresystem,'OnResolveTreasure'))  -- 分解宝物
+	CustomGameEventManager:RegisterListener("request_buyquality_treasure", Dynamic_Wrap(treasuresystem,'OnBuyQualityTreasure'))  -- 兑换宝箱
 	-- 神之遗物升级
 	CustomGameEventManager:RegisterListener("request_equipment_data", Dynamic_Wrap(game_playerinfo,'OnGodEquipmentData'))  -- 请求神之遗物信息
 	CustomGameEventManager:RegisterListener("request_lvup_godequipment", Dynamic_Wrap(game_playerinfo,'OnLevelUpGodEquipment'))  -- 神之遗物升级
@@ -81,6 +85,8 @@ function CustomListen:init()
 	CustomGameEventManager:RegisterListener("request_totem_data", Dynamic_Wrap(game_playerinfo,'OnTotemData'))  -- 请求图腾信息
 	CustomGameEventManager:RegisterListener("request_lvup_totem", Dynamic_Wrap(game_playerinfo,'OnLevelUpTotem'))  -- 图腾升级
 	CustomGameEventManager:RegisterListener("request_fusion_totem", Dynamic_Wrap(game_playerinfo,'OnFusionTotem'))  -- 图腾融合
+	-- 战争迷雾
+	CustomGameEventManager:RegisterListener("request_open_fog", Dynamic_Wrap(CustomListen,'RequestOpenFog'))
 end
 
 -- local is_select_hero = {}
@@ -109,6 +115,7 @@ function CustomListen:game_state_change(evt)
 				set_item(player_id,global_var_func.select_heroname[player_id])
 			end
 		end
+		custom_thinker:init_at_pre_game()
 		--开门
 		StopGlobalSound("game.beginbgm")
 		EmitGlobalSound("game.opendoor")
@@ -213,6 +220,9 @@ function CustomListen:game_state_change(evt)
 						local PurchaseCoolDown = v.PurchaseCoolDown or -1
 						local PurchaseStartCoolDown = v.PurchaseStartCoolDown or -1
 						local ItemPurchasable = v.ItemPurchasable or 1
+						if GameRules:GetCustomGameDifficulty() > 10 and string.find(k,"item_book_") then
+							PurchaseStartCoolDown = math.ceil(PurchaseStartCoolDown * 2 / 3) 
+						end
 						if k == "item_custom_gold_call" or k=="item_custom_yanmo_call" or k == "item_custom_ore_call" then
 							local dlevel = GameRules:GetCustomGameDifficulty()
 							if dlevel >= 7 then
@@ -241,7 +251,6 @@ function CustomListen:game_state_change(evt)
 			treasuresystem:set_stay_time(-1)
 		end
 		for i=0,playercount-1 do
-
 			-- 发送宝物数据
 			treasuresystem:sendTreasureData2client(i)
 		end
@@ -429,7 +438,6 @@ function CustomListen:game_state_change(evt)
 		for i=0,global_var_func.all_player_amount-1 do
 			global_var_func.player_random_properties["player"..i] = game_playerinfo:get_player_random_properties()
 		end
-		custom_thinker:init_at_pre_game()
 		custom_thinker:init_after_select_hero()
 	end
 	if DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP == game_state then
@@ -692,7 +700,10 @@ function set_item(player_id,hero_name)
 	-- 杀戮之心
 	hero:AddNewModifier(hero, nil, "modifier_killing_heart", nil)
 	-- 自定义血条
-	hero:AddNewModifier(unit, nil, "modifier_common_no_health_bar", nil)
+	hero:AddNewModifier(hero, nil, "modifier_common_no_health_bar", nil)
+	-- 调整英雄视野大小
+	hero:SetDayTimeVisionRange(800)
+	hero:SetNightTimeVisionRange(800)
 	-- 初始化图腾套装属性
 	game_playerinfo:InitMaxLevelTotemAttribute(player_id)
 
@@ -1334,42 +1345,47 @@ function CustomListen:on_player_chated(event)
 	-- end
 
 	-- if event.text == "-add" then
-	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_sublime_phoenix", nil)
+	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_aghanim_power", nil)
 	-- 	return
 	-- end
 
 	-- if event.text == "-remove" then
-	-- 	hero:RemoveModifierByName("modifier_treasure_sublime_phoenix")
+	-- 	hero:RemoveModifierByName("modifier_treasure_aghanim_power")
 	-- 	return
 	-- end
 
 	-- if event.text == "-add1" then
-	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_more", nil)
+	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_beerbung", nil)
 	-- 	return
 	-- end
 
 	-- if event.text == "-remove1" then
-	-- 	hero:RemoveModifierByName("modifier_treasure_more")
+	-- 	hero:RemoveModifierByName("modifier_treasure_beerbung")
 	-- 	return
 	-- end
 
 	-- if event.text == "-add2" then
-	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_more_more", nil)
+	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_leviathan_skin", nil)
 	-- 	return
 	-- end
 
 	-- if event.text == "-remove2" then
-	-- 	hero:RemoveModifierByName("modifier_treasure_more_more")
+	-- 	hero:RemoveModifierByName("modifier_treasure_leviathan_skin")
 	-- 	return
 	-- end
 
 	-- if event.text == "-add3" then
-	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_goldmon_attribute_two", nil)
+	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_ra_3", nil)
 	-- 	return
 	-- end
 
 	-- if event.text == "-remove3" then
-	-- 	hero:RemoveModifierByName("modifier_treasure_goldmon_attribute_two")
+	-- 	hero:RemoveModifierByName("modifier_treasure_apocalypse_c")
+	-- 	return
+	-- end
+
+	-- if event.text == "-add4" then
+	-- 	hero:AddNewModifier(hero, nil, "modifier_treasure_ra", nil)
 	-- 	return
 	-- end
 
@@ -1489,4 +1505,10 @@ function send_tips_message_level(playerID,int_value,locstring_value,message_text
 	gameEvent["int_value"] = int_value
 	gameEvent["message"] = message_text
 	FireGameEvent( "dota_combat_event_message", gameEvent )
+end
+
+function CustomListen:RequestOpenFog(event)
+	local gameMode = GameRules:GetGameModeEntity()
+    gameMode:SetFogOfWarDisabled(not gameMode:GetFogOfWarDisabled())
+	CustomGameEventManager:Send_ServerToAllClients("ResponseOpenFog", {state = gameMode:GetFogOfWarDisabled()})
 end

@@ -12,7 +12,12 @@ function apply_buff(params)
 		end
 	end
 	caster:AddNewModifier(caster, params.ability, "modifier_i_am_carray", {})
-	caster:EmitSound("xiaotuantuan.suweisuwei")--调用音效 
+	if math.random(1,2) == 1 then
+		caster:EmitSound("xiaotuantuan.suweisuwei")--调用音效 
+	else
+		caster:EmitSound("paopaoyang.shouting")--调用音效 
+	end
+	
 end
 
 function remove_buff(params)
@@ -30,6 +35,7 @@ function remove_buff(params)
 		end
 	end
 	caster:StopSound("xiaotuantuan.suweisuwei")
+	caster:StopSound("paopaoyang.shouting")
 end
 
 LinkLuaModifier( "modifier_i_am_carray", "ability/abilities_lua/initiative_i_am_carray.lua",LUA_MODIFIER_MOTION_NONE )

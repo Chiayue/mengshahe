@@ -7,7 +7,10 @@ if modifier_treasure_matrilocal == nil then
 end
 
 function modifier_treasure_matrilocal:GetTexture()
-    return "buff/modifier_treasure_matrilocal"
+    if self:GetDuration() < 0 then
+        return "buff/modifier_treasure_matrilocal"
+    end
+    return "buff/modifier_treasure_keep_changing"
 end
 
 function modifier_treasure_matrilocal:IsPurgable()
@@ -20,25 +23,28 @@ end
 
 function modifier_treasure_matrilocal:OnCreated(kv)
     if IsServer() then
-        local parent = self:GetParent()
-        if parent:HasModifier("modifier_treasure_tolerance") then
-            parent:RemoveModifierByName("modifier_treasure_matrilocal_debuff")
-            parent:RemoveModifierByName("modifier_treasure_tolerance_debuff")
-            parent:AddNewModifier(parent, nil, "modifier_treasure_three_years_later", nil)
-        else
-            parent:AddNewModifier(parent, nil, "modifier_treasure_matrilocal_debuff", nil)
-        end
+        self:StartIntervalThink(1)
     end
 end
 
-function modifier_treasure_matrilocal:OnDestroy()
-    if IsServer() then
-        local parent = self:GetParent()
-        parent:RemoveModifierByName("modifier_treasure_matrilocal_debuff")
-        parent:RemoveModifierByName("modifier_treasure_three_years_later")
-        parent:AddNewModifier(parent, nil, "modifier_treasure_tolerance_debuff", nil)
+function modifier_treasure_matrilocal:OnIntervalThink()
+    local parent = self:GetParent()
+    if parent:HasModifier("modifier_treasure_tolerance") then
+        parent:AddNewModifier(parent, nil, "modifier_treasure_three_years_later", nil)
+    else
+        parent:AddNewModifier(parent, nil, "modifier_treasure_matrilocal_debuff", nil)
     end
+    self:StartIntervalThink(-1)
 end
+
+-- function modifier_treasure_matrilocal:OnDestroy()
+--     if IsServer() then
+--         local parent = self:GetParent()
+--         parent:RemoveModifierByName("modifier_treasure_matrilocal_debuff")
+--         parent:RemoveModifierByName("modifier_treasure_three_years_later")
+--         parent:AddNewModifier(parent, nil, "modifier_treasure_tolerance_debuff", nil)
+--     end
+-- end
 
 ----------------------------------------------------------------------------------------------------------------------
 

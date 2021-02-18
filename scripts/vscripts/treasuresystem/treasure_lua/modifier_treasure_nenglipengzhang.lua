@@ -52,7 +52,7 @@ end
 function modifier_treasure_nenglipengzhang:OnDeath(params)
     if IsMyKilledBadGuys(self:GetParent(), params) then
         -- 玩家击杀计数
-        if self:GetStackCount() < 1000 then
+        if self:GetStackCount() < 500 then
             self:IncrementStackCount()
         end
     end

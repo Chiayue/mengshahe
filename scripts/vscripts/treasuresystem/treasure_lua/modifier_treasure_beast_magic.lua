@@ -5,10 +5,7 @@ if modifier_treasure_beast_magic == nil then
 end
 
 function modifier_treasure_beast_magic:GetTexture()
-    if self:GetDuration() < 0 then
-        return "buff/modifier_treasure_beast_magic"
-    end
-    return "buff/modifier_treasure_keep_changing"
+    return "buff/modifier_treasure_beast_magic"
 end
 
 function modifier_treasure_beast_magic:IsHidden()
@@ -25,19 +22,32 @@ end
 
 function modifier_treasure_beast_magic:OnCreated(params)
     if IsServer() then
-        self:StartIntervalThink(1)
+        local parent = self:GetParent()
+        if parent:HasModifier("modifier_treasure_beasts_royal") then
+            parent:AddNewModifier(parent, nil, "modifier_treasure_beast_master", nil)
+        else
+            self:StartIntervalThink(1)
+        end
     end
 end
 
 function modifier_treasure_beast_magic:OnIntervalThink()
     local parent = self:GetParent()
-    if IsAlive(parent) then
-        local stack_count = 50
-        if parent:HasModifier("modifier_treasure_beasts_royal") then
-            stack_count = 100
+    for _, unit in pairs(parent.call_unit) do
+        if IsAlive(unit) and not unit:HasModifier("modifier_treasure_beast_magic_buff") then
+            unit:AddNewModifier(parent, nil, "modifier_treasure_beast_magic_buff", nil)
         end
+    end
+end
+
+function modifier_treasure_beast_magic:OnDestroy()
+    if IsServer() then
+        self:StartIntervalThink(-1)
+        local parent = self:GetParent()
         for _, unit in pairs(parent.call_unit) do
-            unit:AddNewModifier(parent, nil, "modifier_treasure_beast_magic_buff", {duration = 1}):SetStackCount(stack_count)
+            if IsAlive(unit) then
+                unit:RemoveModifierByName("modifier_treasure_beast_magic_buff")
+            end
         end
     end
 end
@@ -59,7 +69,7 @@ function modifier_treasure_beast_magic_buff:IsPurgable()
 end
 
 function modifier_treasure_beast_magic_buff:RemoveOnDeath() 
-    return false 
+    return true
 end
 
 function modifier_treasure_beast_magic_buff:DeclareFunctions()
@@ -69,5 +79,5 @@ function modifier_treasure_beast_magic_buff:DeclareFunctions()
 end
 
 function modifier_treasure_beast_magic_buff:GetModifierDamageOutgoing_Percentage()
-    return self:GetStackCount()
+    return 50
 end

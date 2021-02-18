@@ -12,14 +12,14 @@ function active_random_book:OnSpellStart()
         local book_name = books[RandomInt(1, 2)]
         if global_var_func.last_time <= 1800 and global_var_func.last_time > 1500 then
             book_name = book_name.."d"
-        elseif global_var_func.last_time <= 1500 and global_var_func.last_time > 1200 then
+        elseif global_var_func.last_time <= 1500 and global_var_func.last_time > 900 then
             book_name = book_name.."c"
-        elseif global_var_func.last_time <= 1200 and global_var_func.last_time > 900 then
+        elseif global_var_func.last_time <= 900 and global_var_func.last_time > 300 then
             book_name = book_name.."b"
-        elseif global_var_func.last_time <= 900 and global_var_func.last_time > 600 then
+        elseif global_var_func.last_time <= 300 and global_var_func.last_time > 0 then
             book_name = book_name.."a"
-        elseif global_var_func.last_time <= 600 and global_var_func.last_time >= 0 then
-            book_name = book_name.."s"
+        -- elseif global_var_func.last_time <= 600 and global_var_func.last_time >= 0 then
+        --     book_name = book_name.."s"
         end
         local item = self.caster:AddItemByName(book_name)
         if not item then

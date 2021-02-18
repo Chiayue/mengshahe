@@ -82,8 +82,10 @@ function rule_unit_spawn:OnEntityKilled(event)
     local unit = EntIndexToHScript(event.entindex_killed)
 
     if unit:GetUnitName() == "boss_finally" then
-        global_var_func.final_boss = true
-        global_var_func.killde_final_boss = true
+        Timers:CreateTimer(4, function()
+            global_var_func.final_boss = true
+            global_var_func.killde_final_boss = true
+        end)
         return
     end
 
@@ -303,30 +305,34 @@ function rule_unit_spawn:FinalBattle()
     global_var_func.current_game_step = DOTA_GAME_STEP_FINALLY_BOSS
     -- 清理单位
     for _, unit in pairs(global_var_func.unit_table) do
-        if unit and not unit:IsNull() and unit:IsAlive() then
+        if IsAlive(unit) then
             unit:ForceKill(false)
         end
     end
     -- 英雄复位
     for _, hero in pairs(HeroList:GetAllHeroes()) do
-         if hero and not hero:IsNull() and hero:IsAlive() then
+         if hero:IsRealHero() and IsAlive(hero) then
              local player_id = hero:GetPlayerID()
-             FindClearSpaceForUnit(hero, Entities:FindByName(nil, global_var_func.corner[player_id + 1].hero_corner):GetOrigin(), true)
+             if player_id then
+                FindClearSpaceForUnit(hero, Entities:FindByName(nil, global_var_func.corner[player_id + 1].hero_corner):GetOrigin(), true)
+             end
          end
     end
     -- 关门
     for i = 1 ,4 do
         Entities:FindByName(nil,"door00"..i.."o"):Trigger(nil,nil)
         local door = Entities:FindByName(nil,"door0"..i)
-        local position = door:GetOrigin()
-        door:SetContextThink(DoUniqueString("open_the_door"), function ()
-            position.z = position.z + 5 
-            door:SetOrigin(position)
-            if position.z >= 0 then 
-                return nil
-            end
-            return 0.01
-        end, 0)
+        if door then
+            local position = door:GetOrigin()
+            door:SetContextThink(DoUniqueString("open_the_door"), function ()
+                position.z = position.z + 5
+                door:SetOrigin(position)
+                if position.z >= 0 then
+                    return nil
+                end
+                return 0.01
+            end, 0)
+        end
     end
     local lg = Entities:FindByName(nil,"jinzita001c")
     if lg then
@@ -335,9 +341,9 @@ function rule_unit_spawn:FinalBattle()
     -- boss
     local index = ParticleManager:CreateParticle("particles/ambient/warning1.vpcf", PATTACH_WORLDORIGIN, nil)
     ParticleManager:ReleaseParticleIndex(index)
-    GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("boss_show"), function ()
+    Timers:CreateTimer(5, function()
         self:SpawnFinallyBoss()
-    end, 5)
+    end)
 end
 
 function rule_unit_spawn: SpawnFinallyBoss()
@@ -351,7 +357,9 @@ function rule_unit_spawn: SpawnFinallyBoss()
     )
     AppendUnitTypeFlag(boss, global_var_func.flag_boss_finally)
     SetUnitBaseValue(boss)
-    boss:AddNewModifier(nil, nil, "modifier_conmon_boss", nil)
+    boss:AddNewModifier(boss, nil, "modifier_conmon_boss", nil)
+    boss:SetOrigin(GetGroundPosition(Vector(-1184.66,-1026.62,568.624), boss))
+    boss:StartGesture(ACT_DOTA_SPAWN)
     local health = boss:GetHealth()
     CustomGameEventManager:Send_ServerToAllClients("show_boss_health_bar", {
         name = boss:GetUnitName(),
@@ -359,40 +367,27 @@ function rule_unit_spawn: SpawnFinallyBoss()
         loss = self:GetCurrentLoss(health),
         time = global_var_func.final_boss_alive_time,
     })
-    boss:SetOrigin(GetGroundPosition(Vector(-1184.66,-1026.62,568.624), boss))
-    boss:StartGesture(ACT_DOTA_SPAWN)
-    GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("finally_boss"), function ()
-        if GameRules:IsGamePaused() then
-            return 1
+    local count = 0
+	Timers(function()
+        count = count + 1
+        if count >= 60 then
+            count = 0
+            global_var_func.final_boss_alive_time = global_var_func.final_boss_alive_time - 1
         end
-        if not boss.alive_time then
-            boss.alive_time = global_var_func.final_boss_alive_time
-            return 1
+        local hp = boss:GetHealth()
+        CustomGameEventManager:Send_ServerToAllClients("update_boss_hp", {
+            name = boss:GetUnitName(),
+            num = self:GetHPNum(hp),
+            loss = self:GetCurrentLoss(hp),
+            time = global_var_func.final_boss_alive_time,
+        })
+        if hp <= 0 or global_var_func.final_boss_alive_time <= 0 then
+            Timers:CreateTimer(4, function()
+                global_var_func.final_boss = true
+            end)
         end
-        boss.alive_time = boss.alive_time - 1
-        if not boss:IsAlive() or boss.alive_time <= 0 then
-            CustomGameEventManager:Send_ServerToAllClients("close_boss_health_bar", nil)
-            global_var_func.final_boss = true
-            return nil
-        end
-        return 1
-    end, 0)
-    GameRules:GetGameModeEntity():SetContextThink(DoUniqueString("update_finally_boss"), function ()
-        if GameRules:IsGamePaused() then
-            return 1
-        end
-        if boss and not boss:IsNull() and boss:IsAlive() then
-            local health1 = boss:GetHealth()
-            CustomGameEventManager:Send_ServerToAllClients("update_boss_hp", {
-                name = boss:GetUnitName(),
-                num = self:GetHPNum(health1),
-                loss = self:GetCurrentLoss(health1),
-                time = boss.alive_time,
-            })
-            return 1 / 60
-        end
-        return nil
-    end, 0)
+        return 1/60
+	end)
 end
 
 function rule_unit_spawn: GetHPNum(health)
@@ -704,9 +699,8 @@ function rule_unit_spawn: CreateTaskUnit(playerId, itemName, itemLevel)
                 local temp = math.abs(c_x - e_x) * math.abs(c_x - e_x) + math.abs(c_y - e_y) * math.abs(c_y - e_y)
                 if math.sqrt(temp) < 300 then
                     if not unit:IsNull() then
-                        local nIndex = ParticleManager:CreateParticle("particles/diy_particles/run.vpcf", PATTACH_OVERHEAD_FOLLOW, unit)
-                        unit:AddNewModifier(nil, nil, "modifier_common_tp", nil):AddParticle(nIndex, false, false, 15, false, false)
-                        self: RemoveUnitTable(unit.index) 
+                        unit:AddNewModifier(nil, nil, "modifier_common_tp", nil)
+                        self: RemoveUnitTable(unit.index)
                         del_player_current_count(playerId)
                     end
                     return nil

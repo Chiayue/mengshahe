@@ -6,11 +6,32 @@ if modifier_treasure_apocalypse == nil then
     modifier_treasure_apocalypse = class({})
 end
 
+function modifier_treasure_apocalypse:DeclareFunctions()
+	return {
+        MODIFIER_PROPERTY_STATS_STRENGTH_BONUS,
+        MODIFIER_PROPERTY_STATS_AGILITY_BONUS,
+        MODIFIER_PROPERTY_STATS_INTELLECT_BONUS,
+    }
+end
+
+function modifier_treasure_apocalypse:GetModifierBonusStats_Strength()
+    return 300
+end
+ 
+function modifier_treasure_apocalypse:GetModifierBonusStats_Agility()
+    return 300
+end
+
+function modifier_treasure_apocalypse:GetModifierBonusStats_Intellect()
+    return 300
+end
+
 function modifier_treasure_apocalypse:GetTexture()
-    if self:GetDuration() < 0 then
-        return "buff/modifier_treasure_apocalypse"
-    end
-    return "buff/modifier_treasure_keep_changing"
+    return "buff/modifier_treasure_apocalypse"
+end
+
+function modifier_treasure_apocalypse:IsHidden()
+    return false
 end
 
 function modifier_treasure_apocalypse:IsPurgable()
@@ -23,16 +44,12 @@ end
 
 function modifier_treasure_apocalypse:OnCreated(params)
     if IsServer() then
-        self.parent = self:GetParent()
-        self:SetStackCount(90)
-        self.listenerid = ListenToGameEvent("player_chat", Dynamic_Wrap(modifier_treasure_apocalypse, "on_player_chated"), self)
+        local parent = self:GetParent()
+        parent:RemoveModifierByName("modifier_treasure_apocalypse_a")
+        parent:RemoveModifierByName("modifier_treasure_apocalypse_b")
+        parent:RemoveModifierByName("modifier_treasure_apocalypse_c")
+        ListenToGameEvent("player_chat", Dynamic_Wrap(modifier_treasure_apocalypse, "on_player_chated"), self)
         self:StartIntervalThink(1)
-    end
-end
-
-function modifier_treasure_apocalypse:OnDestroy()
-    if IsServer() then
-        StopListeningToGameEvent(self.listenerid)
     end
 end
 
@@ -45,10 +62,11 @@ function modifier_treasure_apocalypse:OnIntervalThink()
 end
 
 function modifier_treasure_apocalypse:on_player_chated(event)
-    if event.text == "末日降临" and event.playerid == self.parent:GetPlayerID() and self.parent:FindModifierByName("modifier_treasure_apocalypse") and self:GetStackCount() <= 0 then
+    local parent = self:GetParent()
+    if self:GetStackCount() <= 0 and (event.text == "末日降临" or event.text == "mrjl") and event.playerid == parent:GetPlayerID() then
         for i = 1, 3 do
-            local pa = CreateUnitByName("apocalypse_pa", self.parent:GetOrigin(), true, self.parent, self.parent:GetPlayerOwner(), self.parent:GetTeamNumber())
-            pa:SetOwner(self:GetParent())
+            local pa = CreateUnitByName("apocalypse_pa", parent:GetOrigin(), true, parent, parent:GetPlayerOwner(), parent:GetTeamNumber())
+            pa:SetOwner(parent)
             pa:AddNewModifier(nil, nil, "modifier_treasure_apocalypse_pa", nil)
         end
         self:SetStackCount(90)
@@ -57,6 +75,7 @@ function modifier_treasure_apocalypse:on_player_chated(event)
 end
 
 -------------------------------------------------------------------------
+
 LinkLuaModifier( "modifier_treasure_apocalypse_pa","treasuresystem/treasure_lua/modifier_treasure_apocalypse", LUA_MODIFIER_MOTION_NONE )
 
 if modifier_treasure_apocalypse_pa == nil then 
@@ -70,7 +89,7 @@ function modifier_treasure_apocalypse_pa:CheckState()
     }
 end
 
-function modifier_treasure_apocalypse_pa:OnCreated(params)
+function modifier_treasure_apocalypse_pa:OnCreated(kv)
     if IsServer() then
         self.parent = self:GetParent()
         self.time = 0

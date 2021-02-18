@@ -6,8 +6,11 @@ if modifier_treasure_titan_hammer == nil then
     modifier_treasure_titan_hammer = class({})
 end
 
-function modifier_treasure_titan_hammer:GetTexture()
-    return "buff/modifier_treasure_titan_hammer"
+function modifier_treasure_titan_hammer:GetTexture()  
+    if self:GetDuration() < 0 then
+        return "buff/modifier_treasure_titan_hammer"
+    end
+    return "buff/modifier_treasure_keep_changing"
 end
 
 function modifier_treasure_titan_hammer:IsPurgable()
@@ -30,15 +33,19 @@ end
 
 function modifier_treasure_titan_hammer:OnCreated(kv)
     if IsServer() then
-        local parent = self:GetParent()
-        if parent:HasModifier("modifier_treasure_titan_armet") and parent:HasModifier("modifier_treasure_titan_shield") then
-            parent:AddNewModifier(parent, nil, "modifier_treasure_titan_power", nil)
-        end
+        self:StartIntervalThink(1)
     end
 end
 
-function modifier_treasure_titan_hammer:OnDestroy()
-    if IsServer() then
-        self:GetParent():RemoveModifierByName("modifier_treasure_titan_power")
+function modifier_treasure_titan_hammer:OnIntervalThink()
+    local parent = self:GetParent()
+    if parent:HasModifier("modifier_treasure_titan_armet") and parent:HasModifier("modifier_treasure_titan_shield") then           
+        parent:AddNewModifier(parent, nil, "modifier_treasure_titan_power", nil)
     end
+    self:StartIntervalThink(-1)
 end
+-- function modifier_treasure_titan_hammer:OnDestroy()
+--     if IsServer() then
+--         self:GetParent():RemoveModifierByName("modifier_treasure_titan_power")
+--     end
+-- end

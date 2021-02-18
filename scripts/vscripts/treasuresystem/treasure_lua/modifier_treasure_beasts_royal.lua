@@ -5,10 +5,7 @@ if modifier_treasure_beasts_royal == nil then
 end
 
 function modifier_treasure_beasts_royal:GetTexture()
-    if self:GetDuration() < 0 then
-        return "buff/modifier_treasure_beasts_royal"
-    end
-    return "buff/modifier_treasure_keep_changing"
+    return "buff/modifier_treasure_beasts_royal"
 end
 
 function modifier_treasure_beasts_royal:IsHidden() 
@@ -20,25 +17,38 @@ function modifier_treasure_beasts_royal:IsPurgable()
 end
 
 function modifier_treasure_beasts_royal:RemoveOnDeath() 
-    return false 
+    return false
 end
 
 function modifier_treasure_beasts_royal:OnCreated(kv)
     if IsServer() then
-        self:StartIntervalThink(1)
+        local parent = self:GetParent()
+        if parent:HasModifier("modifier_treasure_beast_magic") then
+            parent:AddNewModifier(parent, nil, "modifier_treasure_beast_master", nil)
+        else
+            self:StartIntervalThink(1)
+        end
     end
 end
 
 function modifier_treasure_beasts_royal:OnIntervalThink()
     local parent = self:GetParent()
-    if IsAlive(parent) then
-        local stack_count = 50
-        if parent:HasModifier("modifier_treasure_beast_magic") then
-            stack_count = 100
+    for _, unit in pairs(parent.call_unit) do
+        if IsAlive(unit) and not unit:HasModifier("modifier_treasure_beasts_royal_buff") then
+            unit:AddNewModifier(parent, nil, "modifier_treasure_beasts_royal_buff", nil)
         end
+    end 
+end
+
+function modifier_treasure_beasts_royal:OnDestroy()
+    if IsServer() then
+        self:StartIntervalThink(-1)
+        local parent = self:GetParent()
         for _, unit in pairs(parent.call_unit) do
-            unit:AddNewModifier(parent, nil, "modifier_treasure_beasts_royal_buff", {duration = 1}):SetStackCount(stack_count)
-        end 
+            if IsAlive(unit) then
+                unit:RemoveModifierByName("modifier_treasure_beasts_royal_buff")
+            end
+        end
     end
 end
 
@@ -59,7 +69,7 @@ function modifier_treasure_beasts_royal_buff:IsPurgable()
 end
 
 function modifier_treasure_beasts_royal_buff:RemoveOnDeath() 
-    return false 
+    return true
 end
 
 function modifier_treasure_beasts_royal_buff:DeclareFunctions()
@@ -69,5 +79,5 @@ function modifier_treasure_beasts_royal_buff:DeclareFunctions()
 end
 
 function modifier_treasure_beasts_royal_buff:GetModifierAttackSpeedBonus_Constant()
-    return self:GetStackCount()
+    return 50
 end

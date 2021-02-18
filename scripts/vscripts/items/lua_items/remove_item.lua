@@ -128,7 +128,7 @@ function do_function(evt)
     -- common_item_ability:random_property_yanmo(evt.caster)
     -- AddTreasureForHero(evt.caster, "modifier_treasure_osiris_3", {duration=10})
     -- OpenTreasureWindow(evt.caster:GetPlayerID(), 3)
-    evt.caster:AddAbility("sublime_barracks"):SetLevel(1)
+    -- evt.caster:AddAbility("sublime_barracks"):SetLevel(1)
 end
 
 function do_ability(evt)

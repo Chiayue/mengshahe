@@ -192,3 +192,7 @@ LinkLuaModifier( "modifier_treasure_sublime_enchantress","treasuresystem/treasur
 LinkLuaModifier( "modifier_treasure_sublime_phoenix","treasuresystem/treasure_lua/modifier_treasure_sublime_phoenix", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_treasure_sublime_stealer","treasuresystem/treasure_lua/modifier_treasure_sublime_stealer", LUA_MODIFIER_MOTION_NONE )
 LinkLuaModifier( "modifier_treasure_sublime_earth_spirit","treasuresystem/treasure_lua/modifier_treasure_sublime_earth_spirit", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treasure_aghanim_power","treasuresystem/treasure_lua/modifier_treasure_aghanim_power", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treasure_beast_master","treasuresystem/treasure_lua/modifier_treasure_beast_master", LUA_MODIFIER_MOTION_NONE )LinkLuaModifier( "modifier_treasure_aghanim_power","treasuresystem/treasure_lua/modifier_treasure_aghanim_power", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treasure_resistance_max","treasuresystem/treasure_lua/modifier_treasure_resistance_max", LUA_MODIFIER_MOTION_NONE )
+LinkLuaModifier( "modifier_treasure_marine_overlord","treasuresystem/treasure_lua/modifier_treasure_marine_overlord", LUA_MODIFIER_MOTION_NONE )

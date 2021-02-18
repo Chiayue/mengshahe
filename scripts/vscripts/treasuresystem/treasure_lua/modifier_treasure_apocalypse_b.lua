@@ -27,10 +27,11 @@ function modifier_treasure_apocalypse_b:GetModifierBonusStats_Intellect()
 end
 
 function modifier_treasure_apocalypse_b:GetTexture()
-    if self:GetDuration() < 0 then
-        return "buff/modifier_treasure_apocalypse_b"
-    end
-    return "buff/modifier_treasure_keep_changing"
+    return "buff/modifier_treasure_apocalypse_b"
+end
+
+function modifier_treasure_apocalypse_b:IsHidden()
+    return false
 end
 
 function modifier_treasure_apocalypse_b:IsPurgable()
@@ -43,15 +44,14 @@ end
 
 function modifier_treasure_apocalypse_b:OnCreated(kv)
     if IsServer() then
-        local parent = self:GetParent()
-        if parent:HasModifier("modifier_treasure_apocalypse_a") and parent:HasModifier("modifier_treasure_apocalypse_c") then
-            parent:AddNewModifier(parent, nil, "modifier_treasure_apocalypse", nil)
-        end
+        self:StartIntervalThink(1)
     end
 end
 
-function modifier_treasure_apocalypse_b:OnDestroy()
-    if IsServer() then
-        self:GetParent():RemoveModifierByName("modifier_treasure_apocalypse")
+function modifier_treasure_apocalypse_b:OnIntervalThink()
+    local parent = self:GetParent()
+    if parent:HasModifier("modifier_treasure_apocalypse_a") and parent:HasModifier("modifier_treasure_apocalypse_c") then
+        parent:AddNewModifier(parent, nil, "modifier_treasure_apocalypse", nil)
     end
+    self:StartIntervalThink(-1)
 end

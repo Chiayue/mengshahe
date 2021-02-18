@@ -323,7 +323,7 @@ function common_item_ability:add_property_item(evt)
         local player_id = killed_unit.player_id
         if hero:GetUnitName() == "npc_dota_hero_slardar" then
             game_playerinfo:set_player_gold(hero:GetPlayerID(), killed_unit:GetGoldBounty())
-            local temp_value = 10
+            local temp_value = 15
             SetBaseStrength(hero, temp_value)
             SetBaseAgility(hero, temp_value)
             SetBaseIntellect(hero, temp_value)

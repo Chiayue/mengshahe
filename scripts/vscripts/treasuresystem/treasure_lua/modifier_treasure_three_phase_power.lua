@@ -30,9 +30,9 @@ function modifier_treasure_three_phase_power:GetModifierBonusStats_Strength()
         max = intellect
     end
     if  max - strength > 0 then
-        return max - strength
+        return max - strength + 150
     else
-        return 0
+        return 150
     end
 end
  
@@ -52,9 +52,9 @@ function modifier_treasure_three_phase_power:GetModifierBonusStats_Agility()
         max = intellect
     end
     if  max - agility > 0 then
-        return max - agility
+        return max - agility + 150
     else
-        return 0
+        return 150
     end
 end
  
@@ -74,9 +74,9 @@ function modifier_treasure_three_phase_power:GetModifierBonusStats_Intellect()
         max = intellect
     end
     if  max - intellect > 0 then
-        return max - intellect
+        return max - intellect + 150
     else
-        return 0
+        return 150
     end
 end
 
@@ -88,7 +88,7 @@ function modifier_treasure_three_phase_power:GetTexture()
 end
  
 function modifier_treasure_three_phase_power:IsHidden()
-    return true
+    return false
 end
 
 function modifier_treasure_three_phase_power:IsPurgable()
@@ -97,4 +97,13 @@ end
  
 function modifier_treasure_three_phase_power:RemoveOnDeath()
     return false
+end
+
+function modifier_treasure_three_phase_power:OnCreated()
+    if IsServer() then
+        local parent = self:GetParent()
+        parent:RemoveModifierByName("modifier_treasure_three_phase_power_i")
+        parent:RemoveModifierByName("modifier_treasure_three_phase_power_a")
+        parent:RemoveModifierByName("modifier_treasure_three_phase_power_s")
+    end
 end

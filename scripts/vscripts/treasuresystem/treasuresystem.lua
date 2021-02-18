@@ -144,8 +144,8 @@ local global_treasures = {
     {"modifier_treasure_more_more", "SR"}, -- 莫多莫多115
 
     -- 王者套装
-    {"modifier_treasure_king_brilliant", "R"},      -- 王者辉煌
-    {"modifier_treasure_king_glory", "SR"},         -- 王者荣耀
+    {"modifier_treasure_king_brilliant", "R"},      -- 王者辉煌116
+    {"modifier_treasure_king_glory", "SR"},         -- 王者荣耀117
 }
 
 -- 检测宝物名称真实性
@@ -1131,6 +1131,44 @@ function treasuresystem:group_treasures(playerID)
         local treasure_name = self:get_treasure_name(value[1])
         local treasure_quality = self:get_treasure_quality(value[1])
         local treasure_number = value[2]
+        -- if treasuresystem:find_collocation_byID(playerID, value[1]) then
+        --     treasure_number = treasure_number + 1
+        -- end
+        local treasure_data = {}
+        table.insert(treasure_data, treasure_name)
+        table.insert(treasure_data, treasure_number)
+        if treasure_quality=="N" then
+            table.insert(N_TB, treasure_data)
+        elseif treasure_quality=="R" then
+            table.insert(R_TB, treasure_data)
+        elseif treasure_quality=="SR" then
+            table.insert(SR_TB, treasure_data)
+        elseif treasure_quality=="SSR" then
+            table.insert(SSR_TB, treasure_data)
+        end
+    end
+    send_treasures["N"] = N_TB
+    send_treasures["R"] = R_TB
+    send_treasures["SR"] = SR_TB
+    send_treasures["SSR"] = SSR_TB
+    return send_treasures
+end
+
+-- 对玩家宝物存档分组处理,名称和数量
+function treasuresystem:group_treasuresex(playerID)
+    local send_treasures = {}
+    local N_TB = {}
+    local R_TB = {}
+    local SR_TB = {}
+    local SSR_TB = {}
+    -- for i = 1, #player_treasures_archive[playerID+1] do
+    for key, value in pairs(player_treasures_archive[playerID+1]) do
+        local treasure_name = self:get_treasure_name(value[1])
+        local treasure_quality = self:get_treasure_quality(value[1])
+        local treasure_number = value[2]
+        if treasuresystem:find_collocation_byID(playerID, value[1]) then
+            treasure_number = treasure_number + 1
+        end
         local treasure_data = {}
         table.insert(treasure_data, treasure_name)
         table.insert(treasure_data, treasure_number)
@@ -1159,6 +1197,14 @@ function treasuresystem:sendTreasureData2client(playerID)
 
     self:update_treasures_name(playerID)
     self:statistics_treasures(playerID)
+end
+
+-- 锁定后正式进入游戏重新发宝物最新数据
+function treasuresystem:sendTreasureDataEnterGame(playerID)
+    local send_treasures = self:group_treasuresex(playerID)
+    local tmp_tab = {treasures = send_treasures}
+    -- DeepPrintTable(tmp_tab)
+    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"response_treasure_data_EnterGame",tmp_tab)
 end
 
 -- 反馈客户端刷新宝物配置请求
@@ -1454,7 +1500,13 @@ function treasuresystem:OnLockSelect(data)
     end
     CustomGameEventManager:Send_ServerToAllClients("response_lock_select",{player_id = player_id, ready_count = lock_players})
 
-    -- game_playerinfo:sendplayerData2client(player_id)
+    -- treasuresystem:sendTreasureDataEnterGame(player_id)
+end
+
+function treasuresystem:OnTreasureDataEnterGame(evt)
+    local playerID = evt.PlayerID
+    -- print(" >>>>>>>>>>>>>>>>>> playerID: "..playerID)
+    treasuresystem:sendTreasureDataEnterGame(playerID)
 end
 
 -- 
@@ -1567,4 +1619,488 @@ function treasuresystem:DropHardOtherTreasures()
         addTreasureName = hard_other_drop_treasures[randomIndex][1]
     end
     return addTreasureName
+end
+
+
+-- 分解配置
+local Resolve_config = {
+    ["N"] = 10,
+    ["R"] = 20,
+    ["SR"] = 40,
+    ["SSR"] = 80,
+}
+
+-- 箱子价格
+local Box_cost_config = {
+    ["R"] = 40,
+    ["SR"] = 80,
+    ["SSR"] = 160,
+}
+
+-- 宝物卡价格
+local Treasures_cost_config = {
+    ["N"] = 60,
+    ["R"] = 120,
+    ["SR"] = 240,
+    ["SSR"] = 480,
+}
+
+-- 分解兑换的卡池
+local Resolve_treasures = {
+    -- 额外获取宝物
+    {"modifier_treasure_wizardry_mask","R"},-- 巫术面具51
+    {"modifier_treasure_rapid_bayonet","N"},-- 疾风之刺52
+    {"modifier_treasure_rapid_dagger","R"},-- 疾风之匕53
+    {"modifier_treasure_rapid_sword","SR"},-- 疾风之剑54
+    {"modifier_treasure_titan_armet","N"},-- 泰坦头盔55
+    {"modifier_treasure_titan_hammer","R"},-- 泰坦战锤56
+    {"modifier_treasure_titan_shield","SR"},-- 泰坦神盾57
+    {"modifier_treasure_abyss_orb","N"},-- 深渊宝珠58
+    {"modifier_treasure_abyss_sceptre","R"},-- 深渊权杖59
+    {"modifier_treasure_abyss_law","SR"},-- 深渊法典60
+    {"modifier_treasure_dragon_king_come_back","SSR"},-- 龙王归来61
+    {"modifier_treasure_nenglipengzhang","SSR"},-- 能力膨胀62
+    {"modifier_treasure_so_long","N"},-- 听说名字取得长的宝物都很厉害63
+    {"modifier_treasure_so_short","N"},-- 短64
+    {"modifier_treasure_bloodthirster","N"},-- 饮血剑65
+    {"modifier_treasure_bloodaxe","R"},-- 饮血斧66
+    {"modifier_treasure_bloodknife","SR"},-- 饮血刀67
+    -- {"modifier_treasure_intimidate","N"},-- 恫吓68
+    {"modifier_treasure_turbulence_mana","SSR"},-- 法力乱流69
+    {"modifier_treasure_five_thousand_exp","R"},-- 5000经验70
+    {"modifier_treasure_holiday_beach_slippers","R"},-- 休假用品：沙滩拖鞋71
+    {"modifier_treasure_holiday_sunglasses","R"},-- 休假用品：墨镜72
+    {"modifier_treasure_holiday_icecola","R"},-- 休假用品：冰可乐73
+    {"modifier_treasure_aghanim_scepter","R"},-- 阿哈利姆神杖74
+    {"modifier_treasure_three_phase_power_s","R"},-- 三项碎片【上】75
+    {"modifier_treasure_three_phase_power_a","R"},-- 三项碎片【中】76
+    {"modifier_treasure_three_phase_power_i","R"},-- 三项碎片【下】77
+    {"modifier_treasure_apocalypse_a","R"},-- 启示录【上】78
+    {"modifier_treasure_apocalypse_b","R"},-- 启示录【中】79
+    {"modifier_treasure_apocalypse_c","R"},-- 启示录【下】80
+
+    {"modifier_treasure_taiji_disciples","N"},-- 太极门徒81
+    {"modifier_treasure_taiji_intermediate","R"},-- 太极大师82
+    {"modifier_treasure_taiji_master","SR"},-- 太极宗师83
+    {"modifier_treasure_mhzl","R"},-- 蛮荒之力84
+    {"modifier_treasure_ltzl","R"},-- 雷霆之力85
+    {"modifier_treasure_xwzl","R"},-- 虚无之力86
+    {"modifier_treasure_smallmoney","R"},-- 富二代87
+    {"modifier_treasure_mhll","SR"},-- 蛮荒灵力88
+    {"modifier_treasure_ltll","SR"},-- 雷霆灵力89
+    {"modifier_treasure_xwll","SR"},-- 虚无灵力90
+    {"modifier_treasure_moremoney","SR"},-- 大富翁91
+    {"modifier_treasure_mhsl","SSR"},-- 蛮荒神力92
+    {"modifier_treasure_ltsl","SSR"},-- 雷霆神力93
+    {"modifier_treasure_xwsl","SSR"},-- 虚无神力94
+    {"modifier_treasure_gfatmoney","SSR"},-- G胖的钱包95
+
+    {"modifier_treasure_back_off_a","R"},-- 手动挡96
+    {"modifier_treasure_back_off_b","R"},-- 自动挡97
+    {"modifier_treasure_back_off_c","SSR"},-- 请注意,倒车98
+
+    -- 春节新上的卡
+    {"modifier_treasure_sublime_alchemist", "SSR"},--土豪升华卡99
+    {"modifier_treasure_sublime_omniknight", "SSR"},--金蛋100
+    {"modifier_treasure_sublime_phantom_assassin", "SSR"},--守望者101
+    {"modifier_treasure_sublime_rattletrap", "SSR"},--坏心眼102
+    {"modifier_treasure_sublime_shredder", "SSR"},--兵营103
+    {"modifier_treasure_sublime_skeleton_king", "SSR"},--支援小炮104
+    {"modifier_treasure_sublime_templar_assassin", "SSR"},--主角105
+    {"modifier_treasure_sublime_treant", "SSR"},--代码哥106
+    {"modifier_treasure_sublime_visage", "SSR"},--超级士兵107
+    {"modifier_treasure_sublime_wisp", "SSR"},--黑洞108
+
+    {"modifier_treasure_speed_fire", "R"},--109
+    {"modifier_treasure_double_fire", "SR"},--110
+
+    {"modifier_treasure_goldmon_attribute_one", "SR"},	--金币怪悬赏令111
+    {"modifier_treasure_goldmon_attribute_two", "SR"},--	金币怪杀手112
+    {"modifier_treasure_midas_collection", "SR"},--  迈达斯的珍藏113
+    {"modifier_treasure_more", "R"},--  莫多114
+    {"modifier_treasure_more_more", "SR"}, -- 莫多莫多115
+
+    -- 王者套装
+    {"modifier_treasure_king_brilliant", "R"},      -- 王者辉煌116
+    {"modifier_treasure_king_glory", "SR"},         -- 王者荣耀117
+}
+
+local global_Resolve_treasures = {}
+
+for key, value in pairs(Resolve_treasures) do
+    if not global_Resolve_treasures[value[2]] then
+        global_Resolve_treasures[value[2]] = {}
+    end
+    table.insert(global_Resolve_treasures[value[2]], value[1])
+end
+
+-- 分解宝物
+function treasuresystem:OnResolveTreasure(evt)
+    local playerID = evt.PlayerID
+    local steam_id = PlayerResource:GetSteamAccountID(playerID)
+    local treasurename = evt.name
+    local isAll = evt.type
+    local treasurIndex = treasuresystem:get_treasure_id(treasurename)
+    local archivenumber = treasuresystem:get_treasurenumber_byID(playerID, treasurIndex)
+    local hascollocation = treasuresystem:find_collocation_byID(playerID, treasurIndex)
+    local resolveNumber = 0
+    if hascollocation then
+        -- 配置里面有, 则数量为0不能分解
+        if archivenumber <= 0 then
+            CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"response_errortext",{errortext = "error_noTreasureNumber"})
+            return
+        end
+        if isAll==1 then
+            -- 全部分解
+            resolveNumber = archivenumber
+        else
+            -- 分解1个
+            resolveNumber = 1
+        end
+    else
+        -- 配置里面没有, 则数量为1不能分解
+        if archivenumber <= 1 then
+            CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"response_errortext",{errortext = "error_noTreasureNumber"})
+            return
+        end
+        if isAll==1 then
+            -- 全部分解
+            resolveNumber = archivenumber-1
+        else
+            -- 分解1个
+            resolveNumber = 1
+        end
+    end
+
+    local quality = treasuresystem:get_treasure_quality(treasurIndex)
+    local getNumber = Resolve_config[quality]*resolveNumber
+    treasuresystem:update_treasureinarchive_byID(playerID, treasurIndex, -resolveNumber)
+    game_playerinfo:update_chipNumber(steam_id, getNumber)
+
+    archivenumber = treasuresystem:get_treasurenumber_byID(playerID, treasurIndex)
+    hascollocation = treasuresystem:find_collocation_byID(playerID, treasurIndex)
+    if hascollocation then
+        archivenumber = archivenumber + 1
+    end
+    local treasures = {}
+    table.insert(treasures, treasurename)
+    table.insert(treasures, archivenumber)
+    local send_table = {}
+    table.insert(send_table, treasures)
+
+    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID), "response_resolve_treasure",{chipNumber = game_playerinfo:get_chipNumber(steam_id), treasures = send_table})
+end
+
+-- 购买对应品质的随机卡包或者直接兑换成卡
+function treasuresystem:OnBuyQualityTreasure(evt)
+    local playerID = evt.PlayerID
+    local steam_id = PlayerResource:GetSteamAccountID(playerID)
+    local openname = evt.name
+    local nprize_list = {}
+    if string.find(openname, "Gift") then
+        local cost = 0
+        -- 开启对应品级箱子
+        -- print(" >>>>>>>>>>>>>>>>> openname: "..openname)
+        if string.find(openname, "GiftR") then
+            cost = Box_cost_config["R"]
+            if cost > game_playerinfo:get_chipNumber(steam_id) then
+                CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"response_errortext",{errortext = "error_noChipNumber"})
+                return
+            end
+            chipGiftOfTheTreasure(playerID, 1, nprize_list)
+        elseif string.find(openname, "GiftSR") then
+            cost = Box_cost_config["SR"]
+            if cost > game_playerinfo:get_chipNumber(steam_id) then
+                CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"response_errortext",{errortext = "error_noChipNumber"})
+                return
+            end
+            chipGiftOfTheTreasure(playerID, 2, nprize_list)
+        elseif string.find(openname, "GiftSSR") then
+            cost = Box_cost_config["SSR"]
+            if cost > game_playerinfo:get_chipNumber(steam_id) then
+                CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"response_errortext",{errortext = "error_noChipNumber"})
+                return
+            end
+            chipGiftOfTheTreasure(playerID, 3, nprize_list)
+        end
+        if cost > 0 and #nprize_list > 0 then
+            game_playerinfo:update_chipNumber(steam_id, -cost)
+        end
+    else
+        -- 直接兑换对应宝物卡
+        local treasurIndex = treasuresystem:get_treasure_id(openname)
+        local quality = treasuresystem:get_treasure_quality(treasurIndex)
+        local cost = Treasures_cost_config[quality]
+        if cost > game_playerinfo:get_chipNumber(steam_id) then
+            CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"response_errortext",{errortext = "error_noChipNumber"})
+            return
+        end
+        local ExchangeList = Store:GetExchangeList()
+        -- DeepPrintTable(ExchangeList)
+        local isBuy = false
+        -- 检测这个卡是否在允许兑换列表中
+        for key, value in pairs(ExchangeList) do
+            for index, name in pairs(value) do
+                if name == openname then
+                    isBuy = true
+                    break
+                end
+            end
+            if isBuy then
+                break
+            end
+        end
+        if not isBuy then
+            return
+        end
+        
+        if cost > 0 and cost <= game_playerinfo:get_chipNumber(steam_id) then
+            treasuresystem:update_treasureinarchive_byID(playerID, treasurIndex, 1)
+            game_playerinfo:update_chipNumber(steam_id, -cost)
+            local sendtable = {}
+            table.insert(sendtable, openname)
+            table.insert(sendtable, 1)
+
+            table.insert(nprize_list, sendtable)
+        end
+    end
+    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID),"UseItemCallback",{ prize_list = nprize_list})
+
+    -- local send_treasures = self:group_treasuresex(playerID)
+
+    -- CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID), "response_buyquality_treasure",{chipNumber = game_playerinfo:get_chipNumber(steam_id), treasures = send_treasures})
+
+    -- DeepPrintTable(nprize_list)
+    local send_table = {}
+    for key, value in pairs(nprize_list) do
+        if string.find(value[1], "modifier_treasure_") then
+            local treasurIndex = treasuresystem:get_treasure_id(value[1])
+            local number = treasuresystem:get_treasurenumber_byID(playerID, treasurIndex)
+            local hascollocation = treasuresystem:find_collocation_byID(playerID, treasurIndex)
+            local quality = treasuresystem:get_treasure_quality(treasurIndex)
+            if hascollocation then
+                number = number + 1
+            end
+            local treasures = {}
+            table.insert(treasures, value[1])
+            table.insert(treasures, number)
+            table.insert(treasures, quality)
+
+            table.insert(send_table, treasures)
+        elseif value[1] == "score" then
+            game_playerinfo:update_score(steam_id, value[2])
+        end
+    end
+    -- DeepPrintTable(send_table)
+    CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(playerID), "response_resolve_treasure",{chipNumber = game_playerinfo:get_chipNumber(steam_id), treasures = send_table})
+    -- 对应存档
+    game_playerinfo:save_resolveby_playerid(playerID)
+end
+
+
+-- 碎片换卡
+function treasuresystem:AddChipTreasureToPlayer(playerID, quality)
+    local addTreasureName = ""
+    local randomList = global_Resolve_treasures[quality]
+    -- print(" >>>>>>>>>>>>>>>>> quality: "..quality)
+    if #randomList > 0 then
+        local index = RandomInt(1, #randomList)
+        addTreasureName = randomList[index]
+    end
+    if addTreasureName~="" then
+        -- 添加到卡池
+        local addTreasureIndex = self:get_treasure_id(addTreasureName)
+        self:update_treasureinarchive_byID(playerID, addTreasureIndex, 1)
+    end
+    return addTreasureName
+end
+
+-- 宝物碎片抽奖
+function chipGiftOfTheTreasure(playerID, level, prize_list)
+    local steam_id = PlayerResource:GetSteamAccountID(playerID)
+    -- print(" >>>>>>>>>>>>>>>>>>>>>> level: "..level)
+    if level==1 then
+        -- 兑换宝物卡概率
+        if RollPercentage(30) then
+            -- 出R
+            local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "R")
+            local sendtable = {}
+            table.insert(sendtable, card_name)
+            table.insert(sendtable, 1)
+
+            table.insert(prize_list, sendtable)
+        else
+            -- 出N
+            local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "N")
+            local sendtable = {}
+            table.insert(sendtable, card_name)
+            table.insert(sendtable, 1)
+
+            table.insert(prize_list, sendtable)
+        end
+
+        if RollPercentage(30) then
+            if RollPercentage(30) then
+                -- 出R
+                local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "R")
+                local sendtable = {}
+                table.insert(sendtable, card_name)
+                table.insert(sendtable, 1)
+    
+                table.insert(prize_list, sendtable)
+            else
+                -- 出N
+                local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "N")
+                local sendtable = {}
+                table.insert(sendtable, card_name)
+                table.insert(sendtable, 1)
+    
+                table.insert(prize_list, sendtable)
+            end
+        else
+            -- 遗物经验,钻石,宝物碎片
+            local randint = RandomInt(1, 100)
+            if 1 <= randint and randint <= 20 then
+                local exp = RandomInt(250, 350)
+                game_playerinfo:rewardsrelicsExp(steam_id, exp, prize_list)
+            elseif 20 < randint and randint <= 30 then
+                local exp = RandomInt(400, 500)
+                game_playerinfo:rewardsrelicsExp(steam_id, exp, prize_list)
+            elseif 30 < randint and randint <= 50 then
+                local zs = RandomInt(5000, 6000)
+                game_playerinfo:rewardsDiamond(steam_id, zs, prize_list)
+            elseif 50 < randint and randint <= 60 then
+                local zs = RandomInt(7000, 8000)
+                game_playerinfo:rewardsDiamond(steam_id, zs, prize_list)
+            elseif 60 < randint and randint <= 90 then
+                local cp = RandomInt(2, 5)
+                game_playerinfo:rewardschipNumber(steam_id, cp, prize_list)
+            else
+                local cp = RandomInt(5, 10)
+                game_playerinfo:rewardschipNumber(steam_id, cp, prize_list)
+            end
+        end
+    elseif level==2 then
+        -- 兑换宝物卡概率
+        if RollPercentage(30) then
+            -- 出SR
+            local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "SR")
+            local sendtable = {}
+            table.insert(sendtable, card_name)
+            table.insert(sendtable, 1)
+
+            table.insert(prize_list, sendtable)
+        else
+            -- 出R
+            local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "R")
+            local sendtable = {}
+            table.insert(sendtable, card_name)
+            table.insert(sendtable, 1)
+
+            table.insert(prize_list, sendtable)
+        end
+
+        if RollPercentage(30) then
+            if RollPercentage(30) then
+                -- 出SR
+                local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "SR")
+                local sendtable = {}
+                table.insert(sendtable, card_name)
+                table.insert(sendtable, 1)
+    
+                table.insert(prize_list, sendtable)
+            else
+                -- 出R
+                local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "R")
+                local sendtable = {}
+                table.insert(sendtable, card_name)
+                table.insert(sendtable, 1)
+    
+                table.insert(prize_list, sendtable)
+            end
+        else
+            -- 遗物经验,钻石,宝物碎片
+            local randint = RandomInt(1, 100)
+            if 1 <= randint and randint <= 20 then
+                local exp = RandomInt(400, 500)
+                game_playerinfo:rewardsrelicsExp(steam_id, exp, prize_list)
+            elseif 20 < randint and randint <= 30 then
+                local exp = RandomInt(500, 600)
+                game_playerinfo:rewardsrelicsExp(steam_id, exp, prize_list)
+            elseif 30 < randint and randint <= 50 then
+                local zs = RandomInt(7000, 8000)
+                game_playerinfo:rewardsDiamond(steam_id, zs, prize_list)
+            elseif 50 < randint and randint <= 60 then
+                local zs = RandomInt(10000, 15000)
+                game_playerinfo:rewardsDiamond(steam_id, zs, prize_list)
+            elseif 60 < randint and randint <= 90 then
+                local cp = RandomInt(5, 10)
+                game_playerinfo:rewardschipNumber(steam_id, cp, prize_list)
+            else
+                local cp = RandomInt(10, 20)
+                game_playerinfo:rewardschipNumber(steam_id, cp, prize_list)
+            end
+        end
+    elseif level==3 then
+        -- 兑换宝物卡概率
+        if RollPercentage(15) then
+            -- 出SSR
+            local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "SSR")
+            local sendtable = {}
+            table.insert(sendtable, card_name)
+            table.insert(sendtable, 1)
+
+            table.insert(prize_list, sendtable)
+        else
+            -- 出SR
+            local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "SR")
+            local sendtable = {}
+            table.insert(sendtable, card_name)
+            table.insert(sendtable, 1)
+
+            table.insert(prize_list, sendtable)
+        end
+
+        if RollPercentage(30) then
+            if RollPercentage(30) then
+                -- 出SSR
+                local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "SSR")
+                local sendtable = {}
+                table.insert(sendtable, card_name)
+                table.insert(sendtable, 1)
+    
+                table.insert(prize_list, sendtable)
+            else
+                -- 出SR
+                local card_name = treasuresystem:AddChipTreasureToPlayer(playerID, "SR")
+                local sendtable = {}
+                table.insert(sendtable, card_name)
+                table.insert(sendtable, 1)
+    
+                table.insert(prize_list, sendtable)
+            end
+        else
+            -- 遗物经验,钻石,宝物碎片
+            local randint = RandomInt(1, 100)
+            if 1 <= randint and randint <= 20 then
+                local exp = RandomInt(500, 600)
+                game_playerinfo:rewardsrelicsExp(steam_id, exp, prize_list)
+            elseif 20 < randint and randint <= 30 then
+                local exp = RandomInt(800, 900)
+                game_playerinfo:rewardsrelicsExp(steam_id, exp, prize_list)
+            elseif 30 < randint and randint <= 50 then
+                local zs = RandomInt(10000, 15000)
+                game_playerinfo:rewardsDiamond(steam_id, zs, prize_list)
+            elseif 50 < randint and randint <= 60 then
+                local zs = RandomInt(20000, 25000)
+                game_playerinfo:rewardsDiamond(steam_id, zs, prize_list)
+            elseif 60 < randint and randint <= 90 then
+                local cp = RandomInt(10, 20)
+                game_playerinfo:rewardschipNumber(steam_id, cp, prize_list)
+            else
+                local cp = RandomInt(20, 40)
+                game_playerinfo:rewardschipNumber(steam_id, cp, prize_list)
+            end
+        end
+    end
 end

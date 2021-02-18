@@ -55,7 +55,7 @@ modifier_boss_finally_ability_3_motion = class({})
 
 function modifier_boss_finally_ability_3_motion:CheckState()
 	return {
-        [MODIFIER_STATE_STUNNED] = true,
+        -- [MODIFIER_STATE_STUNNED] = true,
 	}
 end
 

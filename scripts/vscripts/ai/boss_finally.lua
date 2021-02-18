@@ -59,19 +59,19 @@ function Spawn(entityKeyValues)
 end
 
 function CanAbility1()
-	return Ability1:IsFullyCastable() and thisEntity:GetHealth() < thisEntity:GetMaxHealth() * 1
+	return Ability1:IsFullyCastable()
 end
 
 function CanAbility2()
-	return Ability2:IsFullyCastable() and thisEntity:GetHealth() < thisEntity:GetMaxHealth() * 0.9
+	return Ability2:IsFullyCastable()
 end
 
 function CanAbility3()
-	return Ability3:IsFullyCastable() and thisEntity:GetHealth() < thisEntity:GetMaxHealth() * 0.7
+	return Ability3:IsFullyCastable()
 end
 
 function CanAbility4()
-	return Ability4:IsFullyCastable() and thisEntity:GetHealth() < thisEntity:GetMaxHealth() * 0.4
+	return Ability4:IsFullyCastable()
 end
 
 function FindClosest()

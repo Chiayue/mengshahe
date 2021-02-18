@@ -75,6 +75,8 @@
 		"CanBeDominated"	"0"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_STRUCTURE"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 骷髅
@@ -153,6 +155,8 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"AttackAnimationPoint"	"0.25"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 骷髅弓箭手
@@ -228,6 +232,8 @@
 		"CanBeDominated"	"0"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 巫师
@@ -306,6 +312,8 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
 		"vscripts"	"ai/creep_witch"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 肉山
@@ -384,6 +392,8 @@
 		"CanBeDominated"	"0"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 蝎子王
@@ -482,6 +492,8 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"vscripts"	"ai/ai_scorpion_king"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 木乃伊
@@ -562,6 +574,8 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"vscripts"	"ai/ai_munaiyi"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 巫妖王
@@ -661,6 +675,8 @@
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"ProjectileModel"	"particles/units/heroes/hero_lich/lich_base_attack.vpcf"
 		"vscripts"	"ai/ai_wuyaowang"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 美杜莎
@@ -764,6 +780,8 @@
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"ProjectileModel"	"particles/units/heroes/hero_medusa/medusa_base_attack.vpcf"
 		"vscripts"	"ai/ai_meidusha"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 石头巨人
@@ -843,6 +861,8 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"vscripts"	"ai/ai_shitouren"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 骷髅王
@@ -923,6 +943,8 @@
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
 		"vscripts"	"ai/ai_skeleton_king"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 铁匠
@@ -999,6 +1021,8 @@
 		"CanBeDominated"	"0"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 金币
@@ -1075,6 +1099,8 @@
 		"CanBeDominated"	"0"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 炎魔
@@ -1154,6 +1180,8 @@
 		"CanBeDominated"	"0"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_HERO"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_HERO"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 宝箱
@@ -1225,6 +1253,8 @@
 		"CanBeDominated"	"0"
 		"CombatClassAttack"	"DOTA_COMBAT_CLASS_ATTACK_BASIC"
 		"CombatClassDefend"	"DOTA_COMBAT_CLASS_DEFEND_BASIC"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	// 信使
@@ -2108,6 +2138,8 @@
 		"MovementSpeed"	"300"
 		"AttackAcquisitionRange"	"99999"
 		"AttackRange"	"150"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	"unit_shujing"
@@ -2189,6 +2221,8 @@
 		"AttackRange"	"500"
 		"AttackDamageMin"	"100"
 		"AttackDamageMax"	"100"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	"boss_god_fire"
@@ -2226,6 +2260,8 @@
 		"MovementSpeed"	"300"
 		"AttackAcquisitionRange"	"99999"
 		"AttackRange"	"150"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	"boss_god_wood"
@@ -2268,6 +2304,8 @@
 			"AttachWearables"	{}
 		}
 		"AttackAnimationPoint"	"1"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	"boss_god_metal"
@@ -2301,6 +2339,8 @@
 		"AttackAnimationPoint"	"1.5"
 		"AttackDamageMin"	"1000"
 		"AttackDamageMax"	"1000"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	"boss_god_water"
@@ -2346,6 +2386,8 @@
 		}
 		"ProjectileModel"	"particles/units/heroes/hero_ancient_apparition/ancient_apparition_chilling_touch_projectile.vpcf"
 		"vscripts"	"ai/boss_god_water"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	"goodguys_melee"
@@ -2438,10 +2480,12 @@
 		"AttackRate"	"0.3"
 		"Creature"
 		{
-			"DisableResistance"	"80"
+			"DisableResistance"	"99"
 		}
 		"HasInventory"	"0"
 		"ConsideredHero"	"1"
+		"VisionDaytimeRange"	"9999"
+		"VisionNighttimeRange"	"9999"
 	}
 
 	"bear_xss"
